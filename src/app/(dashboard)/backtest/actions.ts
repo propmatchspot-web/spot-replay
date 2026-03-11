@@ -112,6 +112,7 @@ export async function createBacktestSession(formData: {
         }
     }
 
+    // First create the session WITHOUT candle_data (to avoid payload size issues)
     const { data, error } = await supabase
         .from('backtest_sessions')
         .insert({
@@ -126,7 +127,6 @@ export async function createBacktestSession(formData: {
             start_date: formData.startDate || null,
             end_date: formData.endDate || null,
             timezone: formData.timezone || 'Etc/UTC',
-            candle_data: candleData, // Store the fetched JSON
             challenge_rules: formData.challengeRules || null,
             challenge_status: challengeStatus
         })
@@ -136,6 +136,23 @@ export async function createBacktestSession(formData: {
     if (error) {
         console.error('Error creating session:', error)
         throw new Error(error.message)
+    }
+
+    // Store candle data in a separate table (avoids large payload issues)
+    if (candleData.length > 0) {
+        const { error: dataError } = await supabase
+            .from('backtest_session_data')
+            .insert({
+                session_id: data.id,
+                candle_data: candleData
+            })
+
+        if (dataError) {
+            console.error('Error storing candle data:', dataError)
+            // Session was created, candle data can be fetched lazily — don't fail here
+        } else {
+            console.log(`Stored ${candleData.length} candles in backtest_session_data`)
+        }
     }
 
     revalidatePath('/backtest')

@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
 
 const TIPS = [
     "💡 Professional traders spend 80% analyzing, 20% executing",
@@ -16,45 +15,134 @@ const TIPS = [
 
 export default function LoadingTips() {
     const [currentTip, setCurrentTip] = useState(0)
+    const [progress, setProgress] = useState(0)
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        const tipInterval = setInterval(() => {
             setCurrentTip(prev => (prev + 1) % TIPS.length)
-        }, 3000)
+        }, 3500)
 
-        return () => clearInterval(interval)
+        const progressInterval = setInterval(() => {
+            setProgress(prev => {
+                if (prev >= 95) return 95
+                const increment = Math.max(0.3, (95 - prev) / 40)
+                return Math.min(95, prev + increment)
+            })
+        }, 500)
+
+        return () => {
+            clearInterval(tipInterval)
+            clearInterval(progressInterval)
+        }
     }, [])
 
     return (
-        <div className="flex flex-col items-center justify-center h-full space-y-8 p-8">
-            {/* BIGGER Logo */}
-            <div className="relative w-40 h-40 animate-pulse">
-                <Image
+        <div
+            style={{
+                position: 'fixed',
+                inset: 0,
+                width: '100vw',
+                height: '100vh',
+                backgroundColor: '#000000',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '40px',
+                zIndex: 9999,
+            }}
+        >
+            {/* Collaboration Logos — big and simple, no boxes */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                     src="/Replaylogo.png"
-                    alt="Loading"
-                    fill
-                    priority
-                    className="object-contain"
+                    alt="Spot Replay"
+                    style={{ height: '80px', width: 'auto', objectFit: 'contain' }}
+                />
+
+                <span style={{
+                    color: 'rgba(251, 191, 36, 0.8)',
+                    fontSize: '28px',
+                    fontWeight: 700,
+                    userSelect: 'none',
+                    lineHeight: 1,
+                }}>
+                    ×
+                </span>
+
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src="/TJlogo.png"
+                    alt="Trading Journal"
+                    style={{ height: '80px', width: 'auto', objectFit: 'contain' }}
                 />
             </div>
 
-            {/* Loading Text */}
-            <div className="text-center space-y-3">
-                <h3 className="text-2xl font-semibold text-white">Loading Historical Data...</h3>
-                <p className="text-sm text-gray-400">This may take 30-60 seconds</p>
-                <div className="flex items-center justify-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            {/* Loading text + progress */}
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '16px',
+                width: '100%',
+                maxWidth: '400px',
+                padding: '0 24px',
+            }}>
+                <h3 style={{
+                    color: '#ffffff',
+                    fontSize: '22px',
+                    fontWeight: 700,
+                    margin: 0,
+                    letterSpacing: '-0.02em',
+                }}>
+                    Loading Historical Data...
+                </h3>
+
+                {/* Progress bar */}
+                <div style={{
+                    width: '100%',
+                    height: '4px',
+                    backgroundColor: '#1a1a1a',
+                    borderRadius: '4px',
+                    overflow: 'hidden',
+                }}>
+                    <div style={{
+                        height: '100%',
+                        width: `${progress}%`,
+                        background: 'linear-gradient(90deg, #f59e0b, #f97316)',
+                        borderRadius: '4px',
+                        transition: 'width 0.5s ease-out',
+                        boxShadow: '0 0 12px rgba(245, 158, 11, 0.4)',
+                    }} />
+                </div>
+
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    fontSize: '12px',
+                    fontFamily: 'monospace',
+                    color: '#666',
+                }}>
+                    <span>Downloading candles...</span>
+                    <span>{Math.round(progress)}%</span>
                 </div>
             </div>
 
-            {/* Shorter Tips */}
-            <div className="max-w-lg text-center">
-                <p className="text-sm text-gray-300 font-medium transition-opacity duration-500">
-                    {TIPS[currentTip]}
-                </p>
-            </div>
+            {/* Tip */}
+            <p style={{
+                color: '#999',
+                fontSize: '14px',
+                fontWeight: 500,
+                margin: 0,
+                maxWidth: '500px',
+                textAlign: 'center',
+                padding: '0 24px',
+                transition: 'opacity 0.5s',
+            }}>
+                {TIPS[currentTip]}
+            </p>
         </div>
     )
 }

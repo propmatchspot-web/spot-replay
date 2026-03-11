@@ -243,7 +243,7 @@ export async function fetchMarketData(
 
     try {
         // fetchHistoricalData in data-service handles routing to Dukascopy/Binance/TradingView
-        const data = await fetchHistoricalData(symbol, tvInterval, limit, endTime, resolvedCategory)
+        const data = await fetchHistoricalData(symbol, tvInterval, limit, endTime, resolvedCategory, startTime)
 
         console.log(`[fetchMarketData] ✅ Got ${data?.length || 0} candles`)
 

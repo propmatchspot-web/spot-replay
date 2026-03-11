@@ -30,7 +30,7 @@ export default function LoadingTips() {
             {/* BIGGER Logo */}
             <div className="relative w-40 h-40 animate-pulse">
                 <Image
-                    src="/logo.png"
+                    src="/Replaylogo.png"
                     alt="Loading"
                     fill
                     priority

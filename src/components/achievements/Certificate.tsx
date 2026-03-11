@@ -56,7 +56,7 @@ export const Certificate = forwardRef<HTMLDivElement, CertificateProps>(({ id, a
                 <div className="flex items-center gap-3 opacity-90">
                     <div className="w-12 h-12 relative">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/logo.png" alt="Logo" className="w-full h-full object-contain filter brightness-0 invert" crossOrigin="anonymous" />
+                        <img src="/Replaylogo.png" alt="Logo" className="w-full h-full object-contain filter brightness-0 invert" crossOrigin="anonymous" />
                     </div>
                     <div className="flex flex-col">
                         <span className="text-xl font-bold tracking-widest leading-none">TRADING</span>

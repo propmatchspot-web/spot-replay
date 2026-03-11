@@ -140,7 +140,7 @@ export function ShareTradeModal({ trade }: ShareTradeModalProps) {
                     <div style={{ height: '48px', width: '48px', position: 'relative' }}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                            src="/logo.png"
+                            src="/Replaylogo.png"
                             alt="Logo"
                             style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                             crossOrigin="anonymous"

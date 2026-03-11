@@ -35,7 +35,7 @@ export function BacktestBottomBar({
                 <div className="flex items-center pr-2">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src="/logo.png"
+                        src="/Replaylogo.png"
                         alt="Logo"
                         className="h-10 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
                     />

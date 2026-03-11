@@ -6,12 +6,36 @@ import { createClient } from '@/utils/supabase/server'
 import { validatePassword, validateEmail } from '@/utils/validation'
 
 export async function login(formData: FormData) {
+    const supabase = await createClient()
+
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+    const plan = formData.get('plan') as string
+
+    const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+    })
+
+    if (error) {
+        console.error('Supabase Auth Error:', error)
+        redirect(`/login?error=${encodeURIComponent(error.message)}${plan ? `&plan=${plan}` : ''}`)
+    }
+
+    revalidatePath('/', 'layout')
+
+    if (plan) {
+        redirect(`/checkout?plan=${plan}`)
+    }
+
+    redirect('/dashboard')
+}
+
+// Client-callable login that returns result instead of redirecting
+// This ensures cookies are properly set before navigation
+export async function loginAction(email: string, password: string, plan?: string): Promise<{ error?: string; redirectTo?: string }> {
     try {
         const supabase = await createClient()
-
-        const email = formData.get('email') as string
-        const password = formData.get('password') as string
-        const plan = formData.get('plan') as string
 
         const { error } = await supabase.auth.signInWithPassword({
             email,
@@ -20,25 +44,20 @@ export async function login(formData: FormData) {
 
         if (error) {
             console.error('Supabase Auth Error:', error)
-            return redirect(`/login?error=${encodeURIComponent(error.message)}${plan ? `&plan=${plan}` : ''}`)
+            return { error: error.message }
         }
 
         revalidatePath('/', 'layout')
 
         if (plan) {
-            return redirect(`/checkout?plan=${plan}`)
-        }
-    } catch (error) {
-        // Check if it's a Next.js redirect error
-        if ((error as any)?.digest?.startsWith('NEXT_REDIRECT')) {
-            throw error
+            return { redirectTo: `/checkout?plan=${plan}` }
         }
 
+        return { redirectTo: '/dashboard' }
+    } catch (error: any) {
         console.error('Login Action Error:', error)
-        return redirect(`/login?error=${encodeURIComponent('An unexpected error occurred. Please try again.')}`)
+        return { error: 'An unexpected error occurred. Please try again.' }
     }
-
-    redirect('/')
 }
 
 export async function signup(formData: FormData) {

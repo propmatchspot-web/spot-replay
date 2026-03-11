@@ -1,18 +1,21 @@
 'use client'
 
-import { login } from './actions'
+import { loginAction } from './actions'
 import Link from 'next/link'
 import { Mail, Lock, ArrowRight, Loader2 } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { Suspense, useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
 
 function LoginForm() {
     const searchParams = useSearchParams()
-    const error = searchParams.get('error')
+    const router = useRouter()
+    const errorParam = searchParams.get('error')
     const plan = searchParams.get('plan')
     const [googleLoading, setGoogleLoading] = useState(false)
+    const [emailLoading, setEmailLoading] = useState(false)
+    const [error, setError] = useState<string | null>(errorParam)
 
     const handleGoogleLogin = async () => {
         setGoogleLoading(true)
@@ -30,6 +33,31 @@ function LoginForm() {
                 redirectTo,
             },
         })
+    }
+
+    const handleEmailLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        setEmailLoading(true)
+        setError(null)
+
+        const formData = new FormData(e.currentTarget)
+        const email = formData.get('email') as string
+        const password = formData.get('password') as string
+
+        const result = await loginAction(email, password, plan || undefined)
+
+        if (result.error) {
+            setError(result.error)
+            setEmailLoading(false)
+            return
+        }
+
+        if (result.redirectTo) {
+            // Small delay to ensure cookies are fully set before navigation
+            await new Promise(resolve => setTimeout(resolve, 100))
+            router.push(result.redirectTo)
+            router.refresh()
+        }
     }
 
     return (
@@ -140,7 +168,7 @@ function LoginForm() {
                             </div>
                         </div>
 
-                        <form className="space-y-6">
+                        <form onSubmit={handleEmailLogin} className="space-y-6">
                             {plan && <input type="hidden" name="plan" value={plan} />}
                             <div className="space-y-4">
                                 <div>
@@ -185,11 +213,18 @@ function LoginForm() {
                             </div>
 
                             <button
-                                formAction={login}
-                                className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-amber-500/20 hover:from-orange-500 hover:to-orange-600 hover:shadow-orange-500/30 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                                type="submit"
+                                disabled={emailLoading}
+                                className="group relative flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-3.5 text-sm font-bold text-white shadow-lg shadow-amber-500/20 hover:from-orange-500 hover:to-orange-600 hover:shadow-orange-500/30 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-zinc-900 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
                             >
-                                Sign in
-                                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                {emailLoading ? (
+                                    <Loader2 className="h-5 w-5 animate-spin" />
+                                ) : (
+                                    <>
+                                        Sign in
+                                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                    </>
+                                )}
                             </button>
                         </form>
                     </div>

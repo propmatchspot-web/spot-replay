@@ -90,9 +90,12 @@ export async function createBacktestSession(formData: {
             if (symbol.includes('USDT')) symbol = `BINANCE:${symbol}`
             else symbol = `FX:${symbol}`
         }
+        // Convert user dates to timestamps for exact date range fetching
+        const startTimestamp = formData.startDate ? new Date(formData.startDate).getTime() : undefined
+        const endTimestamp = formData.endDate ? new Date(formData.endDate).getTime() : undefined
 
-        console.log(`Fetching ${range} candles for ${symbol}...`)
-        candleData = await fetchHistoricalData(symbol, timeframe, range, undefined, formData.category)
+        console.log(`Fetching ${range} candles for ${symbol} from ${formData.startDate} to ${formData.endDate}...`)
+        candleData = await fetchHistoricalData(symbol, timeframe, range, endTimestamp, formData.category, startTimestamp)
         console.log(`Fetched ${candleData.length} candles`)
 
     } catch (err) {

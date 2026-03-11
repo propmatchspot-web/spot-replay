@@ -52,7 +52,8 @@ export async function fetchHistoricalData(
     timeframe: string = '1D',
     range: number = 1000,
     endTime?: number,
-    category?: AssetCategory
+    category?: AssetCategory,
+    startTime?: number
 ): Promise<Candle[]> {
 
     // Auto-detect category if not provided
@@ -66,7 +67,7 @@ export async function fetchHistoricalData(
 
     // 1. DUKASCOPY (Forex & Metals)
     if (resolvedCategory === 'FOREX' || resolvedCategory === 'METALS') {
-        return await fetchDukascopyData(symbol, timeframe, range, endTime)
+        return await fetchDukascopyData(symbol, timeframe, range, endTime, startTime)
     }
 
     // 2. BINANCE (Crypto)

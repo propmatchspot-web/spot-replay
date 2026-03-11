@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Check, Crown, User, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { activateFreePlan, markOnboardingComplete, setOnboardingCookie } from '@/app/actions/billing'
+import { markOnboardingComplete, setOnboardingCookie } from '@/app/actions/billing'
 
 export default function OnboardingPage() {
     const router = useRouter()
@@ -12,10 +12,10 @@ export default function OnboardingPage() {
 
     const handleFreePlan = async () => {
         setIsActivating(true)
+        // NUCLEAR FIX: Set cookie FIRST (never fails), then try DB (backup)
         try { await setOnboardingCookie() } catch { }
-        try { await activateFreePlan() } catch { }
         try { await markOnboardingComplete() } catch { }
-        router.push('/dashboard')
+        router.push('/checkout?plan=spot_basic')
     }
 
     const handleExclusivePlan = async () => {

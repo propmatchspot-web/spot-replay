@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   title: "Spot Replay - Market Replay & Backtesting Platform",
   description: "Practice trading with real market data. Replay any market, any timeframe. Master your strategy with Spot Replay.",
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "/replay-favicon.png",
+    shortcut: "/replay-favicon.png",
+    apple: "/replay-favicon.png",
   },
 };
 

@@ -65,8 +65,9 @@ export async function fetchHistoricalData(
         console.log(`[DataService] No category for ${symbol}, falling back to TradingView`)
     }
 
-    // 1. DUKASCOPY (Forex & Metals)
+    // 1. DUKASCOPY (Forex & Metals — ONLY provider, no fallbacks)
     if (resolvedCategory === 'FOREX' || resolvedCategory === 'METALS') {
+        console.log(`[DataService] 🔒 DUKASCOPY ONLY for ${symbol} (${resolvedCategory}) — no fallback`)
         return await fetchDukascopyData(symbol, timeframe, range, endTime, startTime)
     }
 
@@ -75,7 +76,21 @@ export async function fetchHistoricalData(
         return await fetchBinanceData(symbol, timeframe, range, undefined, endTime)
     }
 
-    // 3. TRADINGVIEW (Indices, Stocks, & Fallback)
+    // 3. Safety net: If no category was detected but symbol LOOKS like forex,
+    //    force Dukascopy — never let forex pairs slip through to TradingView
+    if (!resolvedCategory) {
+        const clean = symbol.replace(/^(FX|OANDA|FOREX|TVC|BINANCE|NASDAQ|NYSE):/, '').toUpperCase()
+        const looksLikeForex = clean.length === 6 && /^[A-Z]+$/.test(clean)
+        const containsCurrency = /^(EUR|USD|GBP|JPY|AUD|NZD|CAD|CHF|XAU|XAG)/i.test(clean) 
+            || /(EUR|USD|GBP|JPY|AUD|NZD|CAD|CHF)$/i.test(clean)
+        
+        if (looksLikeForex || containsCurrency) {
+            console.log(`[DataService] 🔒 Unrecognized but looks forex: ${symbol} → forcing DUKASCOPY`)
+            return await fetchDukascopyData(symbol, timeframe, range, endTime, startTime)
+        }
+    }
+
+    // 4. TRADINGVIEW (Indices, Stocks only)
     return await fetchTradingViewData(symbol, timeframe, range, endTime)
 }
 

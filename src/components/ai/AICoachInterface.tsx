@@ -54,8 +54,8 @@ export function AICoachInterface({ initialTrades, initialReports }: AICoachInter
     // Mode Configuration
     const modes = {
         coach: {
-            color: '#00E676',
-            gradient: 'from-[#00E676]/20 to-emerald-500/20',
+            color: '#F7AE11',
+            gradient: 'from-amber-500/20 to-yellow-500/20',
             icon: Bot,
             label: 'Coach',
             description: 'Strategic guidance & performance analysis'
@@ -401,7 +401,7 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                     <div className="flex items-center gap-4">
                         <div className={`p-2.5 rounded-2xl bg-gradient-to-br ${currentMode.gradient} border border-white/5 shadow-lg relative group`}>
                             <div className="absolute inset-0 rounded-2xl bg-current opacity-0 group-hover:opacity-10 transition-opacity" style={{ color: currentMode.color }} />
-                            <img src="/favicon.png" alt="AI Avatar" className="h-6 w-6" />
+                            <img src="/Replaylogo.png" alt="Spot Buddy" className="h-6 w-6 rounded-md" />
                         </div>
                         <div>
                             <h2 className="text-xl font-black text-white uppercase italic tracking-tight flex items-center gap-2">
@@ -426,7 +426,7 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                         {/* New Analysis Button */}
                         <button
                             onClick={() => setShowWizard(true)}
-                            className="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/30 transition-all flex items-center gap-2 text-xs font-bold uppercase tracking-wider"
+                            className="px-4 py-2 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:bg-amber-500/30 transition-all flex items-center gap-2 text-xs font-bold uppercase tracking-wider"
                         >
                             <BarChart3 className="h-4 w-4" />
                             <span className="hidden sm:inline">New Analysis</span>
@@ -500,7 +500,7 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                                 {msg.role === 'user' ? (
                                     <User className="h-5 w-5 text-zinc-400" />
                                 ) : (
-                                    <img src="/favicon.png" alt="AI" className="h-6 w-6" />
+                                    <img src="/Replaylogo.png" alt="Spot Buddy" className="h-6 w-6 rounded-md" />
                                 )}
                             </div>
 
@@ -530,14 +530,14 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                                                     <ReactMarkdown
                                                         components={{
                                                             h1: ({ node, ...props }) => <h1 className="text-lg font-bold text-white mb-3 mt-4 border-b border-zinc-800 pb-2" {...props} />,
-                                                            h2: ({ node, ...props }) => <h2 className="text-base font-bold text-emerald-400 mb-2 mt-4 uppercase tracking-wide" {...props} />,
+                                                            h2: ({ node, ...props }) => <h2 className="text-base font-bold text-amber-400 mb-2 mt-4 uppercase tracking-wide" {...props} />,
                                                             h3: ({ node, ...props }) => <h3 className="text-sm font-bold text-zinc-200 mb-2 mt-3" {...props} />,
                                                             ul: ({ node, ...props }) => <ul className="list-disc list-outside ml-4 space-y-1.5 mb-3 text-zinc-300" {...props} />,
                                                             ol: ({ node, ...props }) => <ol className="list-decimal list-outside ml-4 space-y-1.5 mb-3 text-zinc-300" {...props} />,
                                                             li: ({ node, ...props }) => <li className="pl-1" {...props} />,
-                                                            strong: ({ node, ...props }) => <strong className="font-bold text-emerald-400" {...props} />,
+                                                            strong: ({ node, ...props }) => <strong className="font-bold text-amber-400" {...props} />,
                                                             p: ({ node, ...props }) => <p className="mb-3 last:mb-0 leading-relaxed text-zinc-300" {...props} />,
-                                                            blockquote: ({ node, ...props }) => <blockquote className="border-l-2 border-emerald-500 pl-4 italic text-zinc-400 my-3 bg-zinc-900/50 py-2 pr-2 rounded-r-lg" {...props} />,
+                                                            blockquote: ({ node, ...props }) => <blockquote className="border-l-2 border-amber-500 pl-4 italic text-zinc-400 my-3 bg-zinc-900/50 py-2 pr-2 rounded-r-lg" {...props} />,
                                                             code: ({ node, ...props }) => <code className="bg-zinc-900 px-1.5 py-0.5 rounded text-xs font-mono text-zinc-200 border border-zinc-800" {...props} />,
                                                         }}
                                                     >
@@ -569,8 +569,8 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                                                 className={cn(
                                                     "text-[10px] uppercase tracking-wider font-bold flex items-center gap-1 px-2 py-1 rounded-lg transition-colors",
                                                     msg.saved
-                                                        ? "text-emerald-400 bg-emerald-500/10"
-                                                        : "text-zinc-500 hover:text-emerald-400 hover:bg-emerald-500/10"
+                                                        ? "text-amber-400 bg-amber-500/10"
+                                                        : "text-zinc-500 hover:text-amber-400 hover:bg-amber-500/10"
                                                 )}
                                             >
                                                 <BookmarkPlus className="h-3 w-3" />
@@ -605,13 +605,13 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                             ) : (
                                 /* Simple typing dots for regular chat */
                                 <div className="flex items-center gap-4 p-4">
-                                    <div className="p-2 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 border border-emerald-500/20">
-                                        <Bot className="h-5 w-5 text-emerald-400" />
+                                    <div className="p-2 rounded-xl bg-gradient-to-br from-amber-500/20 to-yellow-500/20 border border-amber-500/20">
+                                        <Bot className="h-5 w-5 text-amber-400" />
                                     </div>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                                        <div className="w-2 h-2 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                                        <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                                        <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                                        <div className="w-2 h-2 bg-amber-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                                     </div>
                                     <span className="text-xs text-zinc-500">Thinking...</span>
                                 </div>
@@ -740,7 +740,7 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                 {/* 1. Coach's Memory */}
                 <div className="rounded-[2rem] border border-zinc-800 bg-zinc-900 p-6 flex flex-col">
                     <div className="flex items-center gap-2 mb-6">
-                        <Sparkles className="h-5 w-5 text-[#00E676]" />
+                        <Sparkles className="h-5 w-5 text-amber-400" />
                         <h3 className="text-lg font-black text-white uppercase italic tracking-tight">Coach's Memory</h3>
                     </div>
                     <div className="flex-1 p-4 rounded-xl bg-zinc-950 border border-zinc-800">
@@ -794,17 +794,17 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                         <h3 className="text-lg font-black text-white uppercase italic tracking-tight">Quick Actions</h3>
                     </div>
                     <div className="flex-1 space-y-3">
-                        <button className="w-full flex items-center justify-between p-4 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-[#00E676]/30 hover:bg-zinc-900 transition-all group">
+                        <button className="w-full flex items-center justify-between p-4 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-amber-500/30 hover:bg-zinc-900 transition-all group">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 rounded-lg bg-[#00E676]/10 text-[#00E676] group-hover:bg-[#00E676] group-hover:text-black transition-colors">
+                                <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 group-hover:bg-amber-500 group-hover:text-black transition-colors">
                                     <BrainCircuit className="h-4 w-4" />
                                 </div>
                                 <span className="text-sm font-bold text-zinc-300 group-hover:text-white">Full Account Audit</span>
                             </div>
-                            <ChevronRight className="h-4 w-4 text-zinc-600 group-hover:text-[#00E676]" />
+                            <ChevronRight className="h-4 w-4 text-zinc-600 group-hover:text-amber-400" />
                         </button>
 
-                        <button className="w-full flex items-center justify-between p-4 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-[#00E676]/30 hover:bg-zinc-900 transition-all group">
+                        <button className="w-full flex items-center justify-between p-4 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-purple-500/30 hover:bg-zinc-900 transition-all group">
                             <div className="flex items-center gap-3">
                                 <div className="p-2 rounded-lg bg-purple-500/10 text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-colors">
                                     <TrendingUp className="h-4 w-4" />

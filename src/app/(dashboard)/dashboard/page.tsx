@@ -181,13 +181,19 @@ export default async function DashboardPage({
 
     return (
 
-        <div className="space-y-10 pb-10">
+        <div className="space-y-10 pb-10 relative">
+            {/* Subtle ambient glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/[0.03] blur-[120px] rounded-full pointer-events-none" />
+
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between relative z-10">
                 <div>
+                    <div className="inline-flex items-center px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/5 text-[10px] font-black text-amber-400 uppercase tracking-widest mb-3">
+                        📊 Performance Overview
+                    </div>
                     <h2 className="text-3xl sm:text-4xl font-black text-white uppercase italic tracking-tight">Dashboard</h2>
-                    <div className="flex items-center gap-2 mt-1">
-                        <p className="text-zinc-400 text-sm sm:text-base">Overview for <span className="text-amber-400 font-bold">{account?.name}</span></p>
+                    <div className="flex items-center gap-2 mt-1.5">
+                        <p className="text-zinc-400 text-sm sm:text-base">Portfolio: <span className="text-amber-400 font-bold">{account?.name}</span></p>
                     </div>
                 </div>
                 <TradeDialog accountId={accountId} />

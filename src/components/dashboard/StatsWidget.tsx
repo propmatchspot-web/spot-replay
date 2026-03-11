@@ -28,10 +28,10 @@ interface StatsWidgetProps {
     iconName: IconName
     trend?: string
     trendUp?: boolean
-    color?: 'emerald' | 'cyan' | 'blue' | 'violet'
+    color?: 'emerald' | 'cyan' | 'blue' | 'violet' | 'amber' | 'orange' | 'brand-gold'
 }
 
-export function StatsWidget({ title, value, iconName, trend, trendUp, color = 'emerald' }: StatsWidgetProps) {
+export function StatsWidget({ title, value, iconName, trend, trendUp, color = 'amber' }: StatsWidgetProps) {
     const Icon = iconMap[iconName]
 
     // Fallback if icon not found
@@ -76,6 +76,33 @@ export function StatsWidget({ title, value, iconName, trend, trendUp, color = 'e
             iconRing: 'ring-violet-500/20',
             bar: 'from-violet-600 via-violet-500 to-violet-400',
             dot: 'bg-violet-500',
+        },
+        amber: {
+            gradient: 'from-amber-500/20 via-transparent to-transparent',
+            glow: 'group-hover:shadow-[0_0_40px_-10px_rgba(245,158,11,0.4)]',
+            icon: 'text-amber-400',
+            iconBg: 'bg-amber-500/10 group-hover:bg-amber-500/20',
+            iconRing: 'ring-amber-500/20',
+            bar: 'from-amber-600 via-amber-500 to-amber-400',
+            dot: 'bg-amber-500',
+        },
+        orange: {
+            gradient: 'from-orange-500/20 via-transparent to-transparent',
+            glow: 'group-hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.4)]',
+            icon: 'text-orange-400',
+            iconBg: 'bg-orange-500/10 group-hover:bg-orange-500/20',
+            iconRing: 'ring-orange-500/20',
+            bar: 'from-orange-600 via-orange-500 to-orange-400',
+            dot: 'bg-orange-500',
+        },
+        'brand-gold': {
+            gradient: 'from-[#F7AE11]/20 via-transparent to-transparent',
+            glow: 'group-hover:shadow-[0_0_40px_-10px_rgba(247,174,17,0.4)]',
+            icon: 'text-[#F7AE11]',
+            iconBg: 'bg-[#F7AE11]/10 group-hover:bg-[#F7AE11]/20',
+            iconRing: 'ring-[#F7AE11]/20',
+            bar: 'from-[#F7AE11] via-amber-500 to-amber-400',
+            dot: 'bg-[#F7AE11]',
         },
     }
 

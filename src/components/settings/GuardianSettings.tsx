@@ -45,7 +45,7 @@ export function GuardianSettings({ user }: { user: any }) {
         <div className="space-y-6">
             <div>
                 <h3 className="text-xl font-black text-white uppercase italic tracking-tight flex items-center gap-2">
-                    <Shield className="h-6 w-6 text-emerald-500" />
+                    <Shield className="h-6 w-6 text-amber-500" />
                     Prop Firm Guardian
                 </h3>
                 <p className="text-sm text-zinc-400 font-medium">
@@ -68,7 +68,7 @@ export function GuardianSettings({ user }: { user: any }) {
                             onChange={(e) => setSettings({ ...settings, is_enabled: e.target.checked })}
                             className="sr-only peer"
                         />
-                        <div className="w-11 h-6 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                        <div className="w-11 h-6 bg-zinc-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
                     </label>
                 </div>
 
@@ -80,7 +80,7 @@ export function GuardianSettings({ user }: { user: any }) {
                             type="number"
                             value={settings.daily_loss_limit}
                             onChange={(e) => setSettings({ ...settings, daily_loss_limit: Number(e.target.value) })}
-                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 transition-colors font-mono"
+                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-amber-500 transition-colors font-mono"
                         />
                         <p className="text-[10px] text-zinc-600">
                             Alerts triggers at 80%. Locks trading at 100%.
@@ -93,7 +93,7 @@ export function GuardianSettings({ user }: { user: any }) {
                             type="number"
                             value={settings.max_daily_trades}
                             onChange={(e) => setSettings({ ...settings, max_daily_trades: Number(e.target.value) })}
-                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 transition-colors font-mono"
+                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-amber-500 transition-colors font-mono"
                         />
                         <p className="text-[10px] text-zinc-600">
                             Prevents overtrading.
@@ -106,7 +106,7 @@ export function GuardianSettings({ user }: { user: any }) {
                             type="time"
                             value={settings.trading_hours_start}
                             onChange={(e) => setSettings({ ...settings, trading_hours_start: e.target.value })}
-                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 transition-colors font-mono"
+                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-amber-500 transition-colors font-mono"
                         />
                     </div>
 
@@ -116,7 +116,7 @@ export function GuardianSettings({ user }: { user: any }) {
                             type="time"
                             value={settings.trading_hours_end}
                             onChange={(e) => setSettings({ ...settings, trading_hours_end: e.target.value })}
-                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-emerald-500 transition-colors font-mono"
+                            className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 text-white focus:border-amber-500 transition-colors font-mono"
                         />
                     </div>
 

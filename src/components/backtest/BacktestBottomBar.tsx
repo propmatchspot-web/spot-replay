@@ -46,7 +46,7 @@ export function BacktestBottomBar({
                 {/* Controls */}
                 <div className="flex items-center gap-3">
                     <Button
-                        className="bg-[#089981] hover:bg-[#067a65] text-white font-bold w-24 h-9 shadow-lg shadow-emerald-900/20 transition-all border border-emerald-600/20"
+                        className="bg-[#089981] hover:bg-[#067a65] text-white font-bold w-24 h-9 shadow-lg shadow-amber-900/20 transition-all border border-amber-600/20"
                         onClick={onBuy}
                     >
                         Buy

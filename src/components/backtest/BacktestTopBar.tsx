@@ -71,7 +71,7 @@ export function BacktestTopBar({
                     <Button
                         variant="ghost"
                         size="icon"
-                        className={`h-8 w-8 ${isPlaying ? 'text-emerald-500 bg-emerald-500/10' : 'text-white hover:bg-[#2a2e39]'}`}
+                        className={`h-8 w-8 ${isPlaying ? 'text-amber-500 bg-amber-500/10' : 'text-white hover:bg-[#2a2e39]'}`}
                         onClick={onPlayPause}
                     >
                         {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}

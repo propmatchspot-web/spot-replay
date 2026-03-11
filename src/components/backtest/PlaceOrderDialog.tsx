@@ -138,7 +138,7 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
         <div className="space-y-3">
             {/* Logo + Risk/Reward Stats */}
             <div className="flex items-center gap-3">
-                <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500/20 to-emerald-600/5 flex items-center justify-center border border-emerald-500/20">
+                <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-600/5 flex items-center justify-center border border-amber-500/20">
                     <Image src="/Replaylogo.png" alt="Spot Replay" width={22} height={22} className="object-contain" />
                 </div>
                 <div className="flex-1 flex items-center gap-2 bg-[#0A0A0A] rounded-lg border border-white/5 overflow-hidden">
@@ -149,7 +149,7 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
                     <div className="h-8 w-px bg-white/5" />
                     <div className="flex-1 py-2 px-3 text-center">
                         <div className="text-[9px] text-[#787b86] uppercase font-bold tracking-wider">Reward</div>
-                        <div className="text-[#00E676] font-mono font-bold text-xs mt-0.5">${estimatedProfit.toFixed(2)}</div>
+                        <div className="text-[#F7AE11] font-mono font-bold text-xs mt-0.5">${estimatedProfit.toFixed(2)}</div>
                     </div>
                 </div>
             </div>
@@ -183,7 +183,7 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
                             className={cn(
                                 "text-[11px] py-1 rounded-md transition-all font-semibold",
                                 riskType === 'PERCENT' && parseFloat(riskValue) === pct
-                                    ? "bg-[#00E676] text-black shadow-lg shadow-emerald-500/10"
+                                    ? "bg-[#F7AE11] text-black shadow-lg shadow-amber-500/10"
                                     : "bg-white/5 text-[#787b86] hover:bg-white/10 hover:text-white"
                             )}
                         >
@@ -200,12 +200,12 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
                     <Select value={side} onValueChange={(v: any) => setSide(v)}>
                         <SelectTrigger className={cn(
                             "bg-[#0A0A0A] border-white/5 h-8 text-xs font-bold rounded-lg",
-                            side === 'LONG' ? 'text-[#00E676]' : 'text-[#ef4444]'
+                            side === 'LONG' ? 'text-[#F7AE11]' : 'text-[#ef4444]'
                         )}>
                             <SelectValue />
                         </SelectTrigger>
                         <SelectContent className="bg-[#0A0A0A] border-white/10 text-[#d1d4dc]">
-                            <SelectItem value="LONG" className="text-[#00E676]">Buy / Long</SelectItem>
+                            <SelectItem value="LONG" className="text-[#F7AE11]">Buy / Long</SelectItem>
                             <SelectItem value="SHORT" className="text-[#ef4444]">Sell / Short</SelectItem>
                         </SelectContent>
                     </Select>
@@ -233,7 +233,7 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
                         type="number"
                         value={positionSize}
                         onChange={(e) => setPositionSize(e.target.value)}
-                        className="bg-[#0A0A0A] border-white/5 text-[#d1d4dc] h-8 text-xs rounded-lg focus-visible:ring-[#00E676]/30"
+                        className="bg-[#0A0A0A] border-white/5 text-[#d1d4dc] h-8 text-xs rounded-lg focus-visible:ring-[#F7AE11]/30"
                     />
                 </div>
                 <div className="space-y-1">
@@ -244,7 +244,7 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
                         onChange={(e) => setLimitPrice(e.target.value)}
                         readOnly={orderType === 'MARKET'}
                         className={cn(
-                            "bg-[#0A0A0A] border-white/5 text-[#d1d4dc] h-8 text-xs rounded-lg focus-visible:ring-[#00E676]/30",
+                            "bg-[#0A0A0A] border-white/5 text-[#d1d4dc] h-8 text-xs rounded-lg focus-visible:ring-[#F7AE11]/30",
                             orderType === 'MARKET' && "opacity-50 cursor-not-allowed"
                         )}
                         step="0.00001"
@@ -286,7 +286,7 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
                 {/* Take Profit */}
                 <div className="bg-[#0A0A0A] rounded-lg border border-white/5 p-2.5">
                     <div className="flex items-center gap-1.5 mb-1.5">
-                        <Switch checked={hasTP} onCheckedChange={setHasTP} className="data-[state=checked]:bg-[#00E676] scale-75 origin-left" />
+                        <Switch checked={hasTP} onCheckedChange={setHasTP} className="data-[state=checked]:bg-[#F7AE11] scale-75 origin-left" />
                         <span className="text-[10px] text-[#94A3B8] uppercase font-bold tracking-wider">Take Profit</span>
                     </div>
                     {hasTP && (
@@ -295,7 +295,7 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
                                 value={takeProfit}
                                 onChange={(e) => handleTpPriceChange(e.target.value)}
                                 placeholder="Price"
-                                className="bg-white/5 border-0 text-[#d1d4dc] h-7 text-[11px] rounded-md focus-visible:ring-[#00E676]/30"
+                                className="bg-white/5 border-0 text-[#d1d4dc] h-7 text-[11px] rounded-md focus-visible:ring-[#F7AE11]/30"
                                 step="0.00001"
                             />
                             <div className="relative">
@@ -304,7 +304,7 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
                                     value={tpPips}
                                     onChange={(e) => handleTpPipsChange(e.target.value)}
                                     placeholder="Pips"
-                                    className="bg-white/5 border-0 text-[#d1d4dc] h-7 text-[11px] pr-8 rounded-md focus-visible:ring-[#00E676]/30"
+                                    className="bg-white/5 border-0 text-[#d1d4dc] h-7 text-[11px] pr-8 rounded-md focus-visible:ring-[#F7AE11]/30"
                                 />
                                 <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#787b86] text-[9px]">pips</span>
                             </div>
@@ -342,7 +342,7 @@ export function PlaceOrderDialog({ currentPrice, balance, onPlaceOrder, onClose,
                     className={cn(
                         "flex-[2] font-bold text-sm h-9 rounded-lg shadow-lg transition-all",
                         side === 'LONG'
-                            ? 'bg-[#00E676] hover:bg-[#00C853] text-black shadow-emerald-500/20'
+                            ? 'bg-[#F7AE11] hover:bg-[#D4960A] text-black shadow-amber-500/20'
                             : 'bg-[#ef4444] hover:bg-[#d32f2f] text-white shadow-red-500/20'
                     )}
                     onClick={handleSubmit}

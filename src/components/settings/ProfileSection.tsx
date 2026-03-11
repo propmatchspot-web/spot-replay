@@ -48,7 +48,7 @@ export function ProfileSection({ user, profile }: { user: any, profile: any }) {
                         type="text"
                         value={formData.full_name}
                         onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
-                        className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                        className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                     />
                 </div>
 
@@ -58,7 +58,7 @@ export function ProfileSection({ user, profile }: { user: any, profile: any }) {
                         type="date"
                         value={formData.date_of_birth}
                         onChange={(e) => setFormData({ ...formData, date_of_birth: e.target.value })}
-                        className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                        className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                     />
                 </div>
 
@@ -70,7 +70,7 @@ export function ProfileSection({ user, profile }: { user: any, profile: any }) {
                             placeholder="e.g. New York, USA"
                             value={formData.location}
                             onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                            className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                            className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                         />
                     </div>
                     <div className="grid gap-2">
@@ -80,7 +80,7 @@ export function ProfileSection({ user, profile }: { user: any, profile: any }) {
                             placeholder="https://"
                             value={formData.website}
                             onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                            className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                            className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                         />
                     </div>
                 </div>
@@ -92,20 +92,20 @@ export function ProfileSection({ user, profile }: { user: any, profile: any }) {
                         placeholder="Tell us a bit about yourself..."
                         value={formData.bio}
                         onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-                        className="resize-none rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                        className="resize-none rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                     />
                 </div>
 
                 <div className="flex items-center justify-between pt-4 border-t border-zinc-800">
                     {message && (
-                        <p className={cn("text-sm font-bold", message.includes('Error') ? 'text-red-500' : 'text-emerald-500')}>
+                        <p className={cn("text-sm font-bold", message.includes('Error') ? 'text-red-500' : 'text-amber-500')}>
                             {message}
                         </p>
                     )}
                     <button
                         onClick={handleSave}
                         disabled={loading}
-                        className="ml-auto flex items-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-black text-white uppercase tracking-wider hover:bg-emerald-500 disabled:opacity-50 transition-all shadow-lg shadow-emerald-500/20"
+                        className="ml-auto flex items-center gap-2 rounded-xl bg-amber-600 px-6 py-3 text-sm font-black text-white uppercase tracking-wider hover:bg-amber-500 disabled:opacity-50 transition-all shadow-lg shadow-amber-500/20"
                     >
                         {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
                         Save Changes

@@ -106,7 +106,7 @@ export function LimitReachedDialog({ open, onOpenChange, feature, limitHitTime }
                     {/* Features List */}
                     <div className="w-full space-y-3 mb-8">
                         <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
-                            <Sparkles className="h-4 w-4 text-emerald-500" />
+                            <Sparkles className="h-4 w-4 text-amber-500" />
                             <span className="text-sm font-bold text-zinc-300">Unlimited Chart Analysis</span>
                         </div>
                         <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-950/50 border border-zinc-800/50">

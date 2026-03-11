@@ -60,7 +60,7 @@ export function PlansManager({ initialPlans }: { initialPlans: Plan[] }) {
                         <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                             <button
                                 onClick={() => handleToggleStatus(plan.id, plan.is_active)}
-                                className={`p-2 rounded-lg hover:bg-zinc-800 ${plan.is_active ? 'text-zinc-400 hover:text-red-500' : 'text-zinc-600 hover:text-emerald-500'}`}
+                                className={`p-2 rounded-lg hover:bg-zinc-800 ${plan.is_active ? 'text-zinc-400 hover:text-red-500' : 'text-zinc-600 hover:text-amber-500'}`}
                                 title={plan.is_active ? "Disable Plan" : "Enable Plan"}
                             >
                                 {plan.is_active ? <Trash2 className="h-4 w-4" /> : <CheckCircle2 className="h-4 w-4" />}
@@ -99,7 +99,7 @@ export function PlansManager({ initialPlans }: { initialPlans: Plan[] }) {
                             {/* @ts-ignore */}
                             {Array.isArray(plan.features) && plan.features.map((feature: string, i: number) => (
                                 <div key={i} className="flex items-center gap-2 text-sm text-zinc-400">
-                                    <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0" />
+                                    <CheckCircle2 className="h-4 w-4 text-amber-500 shrink-0" />
                                     {feature}
                                 </div>
                             ))}

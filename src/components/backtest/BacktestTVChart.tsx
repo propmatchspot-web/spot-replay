@@ -1085,7 +1085,7 @@ export default function BacktestTVChart({
                     style={{ animation: 'fadeIn 0.2s ease-out' }}
                 >
                     <div className="flex flex-col items-center gap-3">
-                        <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+                        <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin" />
                         <span className="text-sm text-zinc-400 font-medium">Switching timeframe...</span>
                     </div>
                 </div>

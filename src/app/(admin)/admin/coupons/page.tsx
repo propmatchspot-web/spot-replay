@@ -52,7 +52,7 @@ export default async function CouponsPage() {
                                     </div>
                                 </td>
                                 <td className="p-4">
-                                    <span className="font-bold text-emerald-500">
+                                    <span className="font-bold text-amber-500">
                                         {coupon.discount_type === 'PERCENTAGE' ? `${coupon.discount_value}% OFF` : `$${coupon.discount_value} OFF`}
                                     </span>
                                 </td>
@@ -67,8 +67,8 @@ export default async function CouponsPage() {
                                     </div>
                                 </td>
                                 <td className="p-4 text-right">
-                                    <div className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold ${coupon.is_active ? 'bg-emerald-500/10 text-emerald-500' : 'bg-red-500/10 text-red-500'}`}>
-                                        <span className={`w-1.5 h-1.5 rounded-full ${coupon.is_active ? 'bg-emerald-500' : 'bg-red-500'}`} />
+                                    <div className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold ${coupon.is_active ? 'bg-amber-500/10 text-amber-500' : 'bg-red-500/10 text-red-500'}`}>
+                                        <span className={`w-1.5 h-1.5 rounded-full ${coupon.is_active ? 'bg-amber-500' : 'bg-red-500'}`} />
                                         {coupon.is_active ? 'Active' : 'Expired'}
                                     </div>
                                 </td>

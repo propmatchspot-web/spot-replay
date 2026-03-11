@@ -160,7 +160,7 @@ export default function ForexDataManager() {
             <div className="flex items-center justify-between">
                 <div>
                     <h2 className="text-2xl font-black text-white uppercase tracking-tight flex items-center gap-3">
-                        <Database className="h-7 w-7 text-emerald-500" />
+                        <Database className="h-7 w-7 text-amber-500" />
                         Forex Data Manager
                     </h2>
                     <p className="text-zinc-500 text-sm mt-1">Upload and manage historical forex data for instant backtesting</p>
@@ -194,12 +194,12 @@ export default function ForexDataManager() {
                                 onChange={handleFileChange}
                                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                             />
-                            <div className={`flex items-center justify-center gap-3 p-6 rounded-xl border-2 border-dashed transition-colors ${file ? 'border-emerald-500/50 bg-emerald-500/5' : 'border-zinc-700 bg-zinc-950/50 hover:border-zinc-600'
+                            <div className={`flex items-center justify-center gap-3 p-6 rounded-xl border-2 border-dashed transition-colors ${file ? 'border-amber-500/50 bg-amber-500/5' : 'border-zinc-700 bg-zinc-950/50 hover:border-zinc-600'
                                 }`}>
                                 {file ? (
                                     <>
-                                        <CheckCircle2 className="h-6 w-6 text-emerald-500" />
-                                        <span className="text-emerald-400 font-bold">{file.name}</span>
+                                        <CheckCircle2 className="h-6 w-6 text-amber-500" />
+                                        <span className="text-amber-400 font-bold">{file.name}</span>
                                     </>
                                 ) : (
                                     <>
@@ -232,7 +232,7 @@ export default function ForexDataManager() {
                 {status !== 'idle' && (
                     <div className="mt-6 space-y-2">
                         <div className="flex items-center justify-between text-sm">
-                            <span className={`font-bold ${status === 'success' ? 'text-emerald-500' :
+                            <span className={`font-bold ${status === 'success' ? 'text-amber-500' :
                                 status === 'error' ? 'text-red-500' :
                                     'text-blue-500'
                                 }`}>
@@ -246,7 +246,7 @@ export default function ForexDataManager() {
                         </div>
                         <div className="h-2 rounded-full bg-zinc-800 overflow-hidden">
                             <div
-                                className={`h-full transition-all duration-300 ${status === 'success' ? 'bg-emerald-500' :
+                                className={`h-full transition-all duration-300 ${status === 'success' ? 'bg-amber-500' :
                                     status === 'error' ? 'bg-red-500' :
                                         'bg-blue-500'
                                     }`}
@@ -260,7 +260,7 @@ export default function ForexDataManager() {
                 <button
                     onClick={handleUpload}
                     disabled={!file || uploading}
-                    className="mt-6 w-full py-4 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 disabled:from-zinc-700 disabled:to-zinc-600 disabled:cursor-not-allowed text-white font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                    className="mt-6 w-full py-4 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 disabled:from-zinc-700 disabled:to-zinc-600 disabled:cursor-not-allowed text-white font-black uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                 >
                     {uploading ? (
                         <>
@@ -312,7 +312,7 @@ export default function ForexDataManager() {
                                         <span className="text-zinc-500 flex items-center gap-1">
                                             <TrendingUp className="h-3 w-3" /> Candles
                                         </span>
-                                        <span className="font-bold text-emerald-400">{formatNumber(item.count)}</span>
+                                        <span className="font-bold text-amber-400">{formatNumber(item.count)}</span>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <span className="text-zinc-500 flex items-center gap-1">

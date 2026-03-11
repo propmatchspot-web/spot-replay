@@ -49,7 +49,7 @@ export default function TVChartContainer({
                     "paneProperties.vertGridProperties.color": "#27272a", // zinc-800
                     "paneProperties.horzGridProperties.color": "#27272a", // zinc-800
                     "scalesProperties.textColor": "#a1a1aa", // zinc-400
-                    "mainSeriesProperties.candleStyle.upColor": "#10b981", // emerald-500
+                    "mainSeriesProperties.candleStyle.upColor": "#10b981", // amber-500
                     "mainSeriesProperties.candleStyle.downColor": "#ef4444", // red-500
                     "mainSeriesProperties.candleStyle.borderUpColor": "#10b981",
                     "mainSeriesProperties.candleStyle.borderDownColor": "#ef4444",

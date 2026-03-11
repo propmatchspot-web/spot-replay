@@ -79,7 +79,7 @@ export function AccountSection({ user }: { user: any }) {
                         Send Password Reset Email
                     </button>
                     {message && (
-                        <p className="mt-4 text-sm font-bold text-emerald-500">{message}</p>
+                        <p className="mt-4 text-sm font-bold text-amber-500">{message}</p>
                     )}
                 </div>
             </div>

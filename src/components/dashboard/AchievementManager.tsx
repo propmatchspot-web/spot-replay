@@ -202,8 +202,8 @@ export function AchievementManager({ account, currentBalance, dailyPnL, achievem
                     </div>
                     {/* Loading Text */}
                     <div className="mt-8 flex flex-col items-center gap-2">
-                        <div className="h-6 w-6 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent" />
-                        <p className="text-emerald-500 font-bold animate-pulse">Generating High-Res Certificate...</p>
+                        <div className="h-6 w-6 animate-spin rounded-full border-2 border-amber-500 border-t-transparent" />
+                        <p className="text-amber-500 font-bold animate-pulse">Generating High-Res Certificate...</p>
                     </div>
                 </div>
             )}
@@ -220,7 +220,7 @@ export function AchievementManager({ account, currentBalance, dailyPnL, achievem
                             className="relative w-full max-w-lg overflow-hidden rounded-[2.5rem] bg-zinc-950 border border-zinc-800 shadow-[0_0_100px_rgba(0,0,0,0.5)]"
                         >
                             {/* Dynamic Background Gradient */}
-                            <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${popup.type === 'SUCCESS' ? 'from-emerald-500 via-teal-500 to-zinc-950' : 'from-red-500 via-orange-500 to-zinc-950'}`} />
+                            <div className={`absolute inset-0 opacity-20 bg-gradient-to-br ${popup.type === 'SUCCESS' ? 'from-amber-500 via-teal-500 to-zinc-950' : 'from-red-500 via-orange-500 to-zinc-950'}`} />
 
                             {/* Grid Pattern Overlay */}
                             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
@@ -241,9 +241,9 @@ export function AchievementManager({ account, currentBalance, dailyPnL, achievem
                                     transition={{ delay: 0.2, type: "spring" }}
                                     className="mb-8 relative"
                                 >
-                                    <div className={`absolute inset-0 blur-3xl opacity-50 ${popup.type === 'SUCCESS' ? 'bg-emerald-500' : 'bg-red-500'}`} />
+                                    <div className={`absolute inset-0 blur-3xl opacity-50 ${popup.type === 'SUCCESS' ? 'bg-amber-500' : 'bg-red-500'}`} />
                                     <div className={`relative h-24 w-24 rounded-3xl flex items-center justify-center border-2 shadow-2xl ${popup.type === 'SUCCESS'
-                                        ? 'bg-gradient-to-br from-emerald-500 to-emerald-700 border-emerald-400/50'
+                                        ? 'bg-gradient-to-br from-amber-500 to-amber-700 border-amber-400/50'
                                         : 'bg-gradient-to-br from-red-500 to-red-700 border-red-400/50'
                                         }`}>
                                         {popup.type === 'SUCCESS' ? (
@@ -276,7 +276,7 @@ export function AchievementManager({ account, currentBalance, dailyPnL, achievem
                                         <span className="text-zinc-400 font-medium">{account.name}</span>
                                         <span className="h-1 w-1 rounded-full bg-zinc-700" />
                                         <span className={`text-xs font-bold px-2 py-0.5 rounded-full border ${popup.type === 'SUCCESS'
-                                            ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                                            ? 'bg-amber-500/10 text-amber-400 border-amber-500/20'
                                             : 'bg-red-500/10 text-red-400 border-red-500/20'
                                             }`}>
                                             {account.type}

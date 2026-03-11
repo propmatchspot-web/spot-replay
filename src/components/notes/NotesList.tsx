@@ -82,7 +82,7 @@ export function NotesList({ entries, trades }: NotesListProps) {
                             placeholder="Search notes..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full rounded-xl border border-zinc-800 bg-zinc-950 py-2.5 pl-10 pr-4 text-sm text-white placeholder-zinc-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                            className="w-full rounded-xl border border-zinc-800 bg-zinc-950 py-2.5 pl-10 pr-4 text-sm text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                         />
                     </div>
                 </div>
@@ -107,7 +107,7 @@ export function NotesList({ entries, trades }: NotesListProps) {
 
                     <button
                         onClick={() => setSelectedDate(new Date())}
-                        className="flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 sm:px-6 text-xs sm:text-sm font-black text-white uppercase tracking-wide transition-all hover:bg-emerald-500 hover:scale-105 shadow-lg shadow-emerald-500/20 whitespace-nowrap"
+                        className="flex items-center gap-2 rounded-xl bg-amber-600 px-4 py-2.5 sm:px-6 text-xs sm:text-sm font-black text-white uppercase tracking-wide transition-all hover:bg-amber-500 hover:scale-105 shadow-lg shadow-amber-500/20 whitespace-nowrap"
                     >
                         <Plus className="h-4 w-4" />
                         Write Note
@@ -120,7 +120,7 @@ export function NotesList({ entries, trades }: NotesListProps) {
                 recentEntries.length > 0 && searchQuery === '' && dateRange === 'all' && moodFilter === 'all' && (
                     <div className="space-y-4">
                         <div className="flex items-center gap-2 text-white">
-                            <Sparkles className="h-5 w-5 text-emerald-400" />
+                            <Sparkles className="h-5 w-5 text-amber-400" />
                             <h3 className="text-xl font-black uppercase italic tracking-tight">Recent Reflections</h3>
                         </div>
                         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -128,7 +128,7 @@ export function NotesList({ entries, trades }: NotesListProps) {
                                 <div
                                     key={`recent-${entry.id}`}
                                     onClick={() => setSelectedDate(new Date(entry.date))}
-                                    className="group cursor-pointer relative overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-900 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10"
+                                    className="group cursor-pointer relative overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-900 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10"
                                 >
                                     <div className="mb-4 flex items-center justify-between">
                                         <span className="text-xs font-bold text-zinc-500 uppercase tracking-widest">
@@ -137,7 +137,7 @@ export function NotesList({ entries, trades }: NotesListProps) {
                                         {entry.mood && (
                                             <div className={cn(
                                                 "rounded-lg px-2 py-1 border",
-                                                entry.mood === 'happy' && "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+                                                entry.mood === 'happy' && "bg-amber-500/10 text-amber-400 border-amber-500/20",
                                                 entry.mood === 'neutral' && "bg-blue-500/10 text-blue-400 border-blue-500/20",
                                                 entry.mood === 'sad' && "bg-red-500/10 text-red-400 border-red-500/20"
                                             )}>
@@ -195,7 +195,7 @@ export function NotesList({ entries, trades }: NotesListProps) {
                                 {entry.mood && (
                                     <div className={cn(
                                         "rounded-lg px-2 py-1 border",
-                                        entry.mood === 'happy' && "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+                                        entry.mood === 'happy' && "bg-amber-500/10 text-amber-400 border-amber-500/20",
                                         entry.mood === 'neutral' && "bg-blue-500/10 text-blue-400 border-blue-500/20",
                                         entry.mood === 'sad' && "bg-red-500/10 text-red-400 border-red-500/20"
                                     )}>
@@ -210,7 +210,7 @@ export function NotesList({ entries, trades }: NotesListProps) {
                                 {entry.content || <span className="italic text-zinc-600">No content...</span>}
                             </p>
 
-                            <div className="mt-4 flex items-center gap-2 text-xs font-bold text-emerald-500 opacity-0 transition-all transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 uppercase tracking-wider">
+                            <div className="mt-4 flex items-center gap-2 text-xs font-bold text-amber-500 opacity-0 transition-all transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 uppercase tracking-wider">
                                 <Edit2 className="h-3 w-3" />
                                 Click to edit
                             </div>
@@ -223,7 +223,7 @@ export function NotesList({ entries, trades }: NotesListProps) {
                             <p className="font-medium">No notes found matching your filters</p>
                             <button
                                 onClick={() => setSelectedDate(new Date())}
-                                className="mt-4 text-emerald-500 hover:text-emerald-400 font-bold uppercase tracking-wider text-sm"
+                                className="mt-4 text-amber-500 hover:text-amber-400 font-bold uppercase tracking-wider text-sm"
                             >
                                 Write a note for today
                             </button>

@@ -57,7 +57,7 @@ export function DailyBriefing({ initialData }: DailyBriefingProps) {
                 <div className="grid grid-cols-3 gap-2">
                     <button
                         onClick={() => setBias('LONG')}
-                        className={`flex items-center justify-center gap-2 rounded-lg py-3 text-sm font-bold transition-all ${bias === 'LONG' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50' : 'bg-zinc-900 text-zinc-500 border border-transparent hover:bg-zinc-800'
+                        className={`flex items-center justify-center gap-2 rounded-lg py-3 text-sm font-bold transition-all ${bias === 'LONG' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50' : 'bg-zinc-900 text-zinc-500 border border-transparent hover:bg-zinc-800'
                             }`}
                     >
                         <ArrowUp className="w-4 h-4" /> LONG
@@ -92,10 +92,10 @@ export function DailyBriefing({ initialData }: DailyBriefingProps) {
                         <div
                             key={item}
                             onClick={() => handleCheck(item)}
-                            className={`flex items-center gap-3 p-2.5 rounded-lg cursor-pointer transition-all border ${checklist.includes(item) ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-transparent border-transparent hover:bg-white/5'
+                            className={`flex items-center gap-3 p-2.5 rounded-lg cursor-pointer transition-all border ${checklist.includes(item) ? 'bg-amber-500/5 border-amber-500/20' : 'bg-transparent border-transparent hover:bg-white/5'
                                 }`}
                         >
-                            <div className={`w-5 h-5 rounded flex items-center justify-center border transition-all ${checklist.includes(item) ? 'bg-emerald-500 border-emerald-500 text-zinc-950' : 'border-zinc-700 bg-zinc-900'
+                            <div className={`w-5 h-5 rounded flex items-center justify-center border transition-all ${checklist.includes(item) ? 'bg-amber-500 border-amber-500 text-zinc-950' : 'border-zinc-700 bg-zinc-900'
                                 }`}>
                                 {checklist.includes(item) && <CheckSquare className="w-3.5 h-3.5" />}
                             </div>
@@ -114,14 +114,14 @@ export function DailyBriefing({ initialData }: DailyBriefingProps) {
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="Key levels, macro themes, or warnings..."
-                    className="w-full h-32 bg-zinc-950/50 border border-zinc-800 rounded-lg p-3 text-sm text-zinc-300 focus:outline-none focus:border-emerald-500/50 resize-none font-mono"
+                    className="w-full h-32 bg-zinc-950/50 border border-zinc-800 rounded-lg p-3 text-sm text-zinc-300 focus:outline-none focus:border-amber-500/50 resize-none font-mono"
                 />
             </div>
 
             <button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="w-full py-3 rounded-xl bg-emerald-500 text-zinc-950 font-bold hover:bg-emerald-400 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 rounded-xl bg-amber-500 text-zinc-950 font-bold hover:bg-amber-400 active:scale-95 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 {isSaving ? (
                     <div className="h-4 w-4 border-2 border-zinc-950 border-t-transparent rounded-full animate-spin" />

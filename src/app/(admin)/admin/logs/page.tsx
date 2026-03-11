@@ -37,7 +37,7 @@ export default async function LogsPage() {
                         <div key={log.id} className="p-4 flex items-center justify-between hover:bg-zinc-800/30 transition-colors">
                             <div className="flex items-center gap-4">
                                 <div className={`p-2 rounded-lg border flex items-center justify-center ${log.action.includes('BAN') ? 'bg-red-500/10 border-red-500/20 text-red-500' :
-                                        log.action.includes('GRANT') ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500' :
+                                        log.action.includes('GRANT') ? 'bg-amber-500/10 border-amber-500/20 text-amber-500' :
                                             'bg-blue-500/10 border-blue-500/20 text-blue-500'
                                     }`}>
                                     <FileText className="h-4 w-4" />

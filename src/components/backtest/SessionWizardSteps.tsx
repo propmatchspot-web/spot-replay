@@ -37,14 +37,14 @@ export function Step1SessionType({ selectedType, onSelect }: Step1Props) {
                     className={cn(
                         "cursor-pointer rounded-xl p-4 sm:p-6 border transition-all duration-200 relative overflow-hidden group",
                         selectedType === 'BACKTEST'
-                            ? "bg-[#0A0A0A] border-[#00E676] ring-1 ring-[#00E676]/50"
+                            ? "bg-[#0A0A0A] border-[#F7AE11] ring-1 ring-[#F7AE11]/50"
                             : "bg-[#050505] border-white/5 hover:border-white/10"
                     )}
                 >
                     <div className="relative z-10 space-y-3 sm:space-y-4">
                         <div className={cn(
                             "w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center transition-colors",
-                            selectedType === 'BACKTEST' ? "bg-[#00E676]/20 text-[#00E676]" : "bg-white/5 text-[#94A3B8]"
+                            selectedType === 'BACKTEST' ? "bg-[#F7AE11]/20 text-[#F7AE11]" : "bg-white/5 text-[#94A3B8]"
                         )}>
                             <BarChart2 className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
@@ -62,14 +62,14 @@ export function Step1SessionType({ selectedType, onSelect }: Step1Props) {
                     className={cn(
                         "cursor-pointer rounded-xl p-4 sm:p-6 border transition-all duration-200 relative overflow-hidden group",
                         selectedType === 'PROP_FIRM'
-                            ? "bg-[#0A0A0A] border-[#00E676] ring-1 ring-[#00E676]/50"
+                            ? "bg-[#0A0A0A] border-[#F7AE11] ring-1 ring-[#F7AE11]/50"
                             : "bg-[#050505] border-white/5 hover:border-white/10"
                     )}
                 >
                     <div className="relative z-10 space-y-3 sm:space-y-4">
                         <div className={cn(
                             "w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center transition-colors",
-                            selectedType === 'PROP_FIRM' ? "bg-[#00E676]/20 text-[#00E676]" : "bg-white/5 text-[#94A3B8]"
+                            selectedType === 'PROP_FIRM' ? "bg-[#F7AE11]/20 text-[#F7AE11]" : "bg-white/5 text-[#94A3B8]"
                         )}>
                             <Zap className="w-5 h-5 sm:w-6 sm:h-6" />
                         </div>
@@ -111,23 +111,23 @@ export function Step2AssetTime({ asset, setAsset, startDate, setStartDate, endDa
                     <Label className="text-[#94A3B8] text-xs sm:text-sm font-semibold uppercase tracking-wider mb-1 block">Asset Type</Label>
                     <Tabs defaultValue="FOREX" className="w-full">
                         <TabsList className="grid w-full grid-cols-5 bg-[#050505] p-1 h-12 sm:h-14 border border-white/5 rounded-xl">
-                            <TabsTrigger value="FOREX" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#00E676]/10 data-[state=active]:text-[#00E676] data-[state=active]:border border-[#00E676]/50 transition-all">
+                            <TabsTrigger value="FOREX" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#F7AE11]/10 data-[state=active]:text-[#F7AE11] data-[state=active]:border border-[#F7AE11]/50 transition-all">
                                 <BadgeDollarSign className="w-4 h-4 sm:w-5 sm:h-5" />
                                 <span className="font-bold">FOREX</span>
                             </TabsTrigger>
-                            <TabsTrigger value="CRYPTO" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#00E676]/10 data-[state=active]:text-[#00E676] data-[state=active]:border border-[#00E676]/50 transition-all">
+                            <TabsTrigger value="CRYPTO" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#F7AE11]/10 data-[state=active]:text-[#F7AE11] data-[state=active]:border border-[#F7AE11]/50 transition-all">
                                 <Coins className="w-4 h-4 sm:w-5 sm:h-5" />
                                 <span className="font-bold">CRYPTO</span>
                             </TabsTrigger>
-                            <TabsTrigger value="INDICES" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#00E676]/10 data-[state=active]:text-[#00E676] data-[state=active]:border border-[#00E676]/50 transition-all">
+                            <TabsTrigger value="INDICES" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#F7AE11]/10 data-[state=active]:text-[#F7AE11] data-[state=active]:border border-[#F7AE11]/50 transition-all">
                                 <LineChart className="w-4 h-4 sm:w-5 sm:h-5" />
                                 <span className="font-bold">INDICES</span>
                             </TabsTrigger>
-                            <TabsTrigger value="METALS" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#00E676]/10 data-[state=active]:text-[#00E676] data-[state=active]:border border-[#00E676]/50 transition-all">
+                            <TabsTrigger value="METALS" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#F7AE11]/10 data-[state=active]:text-[#F7AE11] data-[state=active]:border border-[#F7AE11]/50 transition-all">
                                 <Hammer className="w-4 h-4 sm:w-5 sm:h-5" />
                                 <span className="font-bold">METALS</span>
                             </TabsTrigger>
-                            <TabsTrigger value="STOCKS" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#00E676]/10 data-[state=active]:text-[#00E676] data-[state=active]:border border-[#00E676]/50 transition-all">
+                            <TabsTrigger value="STOCKS" className="flex flex-col gap-1 h-full text-[10px] sm:text-xs data-[state=active]:bg-[#F7AE11]/10 data-[state=active]:text-[#F7AE11] data-[state=active]:border border-[#F7AE11]/50 transition-all">
                                 <Briefcase className="w-4 h-4 sm:w-5 sm:h-5" />
                                 <span className="font-bold">STOCKS</span>
                             </TabsTrigger>
@@ -143,7 +143,7 @@ export function Step2AssetTime({ asset, setAsset, startDate, setStartDate, endDa
                                             className={cn(
                                                 "flex flex-col items-center justify-center p-3 rounded-lg border text-xs transition-all duration-200 hover:scale-[1.02]",
                                                 asset === item
-                                                    ? "bg-[#00E676] border-[#00E676] text-black font-bold shadow-[0_0_15px_rgba(0,230,118,0.3)]"
+                                                    ? "bg-[#F7AE11] border-[#F7AE11] text-black font-bold shadow-[0_0_15px_rgba(0,230,118,0.3)]"
                                                     : "bg-[#0A0A0A] border-white/5 text-[#94A3B8] hover:border-white/20 hover:text-white"
                                             )}
                                         >
@@ -168,7 +168,7 @@ export function Step2AssetTime({ asset, setAsset, startDate, setStartDate, endDa
                                         !startDate && "text-muted-foreground"
                                     )}
                                 >
-                                    <CalendarIcon className="mr-2 h-4 w-4 text-[#00E676]" />
+                                    <CalendarIcon className="mr-2 h-4 w-4 text-[#F7AE11]" />
                                     {startDate ? format(new Date(startDate), "PPP") : <span>Pick a date</span>}
                                 </Button>
                             </PopoverTrigger>
@@ -194,7 +194,7 @@ export function Step2AssetTime({ asset, setAsset, startDate, setStartDate, endDa
                                         !endDate && "text-muted-foreground"
                                     )}
                                 >
-                                    <CalendarIcon className="mr-2 h-4 w-4 text-[#00E676]" />
+                                    <CalendarIcon className="mr-2 h-4 w-4 text-[#F7AE11]" />
                                     {endDate ? format(new Date(endDate), "PPP") : <span>Pick a date</span>}
                                 </Button>
                             </PopoverTrigger>
@@ -239,7 +239,7 @@ function TimezoneSelector({ value, onChange }: { value: string, onChange: (v: st
                     className="w-full justify-between bg-[#050505] border-white/5 text-white h-10 sm:h-12 text-xs sm:text-sm hover:bg-white/5 hover:text-white"
                 >
                     <span className="flex items-center gap-2 overflow-hidden">
-                        <Globe className="h-4 w-4 text-[#00E676] shrink-0" />
+                        <Globe className="h-4 w-4 text-[#F7AE11] shrink-0" />
                         <span className="truncate">{value ? timezones.find(t => t.value === value)?.label : "Select timezone..."}</span>
                     </span>
                     <ChevronRight className="ml-2 h-4 w-4 shrink-0 opacity-50 rotate-90" />
@@ -264,7 +264,7 @@ function TimezoneSelector({ value, onChange }: { value: string, onChange: (v: st
                             key={tz.value}
                             className={cn(
                                 "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-xs sm:text-sm outline-none transition-colors hover:bg-white/10 hover:text-white",
-                                value === tz.value ? "bg-[#00E676]/10 text-[#00E676]" : "text-white"
+                                value === tz.value ? "bg-[#F7AE11]/10 text-[#F7AE11]" : "text-white"
                             )}
                             onClick={() => {
                                 onChange(tz.value)
@@ -376,7 +376,7 @@ export function Step4Review({ sessionType, name, asset, balance, startDate, endD
                 <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-white/5">
                     <span className="text-[#94A3B8] text-xs sm:text-sm">Mode</span>
                     <span className="text-white font-medium flex items-center gap-2 text-xs sm:text-sm">
-                        {sessionType === 'PROP_FIRM' ? <Zap className="w-4 h-4 text-[#00E676]" /> : <BarChart2 className="w-4 h-4 text-[#00E676]" />}
+                        {sessionType === 'PROP_FIRM' ? <Zap className="w-4 h-4 text-[#F7AE11]" /> : <BarChart2 className="w-4 h-4 text-[#F7AE11]" />}
                         {sessionType === 'PROP_FIRM' ? 'Prop Firm Simulator' : 'Standard Backtest'}
                     </span>
                 </div>

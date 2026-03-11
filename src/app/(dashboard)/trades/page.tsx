@@ -82,7 +82,7 @@ export default function TradesPage() {
                                 key={m}
                                 onClick={() => setMode(m as any)}
                                 className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${mode === m
-                                    ? 'bg-emerald-500 text-white shadow-sm'
+                                    ? 'bg-amber-500 text-white shadow-sm'
                                     : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
                                     }`}
                             >
@@ -107,7 +107,7 @@ export default function TradesPage() {
                 <div className="flex-1 rounded-[2rem] border border-zinc-800 bg-zinc-900 overflow-hidden flex flex-col">
                     {loading ? (
                         <div className="flex-1 flex items-center justify-center">
-                            <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-500 border-t-transparent" />
+                            <div className="h-8 w-8 animate-spin rounded-full border-2 border-amber-500 border-t-transparent" />
                         </div>
                     ) : (
                         <TradesTable trades={filteredTrades} />

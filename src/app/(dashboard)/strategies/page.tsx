@@ -56,7 +56,7 @@ export default function StrategiesPage() {
                 </div>
                 <button
                     onClick={() => setIsCreateOpen(true)}
-                    className="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg sm:rounded-xl font-bold transition-all shadow-lg shadow-emerald-500/20 text-sm sm:text-base w-full sm:w-auto"
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg sm:rounded-xl font-bold transition-all shadow-lg shadow-amber-500/20 text-sm sm:text-base w-full sm:w-auto"
                 >
                     <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
                     <span>New Strategy</span>
@@ -66,7 +66,7 @@ export default function StrategiesPage() {
             {/* Grid */}
             {isLoading ? (
                 <div className="flex items-center justify-center h-64">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500" />
                 </div>
             ) : strategies.length === 0 ? (
                 <div className="text-center py-20 bg-zinc-900/50 rounded-3xl border border-zinc-800 border-dashed">
@@ -77,7 +77,7 @@ export default function StrategiesPage() {
                     <p className="text-zinc-500 max-w-md mx-auto mb-6">Create your first strategy to start tracking your performance by setup.</p>
                     <button
                         onClick={() => setIsCreateOpen(true)}
-                        className="text-emerald-400 hover:text-emerald-300 font-bold"
+                        className="text-amber-400 hover:text-amber-300 font-bold"
                     >
                         Create Strategy &rarr;
                     </button>
@@ -95,11 +95,11 @@ export default function StrategiesPage() {
                                 key={strategy.id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="group bg-zinc-900 border border-zinc-800 hover:border-emerald-500/50 rounded-2xl p-6 transition-all hover:shadow-xl hover:shadow-emerald-500/5"
+                                className="group bg-zinc-900 border border-zinc-800 hover:border-amber-500/50 rounded-2xl p-6 transition-all hover:shadow-xl hover:shadow-amber-500/5"
                             >
                                 <div className="flex items-start justify-between mb-4">
-                                    <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 group-hover:border-emerald-500/30 transition-colors">
-                                        <Target className="h-6 w-6 text-emerald-500" />
+                                    <div className="p-3 bg-zinc-950 rounded-xl border border-zinc-800 group-hover:border-amber-500/30 transition-colors">
+                                        <Target className="h-6 w-6 text-amber-500" />
                                     </div>
                                     <button
                                         onClick={() => handleDelete(strategy.id)}
@@ -109,14 +109,14 @@ export default function StrategiesPage() {
                                     </button>
                                 </div>
 
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">{strategy.name}</h3>
+                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">{strategy.name}</h3>
                                 <p className="text-zinc-400 text-sm line-clamp-2 mb-6 h-10">{strategy.description || "No description provided."}</p>
 
                                 <div className="grid grid-cols-2 gap-3 mb-6">
                                     {/* Live Stats */}
                                     <div className="bg-zinc-950/50 rounded-xl p-3 border border-zinc-800/50 relative overflow-hidden group/stat">
                                         <div className="absolute top-2 right-2 flex items-center gap-1">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
+                                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
                                         </div>
                                         <div className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider mb-1">Live WR</div>
                                         <div className="text-xl font-black text-white">
@@ -124,7 +124,7 @@ export default function StrategiesPage() {
                                         </div>
                                         <div className={cn(
                                             "text-xs font-bold mt-1",
-                                            (strategy.stats?.live?.netPnl || 0) >= 0 ? "text-emerald-400" : "text-red-400"
+                                            (strategy.stats?.live?.netPnl || 0) >= 0 ? "text-amber-400" : "text-red-400"
                                         )}>
                                             ${(strategy.stats?.live?.netPnl || 0).toLocaleString()}
                                         </div>

@@ -105,7 +105,7 @@ export function RiskCalculator({
                             <TrendingUp className="h-3 w-3" />
                             Potential Profit
                         </div>
-                        <div className="text-xl font-black font-mono text-emerald-400">
+                        <div className="text-xl font-black font-mono text-amber-400">
                             ${result.potentialProfit.toFixed(2)}
                         </div>
                     </div>
@@ -120,7 +120,7 @@ export function RiskCalculator({
                         </div>
                         <div className={cn(
                             "text-xl font-black font-mono",
-                            result.riskRewardRatio >= 2 ? "text-emerald-400" :
+                            result.riskRewardRatio >= 2 ? "text-amber-400" :
                                 result.riskRewardRatio >= 1 ? "text-amber-400" : "text-red-400"
                         )}>
                             1:{result.riskRewardRatio.toFixed(1)}
@@ -266,7 +266,7 @@ export function StandaloneRiskCalculator() {
                             className={cn(
                                 "flex-1 py-2 rounded-lg font-bold text-sm",
                                 direction === 'LONG'
-                                    ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                                    ? "bg-amber-500/20 text-amber-400 border border-amber-500/30"
                                     : "bg-zinc-900 text-zinc-500 border border-zinc-800"
                             )}
                         >

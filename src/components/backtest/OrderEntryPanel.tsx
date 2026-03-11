@@ -69,7 +69,7 @@ export function OrderEntryPanel({ currentPrice, onPlaceOrder, balance }: OrderEn
                 </div>
                 <div className="flex justify-between text-sm">
                     <span className="text-zinc-400">Current Price</span>
-                    <span className="text-emerald-400 font-mono">${currentPrice.toFixed(2)}</span>
+                    <span className="text-amber-400 font-mono">${currentPrice.toFixed(2)}</span>
                 </div>
             </div>
 
@@ -158,7 +158,7 @@ export function OrderEntryPanel({ currentPrice, onPlaceOrder, balance }: OrderEn
             <div className="grid grid-cols-2 gap-2 pt-2">
                 <Button
                     onClick={() => handleOrder('LONG')}
-                    className="bg-emerald-500 hover:bg-emerald-600 text-white w-full"
+                    className="bg-amber-500 hover:bg-amber-600 text-white w-full"
                 >
                     <ArrowUpCircle className="mr-2 h-4 w-4" />
                     Buy

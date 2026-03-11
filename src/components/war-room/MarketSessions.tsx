@@ -48,7 +48,7 @@ export function MarketSessions() {
                         </p>
                     </div>
                     <div className="text-right">
-                        <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-500">UTC</p>
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-amber-500">UTC</p>
                         <p className="text-xl font-mono font-bold text-white">
                             {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' })}
                         </p>

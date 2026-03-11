@@ -40,11 +40,11 @@ const typeConfig = {
     },
     success: {
         icon: CheckCircle,
-        iconBg: 'bg-emerald-500/20',
-        iconColor: 'text-emerald-500',
-        confirmBg: 'bg-emerald-500 hover:bg-emerald-600',
+        iconBg: 'bg-amber-500/20',
+        iconColor: 'text-amber-500',
+        confirmBg: 'bg-amber-500 hover:bg-amber-600',
         confirmText: 'text-black',
-        glow: 'shadow-emerald-500/20'
+        glow: 'shadow-amber-500/20'
     },
     info: {
         icon: Info,

@@ -93,7 +93,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                 {/* Progress Bar */}
                 <div className="h-1 bg-zinc-800 w-full">
                     <motion.div
-                        className="h-full bg-emerald-500"
+                        className="h-full bg-amber-500"
                         initial={{ width: 0 }}
                         animate={{ width: `${(step / totalSteps) * 100}%` }}
                         transition={{ duration: 0.3 }}
@@ -127,7 +127,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                         type="text"
                                         value={formData.name}
                                         onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-4 text-white focus:border-emerald-500 focus:outline-none transition-all placeholder:text-zinc-700"
+                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-4 text-white focus:border-amber-500 focus:outline-none transition-all placeholder:text-zinc-700"
                                         placeholder="e.g. ICT Silver Bullet, Golden Cross Reversal"
                                         autoFocus
                                     />
@@ -137,7 +137,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                     <textarea
                                         value={formData.description}
                                         onChange={e => setFormData({ ...formData, description: e.target.value })}
-                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-4 text-white focus:border-emerald-500 focus:outline-none h-32 transition-all placeholder:text-zinc-700 resize-none"
+                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-4 text-white focus:border-amber-500 focus:outline-none h-32 transition-all placeholder:text-zinc-700 resize-none"
                                         placeholder="Explain the logic behind this strategy. Why does it work?"
                                     />
                                 </div>
@@ -153,7 +153,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                 className="space-y-6"
                             >
                                 <div className="flex items-center gap-3 mb-6">
-                                    <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400">
+                                    <div className="p-3 rounded-xl bg-amber-500/10 text-amber-400">
                                         <Shield className="h-6 w-6" />
                                     </div>
                                     <div>
@@ -169,7 +169,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                             type="number"
                                             value={formData.riskPerTrade}
                                             onChange={e => setFormData({ ...formData, riskPerTrade: e.target.value })}
-                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-emerald-500 focus:outline-none"
+                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-amber-500 focus:outline-none"
                                             placeholder="1.0"
                                         />
                                     </div>
@@ -179,7 +179,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                             type="number"
                                             value={formData.riskRewardRatio}
                                             onChange={e => setFormData({ ...formData, riskRewardRatio: e.target.value })}
-                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-emerald-500 focus:outline-none"
+                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-amber-500 focus:outline-none"
                                             placeholder="2.0"
                                         />
                                     </div>
@@ -189,14 +189,14 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                             type="number"
                                             value={formData.winRateTarget}
                                             onChange={e => setFormData({ ...formData, winRateTarget: e.target.value })}
-                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-emerald-500 focus:outline-none"
+                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-amber-500 focus:outline-none"
                                             placeholder="50"
                                         />
                                     </div>
                                 </div>
 
-                                <div className="p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10 flex gap-3">
-                                    <AlertCircle className="h-5 w-5 text-emerald-500 flex-shrink-0" />
+                                <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/10 flex gap-3">
+                                    <AlertCircle className="h-5 w-5 text-amber-500 flex-shrink-0" />
                                     <p className="text-sm text-emerald-200/80 leading-relaxed">
                                         A strategy with a <strong>{formData.winRateTarget}%</strong> win rate and <strong>1:{formData.riskRewardRatio}</strong> R:R has a positive expectancy. Stick to these rules!
                                     </p>
@@ -228,7 +228,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                         <textarea
                                             value={formData.entryTriggers}
                                             onChange={e => setFormData({ ...formData, entryTriggers: e.target.value })}
-                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-emerald-500 focus:outline-none h-32 text-sm resize-none"
+                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-amber-500 focus:outline-none h-32 text-sm resize-none"
                                             placeholder="- Break of Structure&#10;- FVG Retest&#10;- RSI Divergence"
                                         />
                                     </div>
@@ -237,7 +237,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                         <textarea
                                             value={formData.exitTriggers}
                                             onChange={e => setFormData({ ...formData, exitTriggers: e.target.value })}
-                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-emerald-500 focus:outline-none h-32 text-sm resize-none"
+                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl p-3 text-white focus:border-amber-500 focus:outline-none h-32 text-sm resize-none"
                                             placeholder="- Hit TP&#10;- Trailing Stop&#10;- Market Structure Shift"
                                         />
                                     </div>
@@ -259,14 +259,14 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                                         newRules[i] = e.target.value
                                                         setFormData({ ...formData, rules: newRules })
                                                     }}
-                                                    className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl p-2 px-4 text-white focus:border-emerald-500 focus:outline-none text-sm"
+                                                    className="flex-1 bg-zinc-950 border border-zinc-800 rounded-xl p-2 px-4 text-white focus:border-amber-500 focus:outline-none text-sm"
                                                     placeholder="Add a strict rule..."
                                                 />
                                             </div>
                                         ))}
                                         <button
                                             onClick={() => setFormData({ ...formData, rules: [...formData.rules, ''] })}
-                                            className="text-xs font-bold text-emerald-400 hover:text-emerald-300 ml-10 uppercase tracking-wider"
+                                            className="text-xs font-bold text-amber-400 hover:text-amber-300 ml-10 uppercase tracking-wider"
                                         >
                                             + Add Rule
                                         </button>
@@ -308,7 +308,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                                                 className={cn(
                                                     "px-4 py-2 rounded-lg text-sm font-bold border transition-all",
                                                     formData.timeframes.includes(tf)
-                                                        ? "bg-emerald-500/20 border-emerald-500 text-emerald-400"
+                                                        ? "bg-amber-500/20 border-amber-500 text-amber-400"
                                                         : "bg-zinc-950 border-zinc-800 text-zinc-500 hover:border-zinc-700 hover:text-zinc-300"
                                                 )}
                                             >
@@ -359,7 +359,7 @@ export function CreateStrategyModal({ onClose, onSuccess }: CreateStrategyModalP
                     <button
                         onClick={step < totalSteps ? nextStep : handleSubmit}
                         disabled={isLoading}
-                        className="flex items-center gap-2 px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold shadow-lg shadow-emerald-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex items-center gap-2 px-8 py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-xl font-bold shadow-lg shadow-amber-500/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {isLoading ? (
                             <span>Creating...</span>

@@ -159,7 +159,7 @@ export function UsersTable({ initialUsers }: UsersTableProps) {
                                         {/* Progress Bar */}
                                         <div className="h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden">
                                             <div
-                                                className={`h-full rounded-full transition-all duration-500 ${(user.ai_usage_today / (user.ai_daily_limit || 1)) > 0.9 ? 'bg-red-500' : 'bg-emerald-500'
+                                                className={`h-full rounded-full transition-all duration-500 ${(user.ai_usage_today / (user.ai_daily_limit || 1)) > 0.9 ? 'bg-red-500' : 'bg-amber-500'
                                                     }`}
                                                 style={{ width: `${Math.min(100, (user.ai_usage_today / (user.ai_daily_limit || 1)) * 100)}%` }}
                                             />

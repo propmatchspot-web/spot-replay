@@ -151,14 +151,14 @@ export function JournalCalendar({ trades, entries }: JournalCalendarProps) {
                                 'relative h-40 p-4 text-left transition-all duration-300 flex flex-col justify-between group rounded-2xl border overflow-hidden',
                                 isCurrentMonth ? 'bg-zinc-900 border-zinc-800' : 'bg-zinc-950/30 border-zinc-900 text-zinc-700',
                                 isCurrentMonth && 'hover:border-zinc-600 hover:shadow-xl',
-                                isToday && 'ring-2 ring-emerald-500 ring-offset-2 ring-offset-zinc-950'
+                                isToday && 'ring-2 ring-amber-500 ring-offset-2 ring-offset-zinc-950'
                             )}
                         >
                             {/* Top Border for Status */}
                             {isCurrentMonth && tradeCount > 0 && (
                                 <div className={cn(
                                     "absolute top-0 left-0 w-full h-1.5",
-                                    status === 'win' && "bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]",
+                                    status === 'win' && "bg-amber-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]",
                                     status === 'loss' && "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]",
                                     status === 'be' && "bg-yellow-500"
                                 )} />
@@ -166,7 +166,7 @@ export function JournalCalendar({ trades, entries }: JournalCalendarProps) {
 
                             <span className={cn(
                                 "text-lg font-black tracking-tight",
-                                isToday ? "text-emerald-500" : isCurrentMonth ? "text-zinc-500 group-hover:text-white" : "text-zinc-800"
+                                isToday ? "text-amber-500" : isCurrentMonth ? "text-zinc-500 group-hover:text-white" : "text-zinc-800"
                             )}>
                                 {format(day, 'd')}
                             </span>
@@ -175,14 +175,14 @@ export function JournalCalendar({ trades, entries }: JournalCalendarProps) {
                                 <div className="space-y-1">
                                     <div className={cn(
                                         "text-2xl font-black tracking-tighter leading-none",
-                                        pnl > 0 ? "text-emerald-400" : pnl < 0 ? "text-red-400" : "text-zinc-400"
+                                        pnl > 0 ? "text-amber-400" : pnl < 0 ? "text-red-400" : "text-zinc-400"
                                     )}>
                                         {pnl > 0 ? '+' : ''}{pnl.toLocaleString()}
                                     </div>
                                     <div className="flex items-center gap-1.5">
                                         <span className={cn(
                                             "px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider",
-                                            pnl > 0 ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500"
+                                            pnl > 0 ? "bg-amber-500/10 text-amber-500" : "bg-red-500/10 text-red-500"
                                         )}>
                                             {tradeCount} Trade{tradeCount !== 1 ? 's' : ''}
                                         </span>
@@ -209,13 +209,13 @@ export function JournalCalendar({ trades, entries }: JournalCalendarProps) {
                             onClick={() => router.push(`/journal/day/${format(day, 'yyyy-MM-dd')}`)}
                             className={cn(
                                 "flex items-center justify-between p-4 rounded-xl border bg-zinc-900/50",
-                                isToday ? "border-emerald-500/50" : "border-zinc-800/50"
+                                isToday ? "border-amber-500/50" : "border-zinc-800/50"
                             )}
                         >
                             <div className="flex items-center gap-4">
                                 <div className={cn(
                                     "flex flex-col items-center justify-center w-12 h-12 rounded-lg border",
-                                    isToday ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-500" : "bg-zinc-800/50 border-zinc-700/50 text-zinc-400"
+                                    isToday ? "bg-amber-500/10 border-amber-500/20 text-amber-500" : "bg-zinc-800/50 border-zinc-700/50 text-zinc-400"
                                 )}>
                                     <span className="text-[10px] font-bold uppercase">{format(day, 'EEE')}</span>
                                     <span className="text-xl font-black leading-none">{format(day, 'd')}</span>
@@ -224,7 +224,7 @@ export function JournalCalendar({ trades, entries }: JournalCalendarProps) {
                                     <div>
                                         <div className={cn(
                                             "text-lg font-black tracking-tight",
-                                            pnl > 0 ? "text-emerald-400" : pnl < 0 ? "text-red-400" : "text-zinc-400"
+                                            pnl > 0 ? "text-amber-400" : pnl < 0 ? "text-red-400" : "text-zinc-400"
                                         )}>
                                             {pnl > 0 ? '+' : ''}{pnl.toLocaleString()}
                                         </div>

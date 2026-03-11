@@ -31,7 +31,7 @@ export default function ResetPasswordPage() {
                 className="relative w-full max-w-md space-y-8 rounded-2xl border border-zinc-800/50 bg-zinc-900/50 p-8 shadow-2xl backdrop-blur-xl"
             >
                 <div className="text-center">
-                    <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                    <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-amber-400 to-cyan-400 bg-clip-text text-transparent">
                         Set New Password
                     </h2>
                     <p className="mt-2 text-sm text-zinc-400">
@@ -54,7 +54,7 @@ export default function ResetPasswordPage() {
                                 name="password"
                                 type="password"
                                 required
-                                className="block w-full rounded-xl border border-zinc-800 bg-zinc-950/50 pl-10 p-3 text-zinc-100 placeholder-zinc-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                                className="block w-full rounded-xl border border-zinc-800 bg-zinc-950/50 pl-10 p-3 text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                                 placeholder="New Password"
                             />
                         </div>
@@ -64,7 +64,7 @@ export default function ResetPasswordPage() {
                                 name="confirmPassword"
                                 type="password"
                                 required
-                                className="block w-full rounded-xl border border-zinc-800 bg-zinc-950/50 pl-10 p-3 text-zinc-100 placeholder-zinc-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                                className="block w-full rounded-xl border border-zinc-800 bg-zinc-950/50 pl-10 p-3 text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                                 placeholder="Confirm New Password"
                             />
                         </div>
@@ -73,7 +73,7 @@ export default function ResetPasswordPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="group relative flex w-full justify-center rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-3 text-sm font-bold text-white hover:from-emerald-500 hover:to-cyan-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:opacity-50 transition-all"
+                        className="group relative flex w-full justify-center rounded-xl bg-gradient-to-r from-amber-600 to-cyan-600 px-4 py-3 text-sm font-bold text-white hover:from-amber-500 hover:to-cyan-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:opacity-50 transition-all"
                     >
                         {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Update Password'}
                     </button>

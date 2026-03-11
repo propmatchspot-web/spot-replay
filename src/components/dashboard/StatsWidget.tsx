@@ -42,13 +42,13 @@ export function StatsWidget({ title, value, iconName, trend, trendUp, color = 'a
 
     const colorStyles = {
         emerald: {
-            gradient: 'from-emerald-500/20 via-transparent to-transparent',
+            gradient: 'from-amber-500/20 via-transparent to-transparent',
             glow: 'group-hover:shadow-[0_0_40px_-10px_rgba(16,185,129,0.4)]',
-            icon: 'text-emerald-400',
-            iconBg: 'bg-emerald-500/10 group-hover:bg-emerald-500/20',
-            iconRing: 'ring-emerald-500/20',
-            bar: 'from-emerald-600 via-emerald-500 to-emerald-400',
-            dot: 'bg-emerald-500',
+            icon: 'text-amber-400',
+            iconBg: 'bg-amber-500/10 group-hover:bg-amber-500/20',
+            iconRing: 'ring-amber-500/20',
+            bar: 'from-amber-600 via-amber-500 to-amber-400',
+            dot: 'bg-amber-500',
         },
         cyan: {
             gradient: 'from-cyan-500/20 via-transparent to-transparent',
@@ -153,11 +153,11 @@ export function StatsWidget({ title, value, iconName, trend, trendUp, color = 'a
                             "flex items-center gap-1.5 px-2.5 py-1 rounded-full",
                             "bg-zinc-950/60 backdrop-blur-sm border border-zinc-800/50",
                             "text-[11px] font-semibold tracking-wide",
-                            trendUp ? "text-emerald-400" : "text-red-400"
+                            trendUp ? "text-amber-400" : "text-red-400"
                         )}>
                             <span className={cn(
                                 "w-1.5 h-1.5 rounded-full animate-pulse",
-                                trendUp ? "bg-emerald-400" : "bg-red-400"
+                                trendUp ? "bg-amber-400" : "bg-red-400"
                             )} />
                             {trendUp ? '↑' : '↓'} {trend}
                         </div>

@@ -29,11 +29,11 @@ interface DashboardCardProps {
 
 const colorStyles = {
     emerald: {
-        bar: 'from-emerald-600 via-emerald-500 to-emerald-400',
-        iconBg: 'bg-emerald-500/10 group-hover:bg-emerald-500/15',
-        icon: 'text-emerald-400',
+        bar: 'from-amber-600 via-amber-500 to-amber-400',
+        iconBg: 'bg-amber-500/10 group-hover:bg-amber-500/15',
+        icon: 'text-amber-400',
         glow: 'group-hover:shadow-[0_8px_40px_-12px_rgba(16,185,129,0.25)]',
-        gradient: 'from-emerald-500/10 via-transparent',
+        gradient: 'from-amber-500/10 via-transparent',
     },
     blue: {
         bar: 'from-blue-600 via-blue-500 to-blue-400',

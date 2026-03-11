@@ -25,18 +25,18 @@ function LockedFeature({ title }: { title: string }) {
             {/* Fake Content Background */}
             <div className="absolute inset-0 opacity-20 blur-sm pointer-events-none">
                 <div className="h-full w-full bg-gradient-to-br from-zinc-800/10 to-zinc-900/10" />
-                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-emerald-500/5" />
+                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-amber-500/5" />
             </div>
 
             <div className="relative z-20 flex flex-col items-center text-center p-6 animate-in fade-in zoom-in duration-500">
                 <div className="h-14 w-14 rounded-2xl bg-zinc-900 flex items-center justify-center mb-4 border border-zinc-800 shadow-xl shadow-black/50 group-hover:scale-110 transition-transform duration-300">
-                    <Lock className="h-7 w-7 text-emerald-500" />
+                    <Lock className="h-7 w-7 text-amber-500" />
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Detailed Analytics Locked</h3>
                 <p className="text-zinc-500 text-sm max-w-[260px] mb-6 leading-relaxed">
-                    Upgrade to <span className="text-emerald-400 font-bold">Growth</span> or <span className="text-cyan-400 font-bold">Enterprise</span> to unlock {title.toLowerCase()} insights.
+                    Upgrade to <span className="text-amber-400 font-bold">Growth</span> or <span className="text-cyan-400 font-bold">Enterprise</span> to unlock {title.toLowerCase()} insights.
                 </p>
-                <Link href="/checkout?plan=growth" className="px-8 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-black uppercase tracking-wider text-xs shadow-lg shadow-emerald-900/20 transition-all hover:translate-y-[-2px]">
+                <Link href="/checkout?plan=growth" className="px-8 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-black uppercase tracking-wider text-xs shadow-lg shadow-amber-900/20 transition-all hover:translate-y-[-2px]">
                     Unlock Now
                 </Link>
             </div>
@@ -72,7 +72,7 @@ export default function AnalyticsPage() {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center h-full min-h-[600px]">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-500" />
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500" />
             </div>
         )
     }
@@ -89,7 +89,7 @@ export default function AnalyticsPage() {
                 <div>
                     <h2 className="text-3xl sm:text-4xl font-black text-white uppercase italic tracking-tight">Performance Analytics</h2>
                     <div className="flex items-center gap-2 mt-1">
-                        <p className="text-zinc-400 text-sm sm:text-base">Advanced metrics for <span className="text-emerald-400 font-bold">{mode} Trading</span></p>
+                        <p className="text-zinc-400 text-sm sm:text-base">Advanced metrics for <span className="text-amber-400 font-bold">{mode} Trading</span></p>
                         {isFree && <span className="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-zinc-800 text-zinc-400 border border-zinc-700">Free Plan</span>}
                     </div>
                 </div>
@@ -101,7 +101,7 @@ export default function AnalyticsPage() {
                             key={m}
                             onClick={() => setMode(m as any)}
                             className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider rounded-md transition-all ${mode === m
-                                ? 'bg-emerald-500 text-white shadow-sm'
+                                ? 'bg-amber-500 text-white shadow-sm'
                                 : 'text-zinc-400 hover:text-white hover:bg-zinc-800'
                                 }`}
                         >
@@ -152,9 +152,9 @@ export default function AnalyticsPage() {
                 {/* Row 1: Equity Curve (Always Available) */}
                 <div className="rounded-[2rem] border border-zinc-800 bg-zinc-900 overflow-hidden group hover:border-zinc-700 transition-colors duration-300">
                     <div className="p-6 border-b border-zinc-800 bg-zinc-900/50 flex items-center gap-3 relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500" />
-                        <div className="p-2.5 rounded-xl bg-emerald-500/10">
-                            <Activity className="h-6 w-6 text-emerald-500" />
+                        <div className="absolute top-0 left-0 w-1 h-full bg-amber-500" />
+                        <div className="p-2.5 rounded-xl bg-amber-500/10">
+                            <Activity className="h-6 w-6 text-amber-500" />
                         </div>
                         <h3 className="text-xl font-black text-white uppercase tracking-wide">Equity Growth</h3>
                     </div>
@@ -283,9 +283,9 @@ export default function AnalyticsPage() {
             {/* Deep Dive Stats */}
             <div className="rounded-[2rem] border border-zinc-800 bg-zinc-900 overflow-hidden group hover:border-zinc-700 transition-colors duration-300">
                 <div className="p-6 border-b border-zinc-800 bg-zinc-900/50 flex items-center gap-3 relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500" />
-                    <div className="p-2.5 rounded-xl bg-emerald-500/10">
-                        <Target className="h-6 w-6 text-emerald-500" />
+                    <div className="absolute top-0 left-0 w-1 h-full bg-amber-500" />
+                    <div className="p-2.5 rounded-xl bg-amber-500/10">
+                        <Target className="h-6 w-6 text-amber-500" />
                     </div>
                     <h3 className="text-xl font-black text-white uppercase tracking-wide">Detailed Statistics</h3>
                 </div>
@@ -293,7 +293,7 @@ export default function AnalyticsPage() {
                 <div className="p-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
                     <div className="space-y-1">
                         <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Avg Win</p>
-                        <p className="text-2xl font-black text-emerald-400">${stats.avgWin?.toLocaleString(undefined, { minimumFractionDigits: 2 }) || "0.00"}</p>
+                        <p className="text-2xl font-black text-amber-400">${stats.avgWin?.toLocaleString(undefined, { minimumFractionDigits: 2 }) || "0.00"}</p>
                     </div>
                     <div className="space-y-1">
                         <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Avg Loss</p>
@@ -309,7 +309,7 @@ export default function AnalyticsPage() {
                     </div>
                     <div className="space-y-1">
                         <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Max Cons. Wins</p>
-                        <p className="text-2xl font-black text-emerald-400">{stats.maxConsecutiveWins || 0}</p>
+                        <p className="text-2xl font-black text-amber-400">{stats.maxConsecutiveWins || 0}</p>
                     </div>
                     <div className="space-y-1">
                         <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Max Cons. Losses</p>

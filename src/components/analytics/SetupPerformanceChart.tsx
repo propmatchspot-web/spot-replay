@@ -61,7 +61,7 @@ export function SetupPerformanceChart({ trades }: SetupPerformanceChartProps) {
                                 const winRate = Math.round((stat.wins / stat.trades) * 100)
                                 return [
                                     <div key="tooltip" className="space-y-1">
-                                        <div>P&L: <span className={value >= 0 ? 'text-emerald-400' : 'text-red-400'}>${value.toFixed(2)}</span></div>
+                                        <div>P&L: <span className={value >= 0 ? 'text-amber-400' : 'text-red-400'}>${value.toFixed(2)}</span></div>
                                         <div className="text-zinc-400 text-xs">Win Rate: {winRate}% ({stat.wins}/{stat.trades})</div>
                                     </div>,
                                     ''

@@ -67,7 +67,7 @@ export function PeriodBreakdown({ trades }: PeriodBreakdownProps) {
                             <div className="flex items-center gap-3">
                                 <div className={cn(
                                     "h-2 w-2 rounded-full",
-                                    month.pnl >= 0 ? "bg-emerald-500" : "bg-red-500"
+                                    month.pnl >= 0 ? "bg-amber-500" : "bg-red-500"
                                 )} />
                                 <span className="text-sm font-medium text-zinc-300">
                                     {format(month.date, 'MMMM yyyy')}
@@ -76,7 +76,7 @@ export function PeriodBreakdown({ trades }: PeriodBreakdownProps) {
                             <div className="text-right">
                                 <p className={cn(
                                     "font-mono font-medium",
-                                    month.pnl >= 0 ? "text-emerald-400" : "text-red-400"
+                                    month.pnl >= 0 ? "text-amber-400" : "text-red-400"
                                 )}>
                                     {month.pnl >= 0 ? '+' : ''}${month.pnl.toFixed(2)}
                                 </p>
@@ -101,7 +101,7 @@ export function PeriodBreakdown({ trades }: PeriodBreakdownProps) {
                             <div className="flex items-center gap-3">
                                 <div className={cn(
                                     "h-2 w-2 rounded-full",
-                                    week.pnl >= 0 ? "bg-emerald-500" : "bg-red-500"
+                                    week.pnl >= 0 ? "bg-amber-500" : "bg-red-500"
                                 )} />
                                 <span className="text-sm font-medium text-zinc-300">
                                     {format(week.date, 'MMM d')} - {format(endOfWeek(week.date), 'MMM d')}
@@ -110,7 +110,7 @@ export function PeriodBreakdown({ trades }: PeriodBreakdownProps) {
                             <div className="text-right">
                                 <p className={cn(
                                     "font-mono font-medium",
-                                    week.pnl >= 0 ? "text-emerald-400" : "text-red-400"
+                                    week.pnl >= 0 ? "text-amber-400" : "text-red-400"
                                 )}>
                                     {week.pnl >= 0 ? '+' : ''}${week.pnl.toFixed(2)}
                                 </p>

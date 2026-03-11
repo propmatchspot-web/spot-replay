@@ -89,7 +89,7 @@ export default async function StrategyDetailsPage({
                                 <TrendingUp className="h-4 w-4" />
                                 <span className="text-xs font-bold uppercase tracking-wider">Net P&L</span>
                             </div>
-                            <div className={`text-2xl font-black ${strategy.stats.netPnl >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                            <div className={`text-2xl font-black ${strategy.stats.netPnl >= 0 ? 'text-amber-400' : 'text-red-400'}`}>
                                 ${strategy.stats.netPnl.toLocaleString()}
                             </div>
                         </div>

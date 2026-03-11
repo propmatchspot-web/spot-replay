@@ -92,8 +92,8 @@ export function ConnectorsSection({ user }: { user: any }) {
             {/* SYNC KEY GENERATOR */}
             <div className="rounded-[2rem] border border-zinc-800 bg-zinc-900 p-8 shadow-xl">
                 <div className="flex items-center gap-3 mb-6">
-                    <div className="h-10 w-10 rounded-full bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20">
-                        <Radio className="h-5 w-5 text-emerald-500" />
+                    <div className="h-10 w-10 rounded-full bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
+                        <Radio className="h-5 w-5 text-amber-500" />
                     </div>
                     <div>
                         <h4 className="text-lg font-black text-white uppercase italic">Universal Sync Key</h4>
@@ -107,7 +107,7 @@ export function ConnectorsSection({ user }: { user: any }) {
                             <button
                                 onClick={generateKey}
                                 disabled={generatingKey}
-                                className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-bold text-black hover:bg-emerald-400 disabled:opacity-50 transition-all shadow-lg shadow-emerald-500/20"
+                                className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-6 py-3 text-sm font-bold text-black hover:bg-amber-400 disabled:opacity-50 transition-all shadow-lg shadow-amber-500/20"
                             >
                                 {generatingKey ? <Loader2 className="h-4 w-4 animate-spin" /> : <Radio className="h-4 w-4" />}
                                 Generate/Reveal My Key
@@ -120,7 +120,7 @@ export function ConnectorsSection({ user }: { user: any }) {
                                 <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1 block">Your Secret Key</label>
                                 <div
                                     onClick={() => copyToClipboard(syncKey)}
-                                    className="cursor-pointer group relative rounded-xl border border-emerald-500/30 bg-emerald-500/5 px-4 py-4 font-mono text-lg text-emerald-500 font-bold hover:bg-emerald-500/10 transition-all text-center tracking-widest"
+                                    className="cursor-pointer group relative rounded-xl border border-amber-500/30 bg-amber-500/5 px-4 py-4 font-mono text-lg text-amber-500 font-bold hover:bg-amber-500/10 transition-all text-center tracking-widest"
                                 >
                                     {syncKey}
                                     <div className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -128,7 +128,7 @@ export function ConnectorsSection({ user }: { user: any }) {
                                     </div>
                                 </div>
                                 {message && (
-                                    <div className="absolute -top-8 right-0 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded fade-in">
+                                    <div className="absolute -top-8 right-0 bg-amber-500 text-black text-xs font-bold px-2 py-1 rounded fade-in">
                                         {message}
                                     </div>
                                 )}
@@ -180,7 +180,7 @@ export function ConnectorsSection({ user }: { user: any }) {
                                             {step.code && (
                                                 <div
                                                     onClick={() => copyToClipboard(step.code!)}
-                                                    className="mt-2 block w-full rounded bg-black px-3 py-2 font-mono text-[10px] text-zinc-400 border border-zinc-800 cursor-pointer hover:border-emerald-500/30 hover:text-emerald-500 transition-colors"
+                                                    className="mt-2 block w-full rounded bg-black px-3 py-2 font-mono text-[10px] text-zinc-400 border border-zinc-800 cursor-pointer hover:border-amber-500/30 hover:text-amber-500 transition-colors"
                                                 >
                                                     {step.code}
                                                 </div>

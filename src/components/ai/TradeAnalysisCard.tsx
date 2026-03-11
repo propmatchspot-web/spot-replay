@@ -197,7 +197,7 @@ function parseAIResponse(response: string): AnalysisData | null {
 // Trend Icon Component
 function TrendIcon({ trend, size = 'sm' }: { trend: 'BULLISH' | 'BEARISH' | 'RANGING', size?: 'sm' | 'md' }) {
     const sizeClass = size === 'md' ? 'h-5 w-5' : 'h-4 w-4'
-    if (trend === 'BULLISH') return <ArrowUp className={cn(sizeClass, 'text-emerald-400')} />
+    if (trend === 'BULLISH') return <ArrowUp className={cn(sizeClass, 'text-amber-400')} />
     if (trend === 'BEARISH') return <ArrowDown className={cn(sizeClass, 'text-red-400')} />
     return <Minus className={cn(sizeClass, 'text-zinc-400')} />
 }
@@ -210,7 +210,7 @@ function Badge({ children, variant = 'default', size = 'sm', icon }: {
     icon?: React.ReactNode
 }) {
     const variants = {
-        bullish: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+        bullish: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
         bearish: 'bg-red-500/20 text-red-400 border-red-500/30',
         neutral: 'bg-zinc-500/20 text-zinc-400 border-zinc-500/30',
         default: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
@@ -244,7 +244,7 @@ function PriceDisplay({ label, value, type, icon }: {
     const colors = {
         entry: 'border-l-blue-500 text-blue-400',
         sl: 'border-l-red-500 text-red-400',
-        tp: 'border-l-emerald-500 text-emerald-400',
+        tp: 'border-l-amber-500 text-amber-400',
         neutral: 'border-l-zinc-500 text-white'
     }
     return (
@@ -282,8 +282,8 @@ function SetupCard({ setup, isActive }: { setup: TradeSetup; isActive?: boolean 
     const [copied, setCopied] = useState(false)
 
     const accentColor = isBullish ? 'emerald' : 'red'
-    const gradientFrom = isBullish ? 'from-emerald-500/10' : 'from-red-500/10'
-    const borderColor = isBullish ? 'border-emerald-500/30' : 'border-red-500/30'
+    const gradientFrom = isBullish ? 'from-amber-500/10' : 'from-red-500/10'
+    const borderColor = isBullish ? 'border-amber-500/30' : 'border-red-500/30'
 
     const copySetup = () => {
         const text = `${setup.type} ${setup.tradeType}\nEntry: ${setup.entry}\nSL: ${setup.stopLoss}\nTP1: ${setup.takeProfit1}\nTP2: ${setup.takeProfit2}\nTP3: ${setup.takeProfit3}`
@@ -296,7 +296,7 @@ function SetupCard({ setup, isActive }: { setup: TradeSetup; isActive?: boolean 
         <div className={cn(
             "rounded-2xl border overflow-hidden transition-all duration-300",
             isActive && "ring-2 ring-offset-2 ring-offset-zinc-950",
-            isBullish ? "ring-emerald-500/50" : "ring-red-500/50",
+            isBullish ? "ring-amber-500/50" : "ring-red-500/50",
             borderColor
         )}>
             {/* Header */}
@@ -309,8 +309,8 @@ function SetupCard({ setup, isActive }: { setup: TradeSetup; isActive?: boolean 
             >
                 <div className="flex items-center gap-3">
                     {isBullish ? (
-                        <div className="p-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/30">
-                            <ArrowUpRight className="h-5 w-5 text-emerald-400" />
+                        <div className="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/30">
+                            <ArrowUpRight className="h-5 w-5 text-amber-400" />
                         </div>
                     ) : (
                         <div className="p-2.5 rounded-xl bg-red-500/20 border border-red-500/30">
@@ -320,7 +320,7 @@ function SetupCard({ setup, isActive }: { setup: TradeSetup; isActive?: boolean 
                     <div>
                         <div className={cn(
                             "text-sm font-black uppercase tracking-wide flex items-center gap-2",
-                            isBullish ? "text-emerald-400" : "text-red-400"
+                            isBullish ? "text-amber-400" : "text-red-400"
                         )}>
                             {isBullish ? '🟢 LONG' : '🔴 SHORT'} SETUP
                             {isActive && <Flame className="h-4 w-4 animate-pulse" />}
@@ -333,7 +333,7 @@ function SetupCard({ setup, isActive }: { setup: TradeSetup; isActive?: boolean 
                         {setup.confluenceScore}/10
                     </Badge>
                     <button onClick={(e) => { e.stopPropagation(); copySetup() }} className="p-2 rounded-lg hover:bg-zinc-800 transition-colors">
-                        {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4 text-zinc-500" />}
+                        {copied ? <Check className="h-4 w-4 text-amber-400" /> : <Copy className="h-4 w-4 text-zinc-500" />}
                     </button>
                     {expanded ? <ChevronUp className="h-4 w-4 text-zinc-500" /> : <ChevronDown className="h-4 w-4 text-zinc-500" />}
                 </div>
@@ -360,10 +360,10 @@ function SetupCard({ setup, isActive }: { setup: TradeSetup; isActive?: boolean 
                                 { label: 'TP2', rr: '1:2', value: setup.takeProfit2 },
                                 { label: 'TP3', rr: '1:3', value: setup.takeProfit3 },
                             ].map((tp, i) => (
-                                <div key={i} className="bg-emerald-500/5 border border-emerald-500/20 rounded-xl p-3 text-center relative overflow-hidden">
-                                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-emerald-500/50 to-emerald-500/0" />
+                                <div key={i} className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-3 text-center relative overflow-hidden">
+                                    <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-500/50 to-amber-500/0" />
                                     <div className="text-[8px] text-zinc-500 uppercase mb-1">{tp.label} ({tp.rr})</div>
-                                    <div className="font-mono text-sm font-bold text-emerald-400">{tp.value}</div>
+                                    <div className="font-mono text-sm font-bold text-amber-400">{tp.value}</div>
                                 </div>
                             ))}
                         </div>
@@ -442,7 +442,7 @@ export function TradeAnalysisCard({ aiResponse, onParsed }: {
     }
 
     const biasColors = {
-        BULLISH: { text: 'text-emerald-400', bg: 'bg-emerald-500', glow: 'shadow-emerald-500/20' },
+        BULLISH: { text: 'text-amber-400', bg: 'bg-amber-500', glow: 'shadow-amber-500/20' },
         BEARISH: { text: 'text-red-400', bg: 'bg-red-500', glow: 'shadow-red-500/20' },
         NEUTRAL: { text: 'text-zinc-400', bg: 'bg-zinc-500', glow: 'shadow-zinc-500/20' },
     }
@@ -474,7 +474,7 @@ export function TradeAnalysisCard({ aiResponse, onParsed }: {
 
                     <div className="flex flex-col items-end">
                         <div className="flex items-center gap-2">
-                            {data.verdict.bias === 'BULLISH' && <ArrowUpRight className="h-8 w-8 text-emerald-400" />}
+                            {data.verdict.bias === 'BULLISH' && <ArrowUpRight className="h-8 w-8 text-amber-400" />}
                             {data.verdict.bias === 'BEARISH' && <ArrowDownRight className="h-8 w-8 text-red-400" />}
                             <div className={cn("text-4xl font-black tracking-tight", biasStyle.text)}>
                                 {data.verdict.bias}
@@ -494,7 +494,7 @@ export function TradeAnalysisCard({ aiResponse, onParsed }: {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Trend Analysis */}
                 <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5">
-                    <SectionHeader icon={<TrendingUp className="h-4 w-4 text-emerald-400" />} title="Multi-Timeframe Trend" color="bg-emerald-500/20" />
+                    <SectionHeader icon={<TrendingUp className="h-4 w-4 text-amber-400" />} title="Multi-Timeframe Trend" color="bg-amber-500/20" />
                     <div className="space-y-3">
                         <div className="flex justify-between items-center p-3 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
                             <span className="text-sm text-zinc-400 flex items-center gap-2">
@@ -563,12 +563,12 @@ export function TradeAnalysisCard({ aiResponse, onParsed }: {
                             </div>
                         )}
                         {data.snr.majorSupport && (
-                            <div className="flex justify-between items-center p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
+                            <div className="flex justify-between items-center p-2 rounded-lg bg-amber-500/5 border border-amber-500/20">
                                 <span className="flex items-center gap-2 text-zinc-400">
-                                    <div className="w-2 h-2 rounded-full bg-emerald-500" />
+                                    <div className="w-2 h-2 rounded-full bg-amber-500" />
                                     Major Support
                                 </span>
-                                <span className="font-mono font-bold text-emerald-400">{data.snr.majorSupport}</span>
+                                <span className="font-mono font-bold text-amber-400">{data.snr.majorSupport}</span>
                             </div>
                         )}
                         {!data.snr.majorResistance && !data.snr.minorResistance && !data.snr.minorSupport && !data.snr.majorSupport && (
@@ -583,12 +583,12 @@ export function TradeAnalysisCard({ aiResponse, onParsed }: {
                 <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5">
                     <SectionHeader icon={<Droplets className="h-4 w-4 text-cyan-400" />} title="Liquidity Pools" color="bg-cyan-500/20" />
                     <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-xl p-4 text-center">
+                        <div className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-4 text-center">
                             <div className="flex items-center justify-center gap-2 text-[10px] text-zinc-500 uppercase mb-2">
-                                <ArrowUp className="h-3 w-3 text-emerald-400" />
+                                <ArrowUp className="h-3 w-3 text-amber-400" />
                                 BSL (Buyside)
                             </div>
-                            <div className="text-xl font-mono font-black text-emerald-400">{data.bsl || 'N/A'}</div>
+                            <div className="text-xl font-mono font-black text-amber-400">{data.bsl || 'N/A'}</div>
                         </div>
                         <div className="bg-red-500/5 border border-red-500/20 rounded-xl p-4 text-center">
                             <div className="flex items-center justify-center gap-2 text-[10px] text-zinc-500 uppercase mb-2">
@@ -687,7 +687,7 @@ export function TradeAnalysisCard({ aiResponse, onParsed }: {
                         className={cn(
                             "flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all disabled:opacity-50",
                             isExporting === 'copy'
-                                ? "bg-emerald-500/20 border-emerald-500/30 text-emerald-400"
+                                ? "bg-amber-500/20 border-amber-500/30 text-amber-400"
                                 : "bg-zinc-800 hover:bg-zinc-700 border-zinc-700 text-zinc-400 hover:text-white"
                         )}
                     >
@@ -707,7 +707,7 @@ export function TradeAnalysisCard({ aiResponse, onParsed }: {
 
                 {/* Branding */}
                 <div className="flex items-center gap-2 text-[10px] text-zinc-600">
-                    <img src="/Replaylogo.png" alt="Spot Replay" className="h-4 w-4" />
+                    <img src="/replay-favicon.png" alt="Spot Replay" className="h-4 w-4" />
                     <span>Powered by <span className="text-amber-500 font-bold">Spot Replay AI</span></span>
                 </div>
             </div>

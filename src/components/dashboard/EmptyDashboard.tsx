@@ -39,9 +39,9 @@ export function EmptyDashboard() {
             icon: ShieldCheck,
             title: "Risk Management",
             desc: "Smart alerts for daily drawdown and profit targets to keep you disciplined.",
-            color: "text-emerald-400",
-            bg: "bg-emerald-500/10",
-            border: "border-emerald-500/20"
+            color: "text-amber-400",
+            bg: "bg-amber-500/10",
+            border: "border-amber-500/20"
         }
     ]
 

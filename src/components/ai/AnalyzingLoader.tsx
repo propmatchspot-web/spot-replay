@@ -10,7 +10,7 @@ import {
 const LOADING_STEPS = [
     { icon: ScanLine, label: 'Scanning chart patterns...', color: 'text-blue-400', duration: 4 },
     { icon: Layers, label: 'Analyzing market structure...', color: 'text-violet-400', duration: 5 },
-    { icon: TrendingUp, label: 'Identifying key levels...', color: 'text-emerald-400', duration: 4 },
+    { icon: TrendingUp, label: 'Identifying key levels...', color: 'text-amber-400', duration: 4 },
     { icon: Activity, label: 'Detecting order blocks...', color: 'text-amber-400', duration: 3 },
     { icon: Brain, label: 'Calculating probabilities...', color: 'text-pink-400', duration: 4 },
     { icon: Target, label: 'Generating trade setups...', color: 'text-cyan-400', duration: 3 },
@@ -52,7 +52,7 @@ export function AnalyzingLoader() {
             <div className="relative mb-8">
                 {/* Outer Glow Ring */}
                 <motion.div
-                    className="absolute inset-0 rounded-full bg-emerald-500/20 blur-xl"
+                    className="absolute inset-0 rounded-full bg-amber-500/20 blur-xl"
                     animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0.2, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity }}
                 />
@@ -63,14 +63,14 @@ export function AnalyzingLoader() {
                     animate={{ rotateY: [0, 360] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                 >
-                    <BarChart3 className="h-12 w-12 text-emerald-400" />
+                    <BarChart3 className="h-12 w-12 text-amber-400" />
                 </motion.div>
 
                 {/* Orbiting Dots */}
                 {[0, 1, 2].map((i) => (
                     <motion.div
                         key={i}
-                        className="absolute w-3 h-3 rounded-full bg-emerald-500"
+                        className="absolute w-3 h-3 rounded-full bg-amber-500"
                         style={{ top: '50%', left: '50%' }}
                         animate={{
                             x: [0, 40, 0, -40, 0],
@@ -127,14 +127,14 @@ export function AnalyzingLoader() {
                                     className="overflow-hidden"
                                 >
                                     <div className={`flex items-center gap-3 p-3 rounded-xl border transition-all duration-500 ${isComplete
-                                            ? 'bg-emerald-500/5 border-emerald-500/30'
+                                            ? 'bg-amber-500/5 border-amber-500/30'
                                             : isActive
                                                 ? 'bg-zinc-800/80 border-zinc-700'
                                                 : 'bg-zinc-900/50 border-zinc-800/50'
                                         }`}>
                                         <motion.div
                                             className={`p-2 rounded-lg ${isComplete
-                                                    ? 'bg-emerald-500/20 text-emerald-400'
+                                                    ? 'bg-amber-500/20 text-amber-400'
                                                     : `bg-zinc-800 ${step.color}`
                                                 }`}
                                             animate={isActive ? {
@@ -148,7 +148,7 @@ export function AnalyzingLoader() {
                                                 <step.icon className="h-4 w-4" />
                                             )}
                                         </motion.div>
-                                        <span className={`text-sm flex-1 ${isComplete ? 'text-emerald-400' : 'text-zinc-400'
+                                        <span className={`text-sm flex-1 ${isComplete ? 'text-amber-400' : 'text-zinc-400'
                                             }`}>
                                             {isComplete ? step.label.replace('...', '') : step.label}
                                         </span>
@@ -159,17 +159,17 @@ export function AnalyzingLoader() {
                                                 animate={{ opacity: 1 }}
                                             >
                                                 <motion.span
-                                                    className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                                                    className="w-1.5 h-1.5 rounded-full bg-amber-500"
                                                     animate={{ opacity: [0.3, 1, 0.3] }}
                                                     transition={{ duration: 0.8, repeat: Infinity, delay: 0 }}
                                                 />
                                                 <motion.span
-                                                    className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                                                    className="w-1.5 h-1.5 rounded-full bg-amber-500"
                                                     animate={{ opacity: [0.3, 1, 0.3] }}
                                                     transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
                                                 />
                                                 <motion.span
-                                                    className="w-1.5 h-1.5 rounded-full bg-emerald-500"
+                                                    className="w-1.5 h-1.5 rounded-full bg-amber-500"
                                                     animate={{ opacity: [0.3, 1, 0.3] }}
                                                     transition={{ duration: 0.8, repeat: Infinity, delay: 0.4 }}
                                                 />
@@ -181,7 +181,7 @@ export function AnalyzingLoader() {
                                                 animate={{ scale: 1 }}
                                                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
                                             >
-                                                <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                                                <CheckCircle2 className="h-4 w-4 text-amber-400" />
                                             </motion.div>
                                         )}
                                     </div>
@@ -196,7 +196,7 @@ export function AnalyzingLoader() {
             <div className="w-full max-w-md mt-8">
                 <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                     <motion.div
-                        className="h-full bg-gradient-to-r from-emerald-500 via-cyan-500 to-violet-500"
+                        className="h-full bg-gradient-to-r from-amber-500 via-cyan-500 to-violet-500"
                         initial={{ width: '0%' }}
                         animate={{ width: '100%' }}
                         transition={{ duration: 25, ease: 'easeInOut' }}

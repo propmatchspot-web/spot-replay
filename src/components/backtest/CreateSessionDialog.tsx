@@ -126,7 +126,7 @@ export function CreateSessionDialog({ open, onOpenChange }: CreateSessionDialogP
                     {/* Progress Bar */}
                     <div className="h-1 bg-white/5 w-full">
                         <motion.div
-                            className="h-full bg-[#00E676]"
+                            className="h-full bg-[#F7AE11]"
                             initial={{ width: '25%' }}
                             animate={{ width: `${step * 25}%` }}
                             transition={{ duration: 0.3 }}
@@ -204,7 +204,7 @@ export function CreateSessionDialog({ open, onOpenChange }: CreateSessionDialogP
                             </Button>
                         ) : (
                             <Button
-                                className="bg-[#00E676] hover:bg-[#00C853] text-black font-bold min-w-[140px]"
+                                className="bg-[#F7AE11] hover:bg-[#D4960A] text-black font-bold min-w-[140px]"
                                 onClick={handleCreate}
                                 disabled={isLoading}
                             >

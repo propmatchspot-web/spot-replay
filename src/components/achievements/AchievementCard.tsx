@@ -57,22 +57,22 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="group relative overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-900 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10"
+                className="group relative overflow-hidden rounded-[2rem] border border-zinc-800 bg-zinc-900 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10"
             >
                 {/* Glow Effect */}
-                <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-emerald-500/5 blur-3xl group-hover:bg-emerald-500/10 transition-colors duration-500" />
+                <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-amber-500/5 blur-3xl group-hover:bg-amber-500/10 transition-colors duration-500" />
 
                 <div className="relative z-10 flex flex-col h-full">
                     <div className="flex items-start justify-between mb-6">
-                        <div className="p-4 rounded-2xl bg-zinc-950 border border-zinc-800 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 transition-colors">
-                            <Award className="h-8 w-8 text-zinc-400 group-hover:text-emerald-400 transition-colors" />
+                        <div className="p-4 rounded-2xl bg-zinc-950 border border-zinc-800 group-hover:border-amber-500/30 group-hover:bg-amber-500/10 transition-colors">
+                            <Award className="h-8 w-8 text-zinc-400 group-hover:text-amber-400 transition-colors" />
                         </div>
                         <span className="text-xs font-bold text-zinc-600 uppercase tracking-widest bg-zinc-950 px-3 py-1 rounded-full border border-zinc-800">
                             {format(new Date(achievement.unlocked_at), 'MMM d, yyyy')}
                         </span>
                     </div>
 
-                    <h3 className="text-2xl font-black text-white uppercase italic tracking-tight mb-3 group-hover:text-emerald-400 transition-colors">
+                    <h3 className="text-2xl font-black text-white uppercase italic tracking-tight mb-3 group-hover:text-amber-400 transition-colors">
                         {achievement.title}
                     </h3>
                     <p className="text-sm text-zinc-400 mb-8 leading-relaxed font-medium flex-1">
@@ -82,7 +82,7 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
                     <button
                         onClick={handleDownload}
                         disabled={isDownloading}
-                        className="w-full flex items-center justify-center gap-2 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-emerald-500/50 hover:bg-emerald-600 py-4 text-sm font-black text-white uppercase tracking-wider transition-all disabled:opacity-50 group/btn"
+                        className="w-full flex items-center justify-center gap-2 rounded-xl bg-zinc-950 border border-zinc-800 hover:border-amber-500/50 hover:bg-amber-600 py-4 text-sm font-black text-white uppercase tracking-wider transition-all disabled:opacity-50 group/btn"
                     >
                         {isDownloading ? (
                             <span className="animate-pulse">Generating...</span>
@@ -102,9 +102,9 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
                 style={{ display: 'none', width: '800px', height: '600px' }}
                 className="fixed top-0 left-0 z-[-1]"
             >
-                <div className="w-full h-full bg-zinc-950 p-12 relative overflow-hidden flex flex-col items-center justify-center text-center border-[16px] border-double border-emerald-900/30">
+                <div className="w-full h-full bg-zinc-950 p-12 relative overflow-hidden flex flex-col items-center justify-center text-center border-[16px] border-double border-amber-900/30">
                     {/* Background Pattern */}
-                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500 via-zinc-950 to-zinc-950" />
+                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-amber-500 via-zinc-950 to-zinc-950" />
 
                     {/* Content */}
                     <div className="relative z-10 flex flex-col items-center h-full w-full">
@@ -126,8 +126,8 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
                         </div>
 
                         <div className="flex-1 flex flex-col items-center justify-center w-full">
-                            <div className="mb-8 p-6 rounded-full bg-emerald-500/10 border border-emerald-500/30">
-                                <Award className="h-16 w-16 text-emerald-400" />
+                            <div className="mb-8 p-6 rounded-full bg-amber-500/10 border border-amber-500/30">
+                                <Award className="h-16 w-16 text-amber-400" />
                             </div>
 
                             <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">Certificate of Achievement</h1>
@@ -135,7 +135,7 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
 
                             <div className="mb-12">
                                 <p className="text-zinc-500 text-lg mb-2">This certifies that</p>
-                                <h2 className="text-3xl font-bold text-emerald-400 mb-4">Trader</h2>
+                                <h2 className="text-3xl font-bold text-amber-400 mb-4">Trader</h2>
                                 <p className="text-zinc-500 text-lg mb-2">has successfully unlocked</p>
                                 <h3 className="text-4xl font-bold text-white mb-4">{achievement.title}</h3>
                                 <p className="text-zinc-400 max-w-lg mx-auto">{achievement.description}</p>

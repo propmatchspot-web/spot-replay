@@ -12,7 +12,7 @@ export function WinrateChart({ trades }: WinrateChartProps) {
     const be = trades.filter(t => (t.pnl || 0) === 0).length
 
     const data = [
-        { name: 'Wins', value: wins, color: '#10b981' },   // Emerald-500
+        { name: 'Wins', value: wins, color: '#10b981' },   // amber-500
         { name: 'Losses', value: losses, color: '#ef4444' }, // Red-500
         { name: 'Break Even', value: be, color: '#eab308' }, // Yellow-500
     ].filter(d => d.value > 0)

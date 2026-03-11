@@ -45,7 +45,7 @@ export default async function JournalDayPage({
                 </Link>
                 <div className="flex items-center gap-4">
                     <div className="p-3 bg-zinc-900 rounded-xl border border-zinc-800">
-                        <Calendar className="h-8 w-8 text-emerald-500" />
+                        <Calendar className="h-8 w-8 text-amber-500" />
                     </div>
                     <div>
                         <h1 className="text-3xl font-black text-white tracking-tight">{displayDate}</h1>
@@ -66,7 +66,7 @@ export default async function JournalDayPage({
                         <div className="p-6 border-b border-zinc-800 flex items-center justify-between">
                             <h3 className="text-lg font-bold text-white">Trades Taken ({trades.length})</h3>
                             <div className="text-sm text-zinc-400">
-                                Net P&L: <span className={trades.reduce((acc: number, t: any) => acc + (t.pnl || 0), 0) >= 0 ? "text-emerald-400 font-bold" : "text-red-400 font-bold"}>
+                                Net P&L: <span className={trades.reduce((acc: number, t: any) => acc + (t.pnl || 0), 0) >= 0 ? "text-amber-400 font-bold" : "text-red-400 font-bold"}>
                                     ${trades.reduce((acc: number, t: any) => acc + (t.pnl || 0), 0).toLocaleString()}
                                 </span>
                             </div>
@@ -95,18 +95,18 @@ export default async function JournalDayPage({
                                             </td>
                                             <td className="px-6 py-4 font-bold text-white">{trade.pair}</td>
                                             <td className="px-6 py-4">
-                                                <span className={`px-2 py-1 rounded text-xs font-bold ${trade.direction === 'Long' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-red-500/10 text-red-400'}`}>
+                                                <span className={`px-2 py-1 rounded text-xs font-bold ${trade.direction === 'Long' ? 'bg-amber-500/10 text-amber-400' : 'bg-red-500/10 text-red-400'}`}>
                                                     {trade.direction}
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <span className={`px-2 py-1 rounded text-xs font-bold ${trade.outcome === 'Win' ? 'bg-emerald-500/10 text-emerald-400' :
+                                                <span className={`px-2 py-1 rounded text-xs font-bold ${trade.outcome === 'Win' ? 'bg-amber-500/10 text-amber-400' :
                                                     trade.outcome === 'Loss' ? 'bg-red-500/10 text-red-400' : 'bg-zinc-800 text-zinc-400'
                                                     }`}>
                                                     {trade.outcome}
                                                 </span>
                                             </td>
-                                            <td className={`px-6 py-4 text-right font-bold ${trade.pnl >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                                            <td className={`px-6 py-4 text-right font-bold ${trade.pnl >= 0 ? 'text-amber-400' : 'text-red-400'}`}>
                                                 ${trade.pnl?.toLocaleString()}
                                             </td>
                                         </tr>

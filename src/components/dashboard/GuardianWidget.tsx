@@ -67,11 +67,11 @@ export function GuardianWidget({ user }: { user: any }) {
     const percentage = Math.min(100, Math.abs(stats.todayPnL) / stats.limit * 100)
     const colorClasses = {
         SAFE: {
-            text: 'text-emerald-400',
-            bg: 'bg-emerald-500',
-            glow: 'shadow-emerald-500/20',
-            gradient: 'from-emerald-500/10 via-transparent',
-            ring: 'ring-emerald-500/20',
+            text: 'text-amber-400',
+            bg: 'bg-amber-500',
+            glow: 'shadow-amber-500/20',
+            gradient: 'from-amber-500/10 via-transparent',
+            ring: 'ring-amber-500/20',
         },
         WARNING: {
             text: 'text-amber-400',
@@ -160,7 +160,7 @@ export function GuardianWidget({ user }: { user: any }) {
                     </div>
                     <div className="bg-zinc-950/40 backdrop-blur-sm p-3 rounded-xl border border-zinc-800/40">
                         <div className="text-[10px] text-zinc-500 uppercase tracking-wider mb-1">Window</div>
-                        <div className="font-mono font-bold text-emerald-400">OPEN</div>
+                        <div className="font-mono font-bold text-amber-400">OPEN</div>
                     </div>
                 </div>
             </div>

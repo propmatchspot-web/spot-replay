@@ -78,7 +78,7 @@ export function DayJournalForm({ date, initialEntry }: DayJournalFormProps) {
                             className={cn(
                                 "px-3 py-1.5 rounded-lg text-sm font-bold border transition-all",
                                 emotions.includes(emotion)
-                                    ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
+                                    ? "bg-amber-500/20 border-amber-500/50 text-amber-400"
                                     : "bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700"
                             )}
                         >
@@ -95,7 +95,7 @@ export function DayJournalForm({ date, initialEntry }: DayJournalFormProps) {
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="What went well? What mistakes did you make? How can you improve tomorrow?"
-                    className="w-full h-64 bg-zinc-950 border border-zinc-800 rounded-xl p-4 text-white focus:outline-none focus:border-emerald-500 resize-none"
+                    className="w-full h-64 bg-zinc-950 border border-zinc-800 rounded-xl p-4 text-white focus:outline-none focus:border-amber-500 resize-none"
                 />
             </div>
 
@@ -104,7 +104,7 @@ export function DayJournalForm({ date, initialEntry }: DayJournalFormProps) {
                 <button
                     onClick={handleSave}
                     disabled={isSaving}
-                    className="flex items-center gap-2 px-8 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-emerald-500/20 disabled:opacity-50"
+                    className="flex items-center gap-2 px-8 py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-amber-500/20 disabled:opacity-50"
                 >
                     <Save className="h-5 w-5" />
                     {isSaving ? 'Saving...' : 'Save Journal Entry'}

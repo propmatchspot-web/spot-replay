@@ -32,7 +32,7 @@ export function AnalyzeButton({ tradeId }: { tradeId: string }) {
             <button
                 onClick={handleAnalyze}
                 disabled={loading}
-                className="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="flex items-center gap-1 text-amber-400 hover:text-amber-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
                 {loading ? (
                     <Loader2 className="h-4 w-4 animate-spin" />

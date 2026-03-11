@@ -72,7 +72,7 @@ export default function BacktestDashboard() {
                     {recentSessions.length > 0 && (
                         <Button
                             onClick={() => setIsCreateOpen(true)}
-                            className="bg-[#00E676] hover:bg-[#00C853] text-black font-bold shadow-lg shadow-[#00E676]/20 transition-all hover:scale-105"
+                            className="bg-[#F7AE11] hover:bg-[#D4960A] text-black font-bold shadow-lg shadow-[#F7AE11]/20 transition-all hover:scale-105"
                         >
                             <Plus className="w-4 h-4 mr-2" />
                             New Session
@@ -84,9 +84,9 @@ export default function BacktestDashboard() {
                     /* Hero Section for Empty State */
                     <div className="flex flex-col items-center justify-center py-32 text-center space-y-8 bg-zinc-900/30 backdrop-blur-xl border border-white/5 rounded-3xl">
                         <div className="relative">
-                            <div className="absolute inset-0 bg-[#00E676] blur-[100px] opacity-20 rounded-full" />
+                            <div className="absolute inset-0 bg-[#F7AE11] blur-[100px] opacity-20 rounded-full" />
                             <div className="relative bg-zinc-900 p-6 rounded-full border border-zinc-800 shadow-2xl">
-                                <History className="w-16 h-16 text-[#00E676]" />
+                                <History className="w-16 h-16 text-[#F7AE11]" />
                             </div>
                         </div>
                         <div className="max-w-lg space-y-4">
@@ -98,7 +98,7 @@ export default function BacktestDashboard() {
                         <Button
                             onClick={() => setIsCreateOpen(true)}
                             size="lg"
-                            className="h-14 px-8 text-lg bg-[#00E676] hover:bg-[#00C853] text-black font-bold shadow-xl shadow-[#00E676]/20 transition-all hover:scale-105"
+                            className="h-14 px-8 text-lg bg-[#F7AE11] hover:bg-[#D4960A] text-black font-bold shadow-xl shadow-[#F7AE11]/20 transition-all hover:scale-105"
                         >
                             <Play className="w-5 h-5 mr-2 fill-current" />
                             Start Backtesting Now
@@ -131,10 +131,10 @@ export default function BacktestDashboard() {
                             <Card className="bg-zinc-900/50 backdrop-blur-xl border-white/5 hover:border-white/10 transition-colors">
                                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                                     <CardTitle className="text-sm font-medium text-zinc-400">Win Rate</CardTitle>
-                                    <Award className="w-4 h-4 text-[#00E676]" />
+                                    <Award className="w-4 h-4 text-[#F7AE11]" />
                                 </CardHeader>
                                 <CardContent>
-                                    <div className="text-2xl font-black text-[#00E676]">{winRate}%</div>
+                                    <div className="text-2xl font-black text-[#F7AE11]">{winRate}%</div>
                                     <p className="text-xs text-zinc-500 mt-1">Average performance</p>
                                 </CardContent>
                             </Card>
@@ -167,7 +167,7 @@ export default function BacktestDashboard() {
                                                 itemStyle={{ color: '#FFFFFF' }}
                                                 cursor={{ fill: 'rgba(255,255,255,0.05)' }}
                                             />
-                                            <Bar dataKey="rate" fill="#00E676" radius={[4, 4, 0, 0]} />
+                                            <Bar dataKey="rate" fill="#F7AE11" radius={[4, 4, 0, 0]} />
                                         </BarChart>
                                     </ResponsiveContainer>
                                 </CardContent>
@@ -190,7 +190,7 @@ export default function BacktestDashboard() {
                                                     </div>
                                                 </div>
                                                 <div className="text-right">
-                                                    <div className="font-bold text-[#00E676] text-sm">{item.winRate}%</div>
+                                                    <div className="font-bold text-[#F7AE11] text-sm">{item.winRate}%</div>
                                                 </div>
                                             </div>
                                         ))}
@@ -210,11 +210,11 @@ export default function BacktestDashboard() {
                                         onClick={() => router.push(`/backtest/session/${session.id}`)}
                                     >
                                         <div className="flex items-center gap-6">
-                                            <div className="w-12 h-12 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center group-hover:border-[#00E676]/50 transition-colors">
-                                                <Play className="w-5 h-5 text-zinc-500 group-hover:text-[#00E676] fill-current transition-colors" />
+                                            <div className="w-12 h-12 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center group-hover:border-[#F7AE11]/50 transition-colors">
+                                                <Play className="w-5 h-5 text-zinc-500 group-hover:text-[#F7AE11] fill-current transition-colors" />
                                             </div>
                                             <div>
-                                                <h3 className="text-lg font-bold text-white group-hover:text-[#00E676] transition-colors">{session.name}</h3>
+                                                <h3 className="text-lg font-bold text-white group-hover:text-[#F7AE11] transition-colors">{session.name}</h3>
                                                 <div className="flex items-center gap-4 text-sm text-zinc-500 mt-1">
                                                     <span className="flex items-center gap-1"><BarChart2 className="w-3 h-3" /> {session.pair}</span>
                                                     <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {new Date(session.created_at).toLocaleDateString()}</span>
@@ -230,7 +230,7 @@ export default function BacktestDashboard() {
                                             </div>
                                             <div className="text-right hidden md:block">
                                                 <div className="text-sm text-zinc-500 uppercase font-bold tracking-wider">P&L</div>
-                                                <div className={`text-lg font-bold ${(session.current_balance - session.initial_balance) >= 0 ? 'text-[#00E676]' : 'text-red-500'}`}>
+                                                <div className={`text-lg font-bold ${(session.current_balance - session.initial_balance) >= 0 ? 'text-[#F7AE11]' : 'text-red-500'}`}>
                                                     {((session.current_balance - session.initial_balance) / session.initial_balance * 100).toFixed(2)}%
                                                 </div>
                                             </div>

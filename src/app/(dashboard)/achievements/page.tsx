@@ -75,7 +75,7 @@ export default function AchievementsPage() {
                     </button>
                     <button
                         onClick={fetchAchievements}
-                        className="text-sm font-bold text-emerald-500 hover:text-emerald-400 uppercase tracking-wider"
+                        className="text-sm font-bold text-amber-500 hover:text-amber-400 uppercase tracking-wider"
                     >
                         Refresh List
                     </button>

@@ -49,9 +49,9 @@ export default async function AdminDashboardPage() {
             value: `$${mrr.toLocaleString()}`,
             change: "+12%", // Calculating real growth requires stored history, we'll keep this simulated for now or calculate from `created_at` if needed
             icon: DollarSign,
-            color: "text-emerald-500",
-            bg: "bg-emerald-500/10",
-            border: "border-emerald-500/20"
+            color: "text-amber-500",
+            bg: "bg-amber-500/10",
+            border: "border-amber-500/20"
         },
         {
             label: "Total Users",
@@ -108,7 +108,7 @@ export default async function AdminDashboardPage() {
                                 <stat.icon className={`h-6 w-6 ${stat.color}`} />
                             </div>
                             {/* Trend Badge */}
-                            <span className="text-xs font-bold px-2 py-1 rounded-full bg-zinc-950 border border-zinc-800 text-emerald-500">
+                            <span className="text-xs font-bold px-2 py-1 rounded-full bg-zinc-950 border border-zinc-800 text-amber-500">
                                 {stat.change}
                             </span>
                         </div>
@@ -129,7 +129,7 @@ export default async function AdminDashboardPage() {
                     <div className="flex items-center justify-between mb-8">
                         <div>
                             <h3 className="text-lg font-black text-white uppercase italic tracking-tight flex items-center gap-2">
-                                <TrendingUp className="h-5 w-5 text-emerald-500" />
+                                <TrendingUp className="h-5 w-5 text-amber-500" />
                                 Revenue Velocity
                             </h3>
                             <p className="text-xs text-zinc-500 font-bold uppercase tracking-wider">Gross MRR vs Costs (Last 10 Months)</p>

@@ -108,12 +108,12 @@ export function AnalysisHistory({ isOpen, onClose, onViewAnalysis }: AnalysisHis
                             </div>
                             <div className="text-2xl font-black text-white">{stats.total}</div>
                         </div>
-                        <div className="bg-emerald-500/5 rounded-xl p-3 border border-emerald-500/20">
-                            <div className="flex items-center gap-2 text-[9px] text-emerald-400 uppercase tracking-widest mb-1">
+                        <div className="bg-amber-500/5 rounded-xl p-3 border border-amber-500/20">
+                            <div className="flex items-center gap-2 text-[9px] text-amber-400 uppercase tracking-widest mb-1">
                                 <CheckCircle2 className="h-3 w-3" />
                                 Wins
                             </div>
-                            <div className="text-2xl font-black text-emerald-400">{stats.wins}</div>
+                            <div className="text-2xl font-black text-amber-400">{stats.wins}</div>
                         </div>
                         <div className="bg-red-500/5 rounded-xl p-3 border border-red-500/20">
                             <div className="flex items-center gap-2 text-[9px] text-red-400 uppercase tracking-widest mb-1">
@@ -157,13 +157,13 @@ export function AnalysisHistory({ isOpen, onClose, onViewAnalysis }: AnalysisHis
                                         <div className={cn(
                                             "p-2.5 rounded-xl border",
                                             analysis.bias === 'BULLISH'
-                                                ? "bg-emerald-500/10 border-emerald-500/30"
+                                                ? "bg-amber-500/10 border-amber-500/30"
                                                 : analysis.bias === 'BEARISH'
                                                     ? "bg-red-500/10 border-red-500/30"
                                                     : "bg-zinc-800 border-zinc-700"
                                         )}>
                                             {analysis.bias === 'BULLISH' ? (
-                                                <TrendingUp className="h-5 w-5 text-emerald-400" />
+                                                <TrendingUp className="h-5 w-5 text-amber-400" />
                                             ) : analysis.bias === 'BEARISH' ? (
                                                 <TrendingDown className="h-5 w-5 text-red-400" />
                                             ) : (
@@ -179,7 +179,7 @@ export function AnalysisHistory({ isOpen, onClose, onViewAnalysis }: AnalysisHis
                                                 <span className={cn(
                                                     "text-xs px-2 py-0.5 rounded-full font-bold",
                                                     analysis.bias === 'BULLISH'
-                                                        ? "bg-emerald-500/20 text-emerald-400"
+                                                        ? "bg-amber-500/20 text-amber-400"
                                                         : analysis.bias === 'BEARISH'
                                                             ? "bg-red-500/20 text-red-400"
                                                             : "bg-zinc-700 text-zinc-400"
@@ -203,7 +203,7 @@ export function AnalysisHistory({ isOpen, onClose, onViewAnalysis }: AnalysisHis
                                     <div className="flex items-center gap-3">
                                         {/* Outcome Badge */}
                                         {analysis.outcome === 'WIN' && (
-                                            <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold">
+                                            <span className="flex items-center gap-1 px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold">
                                                 <CheckCircle2 className="h-3 w-3" /> WIN
                                             </span>
                                         )}
@@ -248,7 +248,7 @@ export function AnalysisHistory({ isOpen, onClose, onViewAnalysis }: AnalysisHis
                                                     </div>
                                                     <div className="bg-zinc-900 rounded-lg p-3">
                                                         <div className="text-[9px] text-zinc-500 uppercase mb-1">Take Profit</div>
-                                                        <div className="font-mono font-bold text-emerald-400">{analysis.takeProfit1 || 'N/A'}</div>
+                                                        <div className="font-mono font-bold text-amber-400">{analysis.takeProfit1 || 'N/A'}</div>
                                                     </div>
                                                     <div className="bg-zinc-900 rounded-lg p-3">
                                                         <div className="text-[9px] text-zinc-500 uppercase mb-1">Probability</div>
@@ -279,7 +279,7 @@ export function AnalysisHistory({ isOpen, onClose, onViewAnalysis }: AnalysisHis
                                                             <>
                                                                 <button
                                                                     onClick={() => handleMarkOutcome(analysis.id, 'WIN')}
-                                                                    className="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs font-bold hover:bg-emerald-500/30 transition-colors flex items-center gap-2"
+                                                                    className="px-4 py-2 rounded-xl bg-amber-500/20 text-amber-400 text-xs font-bold hover:bg-amber-500/30 transition-colors flex items-center gap-2"
                                                                 >
                                                                     <CheckCircle2 className="h-3 w-3" /> Mark Win
                                                                 </button>

@@ -24,7 +24,7 @@ The layout must be a 3-column grid optimized for wide screens.
 - Left Column: Quick Profile Summary (Avatar, 'Pro Trader' badge) and Account Overview card showing Balance, Equity, and PnL with green/red dynamic text.
 - Center Column (Wide): A large 'Performance Over Time' area chart (Equity Curve) floating on a glass card. Below it, a 'Recent Activity' list showing the last 5 trades with concise details.
 - Right Column: 'Key Metrics' vertical stack. Win Rate (Circular Progress), Profit Factor (Stat Card), and 'Active Streak'.
-Use a 'Zinc' color palette (Zinc-950 background, Zinc-900 cards) with 'Emerald-500' for profits and 'Rose-500' for losses. Font: Inter.`,
+Use a 'Zinc' color palette (Zinc-950 background, Zinc-900 cards) with 'amber-500' for profits and 'Rose-500' for losses. Font: Inter.`,
         details: [
             "Layout: CSS Grid (grid-cols-12). Left: col-span-3, Center: col-span-6, Right: col-span-3.",
             "Components: AccountOverview, EquityCurveChart, RecentTradesList, StatCard.",
@@ -142,7 +142,7 @@ export default function DesignGalleryPage() {
 
                 {/* Header */}
                 <div className="space-y-4">
-                    <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
+                    <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-amber-400">
                         Design Gallery & Specifications
                     </h1>
                     <p className="text-zinc-400 max-w-2xl text-lg">

@@ -25,7 +25,7 @@ export function TradesFilterBar({ filters, onFilterChange, pairs }: TradesFilter
                     placeholder="Search pair, notes..."
                     value={filters.search}
                     onChange={(e) => onFilterChange('search', e.target.value)}
-                    className="w-full rounded-xl border border-zinc-800 bg-zinc-950 py-2.5 pl-10 pr-4 text-sm text-white placeholder-zinc-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                    className="w-full rounded-xl border border-zinc-800 bg-zinc-950 py-2.5 pl-10 pr-4 text-sm text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                 />
             </div>
 
@@ -34,7 +34,7 @@ export function TradesFilterBar({ filters, onFilterChange, pairs }: TradesFilter
                 <select
                     value={filters.pair}
                     onChange={(e) => onFilterChange('pair', e.target.value)}
-                    className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-300 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                    className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-300 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                 >
                     <option value="">All Pairs</option>
                     {pairs.map(pair => (
@@ -45,7 +45,7 @@ export function TradesFilterBar({ filters, onFilterChange, pairs }: TradesFilter
                 <select
                     value={filters.direction}
                     onChange={(e) => onFilterChange('direction', e.target.value)}
-                    className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-300 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                    className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-300 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                 >
                     <option value="">All Directions</option>
                     <option value="LONG">Long</option>
@@ -55,7 +55,7 @@ export function TradesFilterBar({ filters, onFilterChange, pairs }: TradesFilter
                 <select
                     value={filters.status}
                     onChange={(e) => onFilterChange('status', e.target.value)}
-                    className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-300 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                    className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2.5 text-sm text-zinc-300 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                 >
                     <option value="">All Status</option>
                     <option value="OPEN">Open</option>

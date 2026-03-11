@@ -56,7 +56,7 @@ export const PlanEnforcementModal = ({ plan }: PlanEnforcementModalProps) => {
                         <ul className="space-y-3">
                             {features.map((feature, i) => (
                                 <li key={i} className="flex items-center gap-2 text-sm text-zinc-400">
-                                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                                    <CheckCircle2 className="w-4 h-4 text-amber-500 flex-shrink-0" />
                                     {feature}
                                 </li>
                             ))}

@@ -158,7 +158,7 @@ export function ImportTradesDialog() {
                         <div className="space-y-4">
                             <div className="flex items-center justify-between">
                                 <p className="text-sm text-slate-400">Previewing first 5 of {parsedTrades.length} trades</p>
-                                <span className="text-xs px-2 py-1 bg-emerald-500/10 text-emerald-500 rounded-full border border-emerald-500/20">
+                                <span className="text-xs px-2 py-1 bg-amber-500/10 text-amber-500 rounded-full border border-amber-500/20">
                                     Ready to Import
                                 </span>
                             </div>
@@ -178,10 +178,10 @@ export function ImportTradesDialog() {
                                             <tr key={i} className="hover:bg-slate-900/50">
                                                 <td className="p-2">{new Date(t.open_time).toLocaleDateString()}</td>
                                                 <td className="p-2">{t.pair}</td>
-                                                <td className={`p-2 ${t.direction === 'LONG' ? 'text-emerald-500' : 'text-rose-500'}`}>
+                                                <td className={`p-2 ${t.direction === 'LONG' ? 'text-amber-500' : 'text-rose-500'}`}>
                                                     {t.direction}
                                                 </td>
-                                                <td className={`p-2 text-right font-mono ${t.pnl && t.pnl > 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
+                                                <td className={`p-2 text-right font-mono ${t.pnl && t.pnl > 0 ? 'text-amber-500' : 'text-rose-500'}`}>
                                                     {t.pnl?.toFixed(2)}
                                                 </td>
                                             </tr>
@@ -206,7 +206,7 @@ export function ImportTradesDialog() {
                     )}
 
                     {step === 3 && (
-                        <Button onClick={handleUpload} disabled={isUploading} className="bg-emerald-500 hover:bg-emerald-600">
+                        <Button onClick={handleUpload} disabled={isUploading} className="bg-amber-500 hover:bg-amber-600">
                             {isUploading ? 'Importing...' : 'Confirm Import'}
                         </Button>
                     )}

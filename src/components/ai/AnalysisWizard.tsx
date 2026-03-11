@@ -229,8 +229,8 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                 <div className="p-6 border-b border-zinc-800 bg-gradient-to-r from-zinc-900 to-zinc-950">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <div className="p-2 rounded-xl bg-emerald-500/20">
-                                <Sparkles className="h-5 w-5 text-emerald-400" />
+                            <div className="p-2 rounded-xl bg-amber-500/20">
+                                <Sparkles className="h-5 w-5 text-amber-400" />
                             </div>
                             <div>
                                 <h2 className="text-xl font-black text-white">Chart Analysis</h2>
@@ -251,13 +251,13 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                             <div key={step.id} className="flex items-center">
                                 <div className={cn(
                                     "flex items-center gap-2 px-3 py-2 rounded-xl transition-all",
-                                    currentStep === step.id && "bg-emerald-500/20",
+                                    currentStep === step.id && "bg-amber-500/20",
                                     currentStep > step.id && "opacity-50"
                                 )}>
                                     <div className={cn(
                                         "p-1.5 rounded-lg",
-                                        currentStep === step.id ? "bg-emerald-500 text-black" :
-                                            currentStep > step.id ? "bg-zinc-700 text-emerald-400" : "bg-zinc-800 text-zinc-500"
+                                        currentStep === step.id ? "bg-amber-500 text-black" :
+                                            currentStep > step.id ? "bg-zinc-700 text-amber-400" : "bg-zinc-800 text-zinc-500"
                                     )}>
                                         {currentStep > step.id ? (
                                             <Check className="h-3 w-3" />
@@ -267,7 +267,7 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                     </div>
                                     <span className={cn(
                                         "text-xs font-bold hidden sm:block",
-                                        currentStep === step.id ? "text-emerald-400" : "text-zinc-500"
+                                        currentStep === step.id ? "text-amber-400" : "text-zinc-500"
                                     )}>
                                         {step.title}
                                     </span>
@@ -275,7 +275,7 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                 {i < STEPS.length - 1 && (
                                     <div className={cn(
                                         "w-8 h-0.5 mx-1",
-                                        currentStep > step.id ? "bg-emerald-500" : "bg-zinc-800"
+                                        currentStep > step.id ? "bg-amber-500" : "bg-zinc-800"
                                     )} />
                                 )}
                             </div>
@@ -313,7 +313,7 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                             className={cn(
                                                 "p-3 rounded-xl border text-left transition-all text-sm font-bold",
                                                 context.asset === asset.value
-                                                    ? "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
+                                                    ? "bg-amber-500/20 border-amber-500/50 text-amber-400"
                                                     : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-700"
                                             )}
                                         >
@@ -329,7 +329,7 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                         value={context.customAsset}
                                         onChange={(e) => setContext(p => ({ ...p, customAsset: e.target.value.toUpperCase(), asset: '' }))}
                                         placeholder="e.g., SOLUSDT"
-                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white font-mono focus:outline-none focus:border-emerald-500/50"
+                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white font-mono focus:outline-none focus:border-amber-500/50"
                                     />
                                 </div>
                             </motion.div>
@@ -451,9 +451,9 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
 
                                     {/* Current TF */}
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold text-emerald-400 uppercase">Current TF *</label>
+                                        <label className="text-xs font-bold text-amber-400 uppercase">Current TF *</label>
                                         {context.screenshots.current ? (
-                                            <div className="relative rounded-xl overflow-hidden border-2 border-emerald-500/50">
+                                            <div className="relative rounded-xl overflow-hidden border-2 border-amber-500/50">
                                                 <img src={context.screenshots.current} alt="Current" className="w-full h-32 object-cover" />
                                                 <button
                                                     onClick={() => removeImage('current')}
@@ -465,10 +465,10 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                         ) : (
                                             <button
                                                 onClick={() => triggerUpload('current')}
-                                                className="w-full h-32 rounded-xl border-2 border-dashed border-emerald-500/50 flex flex-col items-center justify-center gap-2 hover:border-emerald-500 transition-colors bg-emerald-500/5"
+                                                className="w-full h-32 rounded-xl border-2 border-dashed border-amber-500/50 flex flex-col items-center justify-center gap-2 hover:border-amber-500 transition-colors bg-amber-500/5"
                                             >
-                                                <Upload className="h-5 w-5 text-emerald-500" />
-                                                <span className="text-[10px] text-emerald-500">Required</span>
+                                                <Upload className="h-5 w-5 text-amber-500" />
+                                                <span className="text-[10px] text-amber-500">Required</span>
                                             </button>
                                         )}
                                     </div>
@@ -528,7 +528,7 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                             type="number"
                                             value={context.accountBalance}
                                             onChange={(e) => setContext(p => ({ ...p, accountBalance: parseFloat(e.target.value) || 0 }))}
-                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white font-mono text-lg focus:outline-none focus:border-emerald-500/50"
+                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white font-mono text-lg focus:outline-none focus:border-amber-500/50"
                                         />
                                     </div>
                                     <div>
@@ -540,14 +540,14 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                             max="10"
                                             value={context.riskPercent}
                                             onChange={(e) => setContext(p => ({ ...p, riskPercent: parseFloat(e.target.value) || 1 }))}
-                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white font-mono text-lg focus:outline-none focus:border-emerald-500/50"
+                                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white font-mono text-lg focus:outline-none focus:border-amber-500/50"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="bg-zinc-950 border border-zinc-800 rounded-xl p-4">
                                     <div className="text-sm text-zinc-500 mb-2">Risk Amount</div>
-                                    <div className="text-3xl font-black text-emerald-400 font-mono">
+                                    <div className="text-3xl font-black text-amber-400 font-mono">
                                         ${(context.accountBalance * (context.riskPercent / 100)).toFixed(2)}
                                     </div>
                                     <div className="text-xs text-zinc-600 mt-1">
@@ -589,7 +589,7 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                                             ? "bg-red-500/20 border-red-500/50 text-red-400"
                                                             : impact === 'medium'
                                                                 ? "bg-amber-500/20 border-amber-500/50 text-amber-400"
-                                                                : "bg-emerald-500/20 border-emerald-500/50 text-emerald-400"
+                                                                : "bg-amber-500/20 border-amber-500/50 text-amber-400"
                                                         : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-700"
                                                 )}
                                             >
@@ -621,7 +621,7 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                         onChange={(e) => setContext(p => ({ ...p, notes: e.target.value }))}
                                         placeholder="e.g., FOMC at 2pm, looking for short entries only..."
                                         rows={3}
-                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-emerald-500/50 resize-none"
+                                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500/50 resize-none"
                                     />
                                 </div>
 
@@ -633,7 +633,7 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                                         <div><span className="text-zinc-500">Timeframe:</span> <span className="text-white font-bold">{context.timeframe}</span></div>
                                         <div><span className="text-zinc-500">Session:</span> <span className="text-white font-bold capitalize">{context.session}</span></div>
                                         <div><span className="text-zinc-500">Charts:</span> <span className="text-white font-bold">{Object.values(context.screenshots).filter(Boolean).length}</span></div>
-                                        <div><span className="text-zinc-500">Risk:</span> <span className="text-emerald-400 font-bold">${(context.accountBalance * (context.riskPercent / 100)).toFixed(0)}</span></div>
+                                        <div><span className="text-zinc-500">Risk:</span> <span className="text-amber-400 font-bold">${(context.accountBalance * (context.riskPercent / 100)).toFixed(0)}</span></div>
                                         <div><span className="text-zinc-500">News:</span> <span className="text-white font-bold capitalize">{context.newsImpact}</span></div>
                                     </div>
                                 </div>
@@ -660,7 +660,7 @@ export function AnalysisWizard({ isOpen, onClose, onSubmit }: AnalysisWizardProp
                         className={cn(
                             "px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-all",
                             canProceed()
-                                ? "bg-emerald-500 text-black hover:bg-emerald-400"
+                                ? "bg-amber-500 text-black hover:bg-amber-400"
                                 : "bg-zinc-800 text-zinc-600 cursor-not-allowed"
                         )}
                     >

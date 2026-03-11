@@ -102,7 +102,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                                                         className={cn(
                                                             'group flex gap-x-3 rounded-xl p-3 text-sm font-medium transition-all duration-200',
                                                             isActive
-                                                                ? 'bg-[#00E676]/10 text-[#00E676]'
+                                                                ? 'bg-[#F7AE11]/10 text-[#F7AE11]'
                                                                 : 'text-zinc-400 hover:bg-white/5 hover:text-zinc-100'
                                                         )}
                                                     >
@@ -110,7 +110,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                                                             className={cn(
                                                                 'h-5 w-5 shrink-0 transition-colors',
                                                                 isActive
-                                                                    ? 'text-[#00E676]'
+                                                                    ? 'text-[#F7AE11]'
                                                                     : 'text-zinc-500 group-hover:text-zinc-300'
                                                             )}
                                                             aria-hidden="true"

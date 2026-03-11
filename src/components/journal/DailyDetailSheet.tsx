@@ -67,7 +67,7 @@ export function DailyDetailSheet({ date, onClose, trades, entry }: DailyDetailSh
                                     </h2>
                                     <div className={cn(
                                         "mt-1 flex items-center text-sm font-medium",
-                                        dailyPnL > 0 ? "text-emerald-500" : dailyPnL < 0 ? "text-red-500" : "text-zinc-400"
+                                        dailyPnL > 0 ? "text-amber-500" : dailyPnL < 0 ? "text-red-500" : "text-zinc-400"
                                     )}>
                                         {dailyPnL > 0 ? <TrendingUp className="mr-1 h-4 w-4" /> : <TrendingDown className="mr-1 h-4 w-4" />}
                                         Daily P&L: {dailyPnL > 0 ? '+' : ''}{dailyPnL}
@@ -97,7 +97,7 @@ export function DailyDetailSheet({ date, onClose, trades, entry }: DailyDetailSh
                                                     <div className="flex items-center gap-4">
                                                         <span className={cn(
                                                             "rounded px-2 py-1 text-xs font-bold",
-                                                            trade.direction === 'LONG' ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500"
+                                                            trade.direction === 'LONG' ? "bg-amber-500/10 text-amber-500" : "bg-red-500/10 text-red-500"
                                                         )}>
                                                             {trade.direction}
                                                         </span>
@@ -105,7 +105,7 @@ export function DailyDetailSheet({ date, onClose, trades, entry }: DailyDetailSh
                                                     </div>
                                                     <span className={cn(
                                                         "font-mono font-medium",
-                                                        (trade.pnl || 0) > 0 ? "text-emerald-500" : (trade.pnl || 0) < 0 ? "text-red-500" : "text-zinc-400"
+                                                        (trade.pnl || 0) > 0 ? "text-amber-500" : (trade.pnl || 0) < 0 ? "text-red-500" : "text-zinc-400"
                                                     )}>
                                                         {(trade.pnl || 0) > 0 ? '+' : ''}{trade.pnl}
                                                     </span>
@@ -127,7 +127,7 @@ export function DailyDetailSheet({ date, onClose, trades, entry }: DailyDetailSh
                                                 onClick={() => setMood(m)}
                                                 className={cn(
                                                     "flex-1 rounded-lg border p-3 transition-all hover:bg-zinc-900",
-                                                    mood === m ? "border-emerald-500 bg-emerald-500/10 text-emerald-500" : "border-zinc-800 text-zinc-400"
+                                                    mood === m ? "border-amber-500 bg-amber-500/10 text-amber-500" : "border-zinc-800 text-zinc-400"
                                                 )}
                                             >
                                                 <div className="flex justify-center">
@@ -143,7 +143,7 @@ export function DailyDetailSheet({ date, onClose, trades, entry }: DailyDetailSh
                                         value={content}
                                         onChange={(e) => setContent(e.target.value)}
                                         placeholder="Write your reflections, lessons, and thoughts for the day..."
-                                        className="h-64 w-full resize-none rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 text-zinc-100 placeholder-zinc-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                                        className="h-64 w-full resize-none rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 text-zinc-100 placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500"
                                     />
                                 </div>
                             </div>
@@ -153,7 +153,7 @@ export function DailyDetailSheet({ date, onClose, trades, entry }: DailyDetailSh
                                 <button
                                     onClick={handleSave}
                                     disabled={isSaving}
-                                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 py-3 font-bold text-white hover:bg-emerald-600 disabled:opacity-50"
+                                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-amber-500 py-3 font-bold text-white hover:bg-amber-600 disabled:opacity-50"
                                 >
                                     {isSaving ? <Loader2 className="h-5 w-5 animate-spin" /> : <><Save className="h-5 w-5" /> Save Entry</>}
                                 </button>

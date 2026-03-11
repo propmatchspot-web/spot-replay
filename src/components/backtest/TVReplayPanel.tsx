@@ -45,7 +45,7 @@ export function TVReplayPanel({
                 <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 text-[#00E676] hover:bg-white/5 hover:text-[#00E676]"
+                    className="h-8 w-8 text-[#F7AE11] hover:bg-white/5 hover:text-[#F7AE11]"
                     onClick={onPlayPause}
                 >
                     {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current" />}

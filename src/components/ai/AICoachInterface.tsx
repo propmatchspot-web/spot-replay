@@ -401,7 +401,7 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                     <div className="flex items-center gap-4">
                         <div className={`p-2.5 rounded-2xl bg-gradient-to-br ${currentMode.gradient} border border-white/5 shadow-lg relative group`}>
                             <div className="absolute inset-0 rounded-2xl bg-current opacity-0 group-hover:opacity-10 transition-opacity" style={{ color: currentMode.color }} />
-                            <img src="/Replaylogo.png" alt="Spot Buddy" className="h-6 w-6 rounded-md" />
+                            <img src="/replay-favicon.png" alt="Spot Buddy" className="h-6 w-6 rounded-md" />
                         </div>
                         <div>
                             <h2 className="text-xl font-black text-white uppercase italic tracking-tight flex items-center gap-2">
@@ -500,7 +500,7 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                                 {msg.role === 'user' ? (
                                     <User className="h-5 w-5 text-zinc-400" />
                                 ) : (
-                                    <img src="/Replaylogo.png" alt="Spot Buddy" className="h-6 w-6 rounded-md" />
+                                    <img src="/replay-favicon.png" alt="Spot Buddy" className="h-6 w-6 rounded-md" />
                                 )}
                             </div>
 
@@ -777,7 +777,7 @@ Please provide a complete analysis with specific entry, stop loss, and take prof
                             <div className="text-center">
                                 <div className={cn(
                                     "text-3xl font-black",
-                                    initialTrades.reduce((acc, t) => acc + (t.pnl || 0), 0) >= 0 ? "text-[#00E676]" : "text-red-400"
+                                    initialTrades.reduce((acc, t) => acc + (t.pnl || 0), 0) >= 0 ? "text-[#F7AE11]" : "text-red-400"
                                 )}>
                                     ${initialTrades.reduce((acc, t) => acc + (t.pnl || 0), 0).toFixed(0)}
                                 </div>

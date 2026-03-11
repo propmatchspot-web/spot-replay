@@ -25,7 +25,7 @@ export function MetricCard({ title, value, subValue, icon: Icon, trend, classNam
                 {subValue && (
                     <p className={cn(
                         "text-xs mt-1",
-                        trend === 'up' ? "text-emerald-400" :
+                        trend === 'up' ? "text-amber-400" :
                             trend === 'down' ? "text-red-400" : "text-zinc-500"
                     )}>
                         {subValue}

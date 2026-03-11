@@ -112,7 +112,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             className={cn(
                                 "py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-md transition-all",
                                 mode === m
-                                    ? "bg-[#00E676] text-black shadow-sm"
+                                    ? "bg-[#F7AE11] text-black shadow-sm"
                                     : "text-zinc-400 hover:text-white hover:bg-zinc-800"
                             )}
                         >
@@ -132,7 +132,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             id="pair"
                             required
                             placeholder="EURUSD"
-                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                         />
                     </div>
                     <div>
@@ -144,7 +144,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             id="direction"
                             value={direction}
                             onChange={(e) => setDirection(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                         >
                             <option value="LONG">Long</option>
                             <option value="SHORT">Short</option>
@@ -157,7 +157,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                         <label htmlFor="strategy" className="block text-sm font-medium text-zinc-400">
                             Strategy
                         </label>
-                        <Link href="/strategies" className="text-xs text-[#00E676] hover:text-[#00E676]/80 flex items-center gap-1">
+                        <Link href="/strategies" className="text-xs text-[#F7AE11] hover:text-[#F7AE11]/80 flex items-center gap-1">
                             <PlusCircle className="h-3 w-3" /> New Strategy
                         </Link>
                     </div>
@@ -166,7 +166,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                         id="strategy"
                         value={selectedStrategy}
                         onChange={(e) => setSelectedStrategy(e.target.value)}
-                        className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 text-xs sm:text-sm"
+                        className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 text-xs sm:text-sm"
                     >
                         <option value="">Select a Strategy (Optional)</option>
                         {strategies.map(s => (
@@ -188,7 +188,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             required
                             value={entryPrice}
                             onChange={(e) => setEntryPrice(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                         />
                     </div>
                     <div>
@@ -203,7 +203,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             required
                             value={stopLoss}
                             onChange={(e) => setStopLoss(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                         />
                     </div>
                     <div>
@@ -218,7 +218,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             required
                             value={takeProfit}
                             onChange={(e) => setTakeProfit(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                         />
                     </div>
                 </div>
@@ -226,7 +226,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                 {/* R:R Display */}
                 <div className="flex items-center justify-between rounded-md bg-zinc-800/50 px-3 py-2 border border-zinc-700/50">
                     <span className="text-sm text-zinc-400">Risk : Reward</span>
-                    <span className={`text-sm font-bold ${calculatedRR && parseFloat(calculatedRR) >= 2 ? 'text-[#00E676]' :
+                    <span className={`text-sm font-bold ${calculatedRR && parseFloat(calculatedRR) >= 2 ? 'text-[#F7AE11]' :
                         calculatedRR && parseFloat(calculatedRR) >= 1 ? 'text-yellow-400' : 'text-zinc-500'
                         }`}>
                         {calculatedRR ? `1 : ${calculatedRR}` : '- : -'}
@@ -245,7 +245,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             id="size"
                             required
                             defaultValue="1.0"
-                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                         />
                     </div>
                     <div>
@@ -257,7 +257,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             id="status"
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                            className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                         >
                             <option value="OPEN">Open</option>
                             <option value="CLOSED">Closed</option>
@@ -278,7 +278,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                                 name="exit_price"
                                 id="exit_price"
                                 required
-                                className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                                className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                             />
                         </div>
                         <div>
@@ -289,7 +289,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                                 name="closing_reason"
                                 id="closing_reason"
                                 required
-                                className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                                className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                             >
                                 <option value="TP">Take Profit</option>
                                 <option value="SL">Stop Loss</option>
@@ -308,14 +308,14 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                         name="notes"
                         id="notes"
                         rows={3}
-                        className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#00E676] focus:outline-none focus:ring-1 focus:ring-[#00E676] text-xs sm:text-sm"
+                        className="mt-1 block w-full rounded-md border border-zinc-700 bg-zinc-900 px-2 sm:px-3 py-1.5 sm:py-2 text-zinc-100 focus:border-[#F7AE11] focus:outline-none focus:ring-1 focus:ring-[#F7AE11] text-xs sm:text-sm"
                     />
                 </div>
 
                 <button
                     type="submit"
                     disabled={isPending}
-                    className="w-full rounded-md bg-[#00E676] px-4 py-2 text-sm font-medium text-black hover:bg-[#00E676]/90 focus:outline-none focus:ring-2 focus:ring-[#00E676] focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:opacity-50"
+                    className="w-full rounded-md bg-[#F7AE11] px-4 py-2 text-sm font-medium text-black hover:bg-[#F7AE11]/90 focus:outline-none focus:ring-2 focus:ring-[#F7AE11] focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:opacity-50"
                 >
                     {isPending ? 'Saving...' : 'Log Trade'}
                 </button>
@@ -340,7 +340,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                                 <span className="text-zinc-400">Direction</span>
                                 <span className={cn(
                                     "font-medium",
-                                    formDataToSubmit?.get('direction') === 'LONG' ? 'text-[#00E676]' : 'text-red-400'
+                                    formDataToSubmit?.get('direction') === 'LONG' ? 'text-[#F7AE11]' : 'text-red-400'
                                 )}>
                                     {formDataToSubmit?.get('direction') as string}
                                 </span>
@@ -356,7 +356,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             {calculatedRR && (
                                 <div className="flex justify-between text-sm">
                                     <span className="text-zinc-400">Risk : Reward</span>
-                                    <span className="text-[#00E676] font-bold">1 : {calculatedRR}</span>
+                                    <span className="text-[#F7AE11] font-bold">1 : {calculatedRR}</span>
                                 </div>
                             )}
                         </div>
@@ -371,7 +371,7 @@ export function TradeForm({ accountId, onSuccess }: TradeFormProps) {
                             <button
                                 onClick={confirmSubmit}
                                 disabled={isPending}
-                                className="flex-1 rounded-lg bg-[#00E676] px-4 py-2 text-sm font-medium text-black hover:bg-[#00E676]/90 disabled:opacity-50"
+                                className="flex-1 rounded-lg bg-[#F7AE11] px-4 py-2 text-sm font-medium text-black hover:bg-[#F7AE11]/90 disabled:opacity-50"
                             >
                                 {isPending ? 'Confirming...' : 'Confirm Trade'}
                             </button>

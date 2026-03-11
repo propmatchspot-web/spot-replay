@@ -35,7 +35,7 @@ export default function ForgotPasswordPage() {
                 className="relative w-full max-w-md space-y-8 rounded-2xl border border-zinc-800/50 bg-zinc-900/50 p-8 shadow-2xl backdrop-blur-xl"
             >
                 <div className="text-center">
-                    <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                    <h2 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-amber-400 to-cyan-400 bg-clip-text text-transparent">
                         Reset Password
                     </h2>
                     <p className="mt-2 text-sm text-zinc-400">
@@ -48,10 +48,10 @@ export default function ForgotPasswordPage() {
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-6 text-center space-y-4"
+                            className="rounded-xl bg-amber-500/10 border border-amber-500/20 p-6 text-center space-y-4"
                         >
-                            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/20">
-                                <CheckCircle2 className="h-6 w-6 text-emerald-500" />
+                            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/20">
+                                <CheckCircle2 className="h-6 w-6 text-amber-500" />
                             </div>
                             <div>
                                 <h3 className="text-lg font-semibold text-white">Check your email</h3>
@@ -61,7 +61,7 @@ export default function ForgotPasswordPage() {
                             </div>
                             <Link
                                 href="/login"
-                                className="inline-flex items-center text-sm font-medium text-emerald-500 hover:text-emerald-400"
+                                className="inline-flex items-center text-sm font-medium text-amber-500 hover:text-amber-400"
                             >
                                 <ArrowLeft className="mr-1 h-4 w-4" /> Back to Login
                             </Link>
@@ -81,7 +81,7 @@ export default function ForgotPasswordPage() {
                                     name="email"
                                     type="email"
                                     required
-                                    className="block w-full rounded-xl border border-zinc-800 bg-zinc-950/50 pl-10 p-3 text-zinc-100 placeholder-zinc-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
+                                    className="block w-full rounded-xl border border-zinc-800 bg-zinc-950/50 pl-10 p-3 text-zinc-100 placeholder-zinc-500 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition-all"
                                     placeholder="Email address"
                                 />
                             </div>
@@ -89,7 +89,7 @@ export default function ForgotPasswordPage() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="group relative flex w-full justify-center rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-3 text-sm font-bold text-white hover:from-emerald-500 hover:to-cyan-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:opacity-50 transition-all"
+                                className="group relative flex w-full justify-center rounded-xl bg-gradient-to-r from-amber-600 to-cyan-600 px-4 py-3 text-sm font-bold text-white hover:from-amber-500 hover:to-cyan-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 focus:ring-offset-zinc-900 disabled:opacity-50 transition-all"
                             >
                                 {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : 'Send Reset Link'}
                             </button>

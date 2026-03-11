@@ -79,7 +79,7 @@ export function TestimonialCarousel() {
                     <div className="flex items-center gap-2">
                         <span className="text-white font-bold text-sm">{testimonial.name}</span>
                         <span className="text-zinc-600 text-xs">•</span>
-                        <span className="text-emerald-400 text-xs font-medium uppercase tracking-wider">{testimonial.role}</span>
+                        <span className="text-amber-400 text-xs font-medium uppercase tracking-wider">{testimonial.role}</span>
                     </div>
                 </div>
             ))}

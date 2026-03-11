@@ -57,7 +57,7 @@ export function StrategyRules({ strategyId, initialRules }: StrategyRulesProps) 
                 <button
                     onClick={handleSave}
                     disabled={isSaving}
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-sm font-bold transition-colors disabled:opacity-50"
+                    className="flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-sm font-bold transition-colors disabled:opacity-50"
                 >
                     <Save className="h-4 w-4" />
                     {isSaving ? 'Saving...' : 'Save Changes'}

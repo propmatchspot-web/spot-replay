@@ -60,7 +60,7 @@ export function StrategyPlaybook({ strategyId, examples }: StrategyPlaybookProps
                 <h3 className="text-lg font-bold text-white">Golden Setups & Examples</h3>
                 <button
                     onClick={() => setIsAdding(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-sm font-bold transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-sm font-bold transition-colors"
                 >
                     <Plus className="h-4 w-4" />
                     Add Example
@@ -76,7 +76,7 @@ export function StrategyPlaybook({ strategyId, examples }: StrategyPlaybookProps
                             value={imageUrl}
                             onChange={(e) => setImageUrl(e.target.value)}
                             placeholder="https://..."
-                            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500"
+                            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-500"
                             required
                         />
                     </div>
@@ -86,7 +86,7 @@ export function StrategyPlaybook({ strategyId, examples }: StrategyPlaybookProps
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
                             placeholder="Why was this a perfect setup?"
-                            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-emerald-500 h-24 resize-none"
+                            className="w-full bg-zinc-950 border border-zinc-800 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-amber-500 h-24 resize-none"
                         />
                     </div>
                     <div className="flex justify-end gap-2">
@@ -100,7 +100,7 @@ export function StrategyPlaybook({ strategyId, examples }: StrategyPlaybookProps
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-bold transition-colors disabled:opacity-50"
+                            className="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg font-bold transition-colors disabled:opacity-50"
                         >
                             {isSubmitting ? 'Saving...' : 'Save Example'}
                         </button>

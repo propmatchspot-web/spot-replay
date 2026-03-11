@@ -15,7 +15,7 @@ const PLAN_VARIANTS: Record<string, { monthly: string; yearly: string }> = {
         yearly: '1387795'     // Same (free doesn't have yearly)
     },
     'SPOT_EXCLUSIVE': {
-        monthly: '1387788',   // Spot Pro — $99/month
+        monthly: '1387788',   // Spot Exclusive — $39/month
         yearly: '1387788'     // Same variant (single monthly billing)
     }
 }

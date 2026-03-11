@@ -39,7 +39,7 @@ const PLANS: Record<PlanKey, {
     spot_exclusive: {
         name: 'Spot Exclusive',
         tagline: 'Unlimited power for serious traders',
-        monthlyPrice: 99,
+        monthlyPrice: 39,
         features: [
             'Unlimited historical data (all years)',
             'Unlimited live sessions',

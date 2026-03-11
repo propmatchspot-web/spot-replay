@@ -111,7 +111,7 @@ export function OnboardingPricingDialog({ open, onOpenChange }: OnboardingPricin
                                 </div>
 
                                 <div className="flex items-baseline gap-1 mb-2">
-                                    <span className="text-5xl font-black text-white tracking-tighter">$99</span>
+                                    <span className="text-5xl font-black text-white tracking-tighter">$39</span>
                                     <span className="text-zinc-500 font-bold text-sm">/mo</span>
                                 </div>
                                 <p className="text-zinc-400 text-xs font-medium mb-8">For serious traders seeking the ultimate edge.</p>

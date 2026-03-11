@@ -4,10 +4,10 @@ import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { getCheckoutUrl, markOnboardingComplete, setOnboardingCookie, activateFreePlan } from '../actions/billing'
 import { createCryptoCheckout } from '../actions/crypto-billing'
-import { Loader2, Check, ShieldCheck, Zap, CreditCard, Lock, User, ArrowLeft, ArrowRight, Bitcoin, Crown } from 'lucide-react'
+import { Loader2, Check, ShieldCheck, Zap, CreditCard, Lock, User, ArrowLeft, ArrowRight, Bitcoin, Crown, Sparkles } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 type PlanKey = 'spot_basic' | 'spot_exclusive'
 
@@ -19,10 +19,11 @@ const PLANS: Record<PlanKey, {
     icon: any
     color: string
     gradient: string
+    glowColor: string
 }> = {
     spot_basic: {
         name: 'Spot Basic',
-        tagline: 'Start backtesting for free',
+        tagline: 'Start practicing with real market data instantly.',
         monthlyPrice: 0,
         features: [
             'Up to 1 year of backtest data',
@@ -33,12 +34,13 @@ const PLANS: Record<PlanKey, {
             'Basic analytics',
         ],
         icon: User,
-        color: 'text-zinc-400',
-        gradient: 'from-zinc-500 to-zinc-600',
+        color: 'text-zinc-300',
+        gradient: 'from-zinc-500 to-zinc-700',
+        glowColor: 'shadow-zinc-500/10',
     },
     spot_exclusive: {
         name: 'Spot Exclusive',
-        tagline: 'Unlimited power for serious traders',
+        tagline: 'Unlimited power and advanced data for serious traders.',
         monthlyPrice: 39,
         features: [
             'Unlimited historical data (all years)',
@@ -53,7 +55,8 @@ const PLANS: Record<PlanKey, {
         ],
         icon: Crown,
         color: 'text-amber-400',
-        gradient: 'from-amber-500 to-yellow-500',
+        gradient: 'from-amber-400 to-yellow-600',
+        glowColor: 'shadow-amber-500/20',
     },
 }
 
@@ -124,203 +127,217 @@ function CheckoutPageContent() {
     }
 
     return (
-        <div className="min-h-screen bg-[#050505] text-white flex flex-col relative overflow-hidden font-sans selection:bg-amber-500/30">
+        <div className="min-h-screen bg-[#020202] text-white flex flex-col relative overflow-hidden font-sans selection:bg-amber-500/30">
 
-            {/* Background */}
+            {/* Ambient Backgrounds */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-amber-900/10 to-transparent" />
-                <div className="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-amber-500/5 blur-[120px] rounded-full" />
+                <div className="absolute top-0 right-0 w-[800px] h-[600px] bg-gradient-to-bl from-amber-600/10 via-transparent to-transparent opacity-60" />
+                <div className="absolute -top-[200px] left-[10%] w-[1000px] h-[1000px] bg-amber-500/5 blur-[150px] rounded-full" />
+                <div className="absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-t from-black to-transparent" />
             </div>
 
-            {/* Header */}
-            <div className="w-full border-b border-white/[0.06] bg-black/50 backdrop-blur-md sticky top-0 z-50">
-                <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-                    <Link href="/" className="flex items-center gap-2 group text-zinc-400 hover:text-white transition-colors">
-                        <ArrowLeft className="w-4 h-4" />
-                        <span className="text-sm font-bold">Back</span>
-                    </Link>
+            {/* Nav Header */}
+            <div className="w-full border-b border-white/[0.04] bg-[#020202]/60 backdrop-blur-xl sticky top-0 z-50">
+                <div className="container mx-auto px-6 h-24 flex items-center justify-between">
+                    <button onClick={() => router.back()} className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 transition-all group">
+                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+                    </button>
+                    
                     <div className="flex items-center gap-3">
-                        <h2 className="text-lg font-black tracking-tight">Spot Replay</h2>
-                    </div>
-                    <div className="w-16 flex justify-end">
-                        <div className="h-8 w-8 rounded-full bg-zinc-800 flex items-center justify-center border border-white/5">
-                            <Lock className="w-3.5 h-3.5 text-amber-500" />
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center p-0.5 shadow-lg shadow-amber-500/20">
+                            <div className="w-full h-full bg-black rounded-[6px] flex items-center justify-center">
+                                <Sparkles className="w-4 h-4 text-amber-500" />
+                            </div>
                         </div>
+                        <h2 className="text-xl font-black tracking-tighter text-white">SPOT REPLAY</h2>
+                    </div>
+
+                    <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-zinc-300">
+                        <Lock className="w-3 h-3 text-amber-500" />
+                        SECURE
                     </div>
                 </div>
             </div>
 
-            <main className="flex-1 flex items-start justify-center px-4 py-12 relative z-10">
-                <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-16">
+            <main className="flex-1 flex items-start justify-center px-4 py-16 lg:py-24 relative z-10">
+                <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
 
-                    {/* LEFT COLUMN: Order Summary */}
+                    {/* ── LEFT COLUMN: Summary ── */}
                     <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="lg:col-span-3 space-y-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="lg:col-span-7 flex flex-col justify-center"
                     >
-                        <div className="space-y-2">
-                            <h1 className="text-4xl md:text-5xl font-black italic uppercase tracking-tighter text-white">
-                                Upgrade Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-400">Edge</span>
+                        <div className="space-y-4 mb-10">
+                            <div className="inline-flex items-center px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/10 text-[10px] font-black text-amber-400 uppercase tracking-widest shadow-[0_0_15px_-3px_rgba(245,158,11,0.3)]">
+                                Checkout
+                            </div>
+                            <h1 className="text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-[1.1]">
+                                Upgrade Your <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-500">
+                                    Trading Edge
+                                </span>
                             </h1>
-                            <p className="text-zinc-400 font-medium text-lg max-w-lg">
-                                Unlock the full power of Spot Replay with unlimited sessions and data.
+                            <p className="text-zinc-400 font-medium text-lg lg:text-xl max-w-lg leading-relaxed">
+                                You are choosing the {selectedPlan.name} plan. Get ready to master the markets like never before.
                             </p>
                         </div>
 
-                        {/* Plan Card */}
-                        <div className="rounded-[2rem] border border-white/[0.08] bg-[#0A0A0A] p-1 relative overflow-hidden shadow-2xl shadow-amber-900/10">
-                            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none" />
-                            <div className="relative bg-zinc-900/40 rounded-[1.8rem] p-8 md:p-10 overflow-hidden">
-                                <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${selectedPlan.gradient}`} />
-
-                                <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
-                                    <div className="flex items-start gap-5">
-                                        <div className="w-16 h-16 rounded-2xl bg-zinc-800/50 flex items-center justify-center border border-white/5 shadow-inner">
-                                            <PlanIcon className={`w-8 h-8 ${selectedPlan.color}`} />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-2xl font-black uppercase tracking-wide text-white mb-1">{selectedPlan.name}</h3>
-                                            <p className="text-zinc-500 font-medium">{selectedPlan.tagline}</p>
-                                        </div>
+                        {/* Feature List Card */}
+                        <div className="rounded-[2rem] border border-white/[0.08] bg-[#0A0A0A]/80 backdrop-blur-md relative overflow-hidden shadow-2xl">
+                            {/* Inner top highlight */}
+                            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                            
+                            <div className="p-8 lg:p-10">
+                                <div className="flex items-center gap-4 mb-8">
+                                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br ${selectedPlan.gradient} shadow-lg ${selectedPlan.glowColor}`}>
+                                        <PlanIcon className="w-7 h-7 text-black" />
                                     </div>
-
-                                    <div className="text-right">
-                                        <div className="flex items-baseline justify-end gap-1.5">
-                                            <span className="text-4xl font-black text-white tracking-tight">${selectedPlan.monthlyPrice}</span>
-                                            <span className="text-zinc-500 font-bold uppercase text-sm">/mo</span>
-                                        </div>
+                                    <div>
+                                        <h3 className="text-2xl font-black uppercase tracking-wide text-white">{selectedPlan.name}</h3>
+                                        <p className="text-zinc-400 text-sm font-medium">{selectedPlan.tagline}</p>
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 mb-8">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
                                     {selectedPlan.features.map((feature, i) => (
-                                        <div key={i} className="flex items-center gap-3">
-                                            <div className="w-5 h-5 rounded-full flex items-center justify-center bg-zinc-800/80">
+                                        <div key={i} className="flex items-start gap-3">
+                                            <div className="w-5 h-5 rounded-full flex items-center justify-center bg-white/5 border border-white/10 shrink-0 mt-0.5">
                                                 <Check className={`w-3 h-3 ${selectedPlan.color}`} />
                                             </div>
-                                            <span className="text-sm text-zinc-300 font-medium">{feature}</span>
+                                            <span className="text-sm text-zinc-300 font-medium leading-snug">{feature}</span>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
 
-                        {/* Trust badges */}
-                        <div className="flex items-center gap-6 text-zinc-600 text-xs font-bold uppercase tracking-wider overflow-hidden">
-                            {[
-                                { icon: Lock, label: 'SSL Encrypted' },
-                                { icon: ShieldCheck, label: '30-Day Guarantee' },
-                                { icon: Check, label: 'Cancel Anytime' },
-                            ].map((b, i) => (
-                                <div key={i} className="flex items-center gap-2 shrink-0">
-                                    <b.icon className="w-3.5 h-3.5" />
-                                    <span>{b.label}</span>
-                                </div>
-                            ))}
+                        {/* Trust Badges */}
+                        <div className="flex flex-wrap items-center gap-6 mt-10 text-zinc-500 text-xs font-bold uppercase tracking-wider">
+                            <div className="flex items-center gap-2">
+                                <Lock className="w-4 h-4" /> <span>SSL Encrypted</span>
+                            </div>
+                            <div className="w-1 h-1 rounded-full bg-zinc-700" />
+                            <div className="flex items-center gap-2">
+                                <ShieldCheck className="w-4 h-4" /> <span>Secure Payment</span>
+                            </div>
+                            <div className="w-1 h-1 rounded-full bg-zinc-700" />
+                            <div className="flex items-center gap-2">
+                                <Check className="w-4 h-4" /> <span>Cancel Anytime</span>
+                            </div>
                         </div>
                     </motion.div>
 
-                    {/* RIGHT COLUMN: Payment */}
+
+                    {/* ── RIGHT COLUMN: Payment Block ── */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="lg:col-span-2"
+                        className="lg:col-span-5"
                     >
-                        <div className="sticky top-28">
-                            <div className="rounded-[2rem] border border-white/[0.08] backdrop-blur-xl overflow-hidden bg-zinc-900/60 shadow-2xl shadow-black/50">
-                                <div className="px-8 py-6 border-b border-white/[0.06] bg-white/[0.02] flex items-center justify-between">
-                                    <h3 className="text-sm font-black uppercase tracking-widest text-white">Payment Details</h3>
-                                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
-                                        <Lock className="w-3 h-3" />
-                                        SECURE
-                                    </div>
+                        <div className="sticky top-32">
+                            <div className={`rounded-[2rem] border overflow-hidden backdrop-blur-2xl shadow-2xl transition-all duration-500 ${selectedPlan.name === 'Spot Exclusive' ? 'bg-[#0F0F0F]/90 border-amber-500/30 shadow-[0_0_50px_-15px_rgba(245,158,11,0.2)]' : 'bg-[#0A0A0A]/90 border-white/10'}`}>
+                                
+                                <div className="px-8 py-6 border-b border-white/[0.04] flex items-center justify-between bg-black/20">
+                                    <h3 className="text-xs font-black uppercase tracking-widest text-zinc-400">Order Summary</h3>
+                                    <div className="text-white font-black">{selectedPlan.name}</div>
                                 </div>
 
                                 <div className="p-8 space-y-8">
-                                    {safePlanParam === 'spot_basic' ? (
-                                        <div className="text-center py-4">
-                                            <div className="w-20 h-20 rounded-full bg-zinc-800/50 mx-auto flex items-center justify-center mb-6 border border-white/5">
-                                                <User className="w-10 h-10 text-zinc-400" />
+                                    
+                                    {/* Price Display */}
+                                    <div className="flex items-end justify-between">
+                                        <div className="space-y-1">
+                                            <div className="text-sm text-zinc-400 font-bold uppercase tracking-wide">Total Due Today</div>
+                                            <div className="text-5xl font-black text-white tracking-tighter">
+                                                ${selectedPlan.monthlyPrice}<span className="text-xl text-zinc-500 uppercase tracking-wide font-bold ml-1">/mo</span>
                                             </div>
-                                            <h3 className="text-xl font-bold text-white mb-2">Start Backtesting Free</h3>
-                                            <p className="text-sm text-zinc-400 mb-8 px-4">
-                                                No credit card required. Start practicing with real market data instantly.
-                                            </p>
-                                            <button
-                                                onClick={handleCheckout}
-                                                disabled={loading}
-                                                className="w-full py-4 rounded-xl bg-white hover:bg-zinc-200 text-black font-black uppercase tracking-wider text-sm transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                                            >
-                                                {loading ? <Loader2 className="w-5 h-5 animate-spin mx-auto" /> : 'Get Started Free'}
-                                            </button>
                                         </div>
-                                    ) : (
+                                    </div>
+
+                                    {safePlanParam !== 'spot_basic' && (
                                         <>
-                                            {/* Payment Methods */}
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <button
-                                                    onClick={() => setPaymentMethod('card')}
-                                                    className={`py-4 px-4 rounded-xl border flex flex-col items-center justify-center gap-3 transition-all ${paymentMethod === 'card' ? 'bg-amber-500/10 border-amber-500 text-amber-400 shadow-[0_0_20px_-5px_rgba(245,158,11,0.3)]' : 'bg-black/40 border-zinc-800 text-zinc-500 hover:border-zinc-700 hover:bg-zinc-900'}`}
-                                                >
-                                                    <CreditCard className="w-6 h-6" />
-                                                    <span className="text-[10px] font-bold uppercase tracking-wider">Card / PayPal</span>
-                                                </button>
-                                                <button
-                                                    onClick={() => setPaymentMethod('crypto')}
-                                                    className={`relative py-4 px-4 rounded-xl border flex flex-col items-center justify-center gap-3 transition-all ${paymentMethod === 'crypto' ? 'bg-orange-500/10 border-orange-500 text-orange-400 shadow-[0_0_20px_-5px_rgba(249,115,22,0.3)]' : 'bg-black/40 border-zinc-800 text-zinc-500 hover:border-zinc-700 hover:bg-zinc-900'}`}
-                                                >
-                                                    <Bitcoin className="w-6 h-6" />
-                                                    <span className="text-[10px] font-bold uppercase tracking-wider">Crypto</span>
-                                                </button>
-                                            </div>
-
-                                            {/* Summary */}
-                                            <div className="space-y-3 pt-4 border-t border-white/[0.06]">
-                                                <div className="flex justify-between text-sm">
-                                                    <span className="text-zinc-400 font-medium">Subtotal</span>
-                                                    <span className="text-white font-bold">${selectedPlan.monthlyPrice}.00</span>
+                                            <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                                            
+                                            {/* Payment Selection */}
+                                            <div className="space-y-4">
+                                                <div className="text-xs font-black uppercase tracking-widest text-zinc-400">Select Payment Method</div>
+                                                <div className="grid grid-cols-2 gap-3">
+                                                    <button
+                                                        onClick={() => setPaymentMethod('card')}
+                                                        className={`relative py-4 px-4 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all overflow-hidden ${paymentMethod === 'card' ? 'bg-amber-500/10 border-amber-500/50 text-amber-400 shadow-[0_0_20px_-5px_rgba(245,158,11,0.2)]' : 'bg-white/5 border-white/5 text-zinc-500 hover:border-white/10 hover:bg-white/10 hover:text-zinc-300'}`}
+                                                    >
+                                                        {paymentMethod === 'card' && <div className="absolute inset-0 bg-gradient-to-b from-amber-500/10 to-transparent pointer-events-none" />}
+                                                        <CreditCard className="w-6 h-6 z-10" />
+                                                        <span className="text-[10px] font-black uppercase tracking-widest z-10">Card / PayPal</span>
+                                                    </button>
+                                                    
+                                                    <button
+                                                        onClick={() => setPaymentMethod('crypto')}
+                                                        className={`relative py-4 px-4 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all overflow-hidden ${paymentMethod === 'crypto' ? 'bg-orange-500/10 border-orange-500/50 text-orange-400 shadow-[0_0_20px_-5px_rgba(249,115,22,0.2)]' : 'bg-white/5 border-white/5 text-zinc-500 hover:border-white/10 hover:bg-white/10 hover:text-zinc-300'}`}
+                                                    >
+                                                        {paymentMethod === 'crypto' && <div className="absolute inset-0 bg-gradient-to-b from-orange-500/10 to-transparent pointer-events-none" />}
+                                                        <Bitcoin className="w-6 h-6 z-10" />
+                                                        <span className="text-[10px] font-black uppercase tracking-widest z-10">Crypto</span>
+                                                    </button>
                                                 </div>
-                                                <div className="flex justify-between items-center pt-3 border-t border-white/[0.06]">
-                                                    <span className="text-white font-black text-lg uppercase tracking-wider">Total Due</span>
-                                                    <span className="text-3xl font-black text-white">${selectedPlan.monthlyPrice}.00</span>
-                                                </div>
-                                            </div>
-
-                                            {/* Pay Button */}
-                                            <button
-                                                onClick={handleCheckout}
-                                                disabled={loading || !user}
-                                                className={`w-full py-5 rounded-xl font-black uppercase tracking-wider text-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 group relative overflow-hidden ${paymentMethod === 'crypto'
-                                                    ? 'bg-orange-500 hover:bg-orange-400 text-black shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)]'
-                                                    : 'bg-amber-500 hover:bg-amber-400 text-black shadow-[0_0_40px_-10px_rgba(245,158,11,0.5)]'
-                                                    }`}
-                                            >
-                                                <span className="relative z-10 flex items-center gap-2">
-                                                    {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (
-                                                        <>
-                                                            {paymentMethod === 'crypto' ? (
-                                                                <><Bitcoin className="w-5 h-5" /> Pay with Crypto</>
-                                                            ) : 'Secure Payment'}
-                                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                                        </>
-                                                    )}
-                                                </span>
-                                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
-                                            </button>
-
-                                            <div className="text-center">
-                                                <p className="text-[10px] text-zinc-500 font-medium">
-                                                    By continuing, you agree to our <Link href="/terms" className="underline hover:text-white">Terms</Link> and <Link href="/privacy" className="underline hover:text-white">Privacy Policy</Link>.
-                                                </p>
                                             </div>
                                         </>
                                     )}
+
+                                    <div className="pt-2">
+                                        <button
+                                            onClick={handleCheckout}
+                                            disabled={loading || !user && safePlanParam !== 'spot_basic'}
+                                            className={`w-full py-5 rounded-xl font-black uppercase tracking-widest text-sm transition-all hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0 disabled:cursor-not-allowed flex items-center justify-center gap-3 group relative overflow-hidden ${
+                                                safePlanParam === 'spot_basic' 
+                                                    ? 'bg-white hover:bg-zinc-200 text-black shadow-xl shadow-white/10' 
+                                                    : paymentMethod === 'crypto'
+                                                        ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-black shadow-xl shadow-orange-500/30 hover:shadow-orange-500/40'
+                                                        : 'bg-gradient-to-r from-amber-400 to-yellow-500 text-black shadow-xl shadow-amber-500/30 hover:shadow-amber-500/40'
+                                            }`}
+                                        >
+                                            <span className="relative z-10 flex items-center gap-2">
+                                                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : (
+                                                    <>
+                                                        {safePlanParam === 'spot_basic' 
+                                                            ? 'Start Practicing Free' 
+                                                            : paymentMethod === 'crypto' 
+                                                                ? <><Bitcoin className="w-5 h-5" /> Pay with Crypto</> 
+                                                                : 'Complete Checkout'}
+                                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                    </>
+                                                )}
+                                            </span>
+                                            {/* Shine effect */}
+                                            <div className="absolute inset-0 -translate-x-full group-hover:animate-shimmer bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                                        </button>
+                                    </div>
+
+                                    <div className="text-center pt-2">
+                                        <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-wider">
+                                            By proceeding, you agree to the <Link href="/terms" className="text-zinc-400 hover:text-white underline underline-offset-2 transition-colors">Terms of Service</Link>.
+                                        </p>
+                                    </div>
                                 </div>
+
                             </div>
+                            
+                            {!user && (
+                                <motion.div 
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="mt-6 text-center"
+                                >
+                                    <p className="text-sm font-medium text-zinc-400 bg-white/5 border border-white/10 inline-flex items-center px-4 py-2 rounded-lg">
+                                        You are not logged in. You will be asked to create an account first.
+                                    </p>
+                                </motion.div>
+                            )}
                         </div>
                     </motion.div>
+
                 </div>
             </main>
         </div>
@@ -330,8 +347,8 @@ function CheckoutPageContent() {
 export default function CheckoutPage() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen bg-[#050505] text-white flex items-center justify-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-amber-500" />
+            <div className="min-h-screen bg-[#020202] text-white flex items-center justify-center">
+                <Loader2 className="h-8 w-8 animate-spin text-amber-500" />
             </div>
         }>
             <CheckoutPageContent />

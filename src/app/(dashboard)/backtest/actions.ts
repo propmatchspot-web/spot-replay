@@ -4,9 +4,6 @@ import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-// Allow up to 60 seconds for this server action (Dukascopy needs time for binary data downloads)
-export const maxDuration = 60
-
 export async function getStrategiesList() {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()

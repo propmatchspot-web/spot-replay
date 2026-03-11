@@ -81,7 +81,7 @@ function LoginForm() {
                 >
                     <div className="text-center space-y-2">
                         <div className="flex justify-center mb-6 lg:hidden">
-                            <img src="/logo.png" alt="TradingJournal Pro" className="h-12 w-auto" />
+                            <img src="/Replaylogo.png" alt="Spot Replay" className="h-12 w-auto" />
                         </div>
                         <h2 className="text-center text-3xl font-black tracking-tight text-white">
                             Welcome Back

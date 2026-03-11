@@ -114,7 +114,7 @@ export function AchievementCard({ achievement }: AchievementCardProps) {
                                 <div className="h-12 w-12 relative overflow-hidden rounded-lg">
                                     {/* Using standard img tag for html2canvas compatibility */}
                                     <img
-                                        src="/favicon.png"
+                                        src="/Replaylogo.png"
                                         alt="Logo"
                                         className="object-cover w-full h-full"
                                     />

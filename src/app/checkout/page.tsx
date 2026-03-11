@@ -7,6 +7,7 @@ import { createCryptoCheckout } from '../actions/crypto-billing'
 import { Loader2, Check, ShieldCheck, Zap, CreditCard, Lock, User, ArrowLeft, ArrowRight, Bitcoin, Crown, Sparkles } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 type PlanKey = 'spot_basic' | 'spot_exclusive'
@@ -144,11 +145,15 @@ function CheckoutPageContent() {
                     </button>
                     
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center p-0.5 shadow-lg shadow-amber-500/20">
-                            <div className="w-full h-full bg-black rounded-[6px] flex items-center justify-center">
-                                <Sparkles className="w-4 h-4 text-amber-500" />
-                            </div>
-                        </div>
+                        <Image 
+                            src="/Replaylogo.png" 
+                            alt="Spot Replay Logo" 
+                            width={40} 
+                            height={40}
+                            sizes="40px"
+                            className="drop-shadow-[0_0_15px_rgba(245,158,11,0.5)] border border-amber-500 rounded-xl"
+                            priority
+                        />
                         <h2 className="text-xl font-black tracking-tighter text-white">SPOT REPLAY</h2>
                     </div>
 

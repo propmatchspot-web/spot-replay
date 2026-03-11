@@ -335,14 +335,15 @@ export function ChartReplayEngine({ initialSession, initialTrades = [] }: ChartR
 
                     console.log(`[Backtest] ✅ Raw 1m data: ${rawData.length} candles`)
 
-                    // Clean: sort, dedupe, validate
+                    // Clean: sort, dedupe, basic validation only
+                    // IMPORTANT: Do NOT apply strict OHLC validation (high>=open etc)
+                    // Forex 1m data has floating-point precision issues that cause
+                    // valid candles to fail strict checks, creating gaps
                     const cleaned = rawData
                         .filter((c: any) =>
                             c.time > 0 && !isNaN(c.open) && c.open > 0 &&
                             !isNaN(c.high) && c.high > 0 && !isNaN(c.low) && c.low > 0 &&
-                            !isNaN(c.close) && c.close > 0 &&
-                            c.high >= c.low && c.high >= c.open && c.high >= c.close &&
-                            c.low <= c.open && c.low <= c.close
+                            !isNaN(c.close) && c.close > 0
                         )
                         .sort((a: any, b: any) => a.time - b.time)
 
@@ -355,23 +356,6 @@ export function ChartReplayEngine({ initialSession, initialTrades = [] }: ChartR
                         time: c.time, open: c.open, high: c.high,
                         low: c.low, close: c.close, volume: c.volume || 0
                     })) as Candle[]
-
-                    // ═══════════════════════════════════════════════════════════
-                    // FIX CHEAP-LOOKING CANDLES: Remove zero-range dead candles
-                    // These are market gaps where O=H=L=C with zero volume
-                    // They look like flat lines on the chart — ugly!
-                    // ═══════════════════════════════════════════════════════════
-                    const beforeFilter = baseData1m.length
-                    baseData1m = baseData1m.filter((c: Candle) => {
-                        // Remove flat candles with no volume (market closed/no ticks)
-                        if (c.open === c.high && c.high === c.low && c.low === c.close && (c.volume === 0 || !c.volume)) {
-                            return false
-                        }
-                        return true
-                    })
-                    if (baseData1m.length < beforeFilter) {
-                        console.log(`[Backtest] 🧹 Removed ${beforeFilter - baseData1m.length} zero-range candles`)
-                    }
 
                     // CACHE for instant switching
                     prefetchedDataRef.current = baseData1m
@@ -596,8 +580,7 @@ export function ChartReplayEngine({ initialSession, initialTrades = [] }: ChartR
                 if (rawChunk && rawChunk.length > 0) {
                     const cleaned = rawChunk
                         .filter((c: any) =>
-                            c.time > 0 && !isNaN(c.open) && c.volume > 0 &&
-                            !(c.open === c.high && c.high === c.low && c.low === c.close && c.volume === 0)
+                            c.time > 0 && !isNaN(c.open) && c.open > 0
                         )
                         .sort((a: any, b: any) => a.time - b.time)
 

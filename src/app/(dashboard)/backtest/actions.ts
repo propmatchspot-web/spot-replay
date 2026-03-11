@@ -4,6 +4,9 @@ import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
+// Allow up to 60 seconds for this server action (Dukascopy needs time for binary data downloads)
+export const maxDuration = 60
+
 export async function getStrategiesList() {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
@@ -80,6 +83,11 @@ export async function createBacktestSession(formData: {
             range = Math.ceil(diffHours) + 100 // Add buffer
         }
 
+        // Format symbol (e.g., "EURUSD" -> "FX:EURUSD" if needed, but library might handle it)
+        // The library usually expects "EXCHANGE:SYMBOL" or just "SYMBOL" if unique.
+        // Let's try to guess exchange or just pass symbol.
+        // Common pairs: EURUSD, BTCUSDT.
+        // For Forex, "FX:EURUSD" is safer. For Crypto, "BINANCE:BTCUSDT".
         let symbol = formData.asset
         if (!symbol.includes(':')) {
             if (symbol.includes('USDT')) symbol = `BINANCE:${symbol}`
@@ -87,21 +95,12 @@ export async function createBacktestSession(formData: {
         }
 
         console.log(`Fetching ${range} candles for ${symbol}...`)
-
-        // Wrap in 30s timeout to prevent Vercel function hanging
-        const fetchWithTimeout = Promise.race([
-            fetchHistoricalData(symbol, timeframe, range, undefined, formData.category),
-            new Promise<any[]>((_, reject) =>
-                setTimeout(() => reject(new Error('Data fetch timed out after 30s')), 30000)
-            )
-        ])
-
-        candleData = await fetchWithTimeout
+        candleData = await fetchHistoricalData(symbol, timeframe, range, undefined, formData.category)
         console.log(`Fetched ${candleData.length} candles`)
 
-    } catch (err: any) {
-        console.error('Failed to fetch real data, creating session without pre-loaded candles:', err?.message || err)
-        // Session will still be created — chart loads data lazily when opened
+    } catch (err) {
+        console.error('Failed to fetch real data, falling back to empty:', err)
+        // We allow creation even if fetch fails, user can maybe retry later or use generated data
     }
 
     // Prepare Challenge Status if Prop Firm

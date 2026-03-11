@@ -97,13 +97,7 @@ export async function fetchDukascopyData(
         console.log(`[Dukascopy] Instrument: ${instrument}`)
         console.log(`[Dukascopy] Range: ${fromDate.toISOString()} -> ${toDate.toISOString()}`)
 
-        // Wrap in timeout to prevent indefinite hanging on serverless (Vercel ~60s limit)
-        const FETCH_TIMEOUT_MS = 25000 // 25 seconds max
-        const timeoutPromise = new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error('Dukascopy fetch timed out after 25s')), FETCH_TIMEOUT_MS)
-        )
-
-        const fetchPromise = getHistoricalRates({
+        const data = await getHistoricalRates({
             instrument: instrument as any,
             dates: {
                 from: fromDate,
@@ -113,8 +107,6 @@ export async function fetchDukascopyData(
             format: 'json',
             useCache: false
         })
-
-        const data = await Promise.race([fetchPromise, timeoutPromise]) as any[]
 
         console.log(`[Dukascopy] Fetched ${data.length} candles for ${instrument}`)
 

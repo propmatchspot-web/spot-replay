@@ -6,6 +6,8 @@ import { AssetCategory, ASSET_CATEGORIES, TV_SYMBOL_MAP } from './assets'
 
 /**
  * Auto-detect asset category from symbol name.
+ * Assets are now stored as clean names (no prefixes), so we just
+ * strip any incoming prefix and do a direct match.
  */
 export function detectCategory(symbol: string): AssetCategory | undefined {
     const clean = symbol
@@ -30,98 +32,20 @@ export function detectCategory(symbol: string): AssetCategory | undefined {
     // Heuristic fallbacks for unlisted but common patterns
     if (clean.endsWith('USDT') || clean.endsWith('BUSD') || clean.endsWith('BTC')) return 'CRYPTO'
     if (clean.includes('XAU') || clean.includes('XAG') || clean.includes('OIL') || clean.includes('PLATINUM') || clean.includes('PALLADIUM')) return 'METALS'
-    if (clean.length === 6 && /^[A-Z]+$/.test(clean)) return 'FOREX'
+    if (clean.length === 6 && /^[A-Z]+$/.test(clean)) return 'FOREX' // 6-letter pair like EURUSD, GBPJPY
 
-    return undefined
-}
-
-// ============================================================
-// HELPER: Run a fetch with a hard timeout (no hanging ever)
-// ============================================================
-async function withTimeout<T>(
-    promise: Promise<T>,
-    ms: number,
-    label: string
-): Promise<T> {
-    return Promise.race([
-        promise,
-        new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error(`[${label}] timed out after ${ms / 1000}s`)), ms)
-        )
-    ])
-}
-
-// ============================================================
-// HELPER: Try a data source, return candles or null on failure
-// ============================================================
-async function trySource(
-    sourceName: string,
-    fetchFn: () => Promise<Candle[]>,
-    timeoutMs: number = 20000
-): Promise<Candle[] | null> {
-    try {
-        const data = await withTimeout(fetchFn(), timeoutMs, sourceName)
-        if (data && data.length > 0) {
-            console.log(`[DataService] ✅ ${sourceName} returned ${data.length} candles`)
-            return data
-        }
-        console.warn(`[DataService] ⚠️ ${sourceName} returned 0 candles`)
-        return null
-    } catch (err: any) {
-        console.error(`[DataService] ❌ ${sourceName} failed:`, err?.message || err)
-        return null
-    }
-}
-
-// ============================================================
-// TradingView with symbol prefix for forex/metals fallback
-// ============================================================
-function getTVSymbol(symbol: string, category?: AssetCategory): string {
-    const clean = symbol
-        .replace('BINANCE:', '')
-        .replace('FX:', '')
-        .replace('OANDA:', '')
-        .replace('FOREX:', '')
-        .replace('TVC:', '')
-        .replace('NASDAQ:', '')
-        .replace('NYSE:', '')
-        .toUpperCase()
-
-    // Check explicit map first
-    if (TV_SYMBOL_MAP[clean]) return TV_SYMBOL_MAP[clean]
-
-    // Smart prefix by category
-    if (category === 'FOREX' || (clean.length === 6 && /^[A-Z]+$/.test(clean))) {
-        return `FX:${clean}`
-    }
-    if (category === 'METALS') {
-        if (clean.includes('XAU') || clean.includes('XAG')) return `OANDA:${clean}`
-        if (clean.includes('OIL')) return `TVC:US${clean}`
-        return `TVC:${clean}`
-    }
-    if (category === 'CRYPTO' || clean.endsWith('USDT')) {
-        return `BINANCE:${clean}`
-    }
-
-    return symbol // Return as-is
+    return undefined // Will fall through to TradingView as last resort
 }
 
 /**
- * ═══════════════════════════════════════════════════════════════
- * BULLETPROOF DATA FETCHER
+ * Enhanced Data Fetcher that routes to the correct API based on Asset Category.
  * 
- * Every asset category has a PRIMARY + FALLBACK source.
- * If the primary fails or times out → automatically tries fallback.
- * If fallback also fails → tries TradingView as last resort.
+ * Routing Logic:
+ * - FOREX, METALS -> Dukascopy (Tick data)
+ * - CRYPTO -> Binance (Direct API)
+ * - INDICES, STOCKS -> TradingView (Wrapper)
  * 
- * Routing:
- * - FOREX:   Dukascopy (20s) → TradingView (15s)
- * - METALS:  Dukascopy (20s) → TradingView (15s)
- * - CRYPTO:  Binance (15s)   → TradingView (15s)
- * - INDICES: TradingView (20s)
- * - STOCKS:  TradingView (20s)
- * - Unknown: TradingView (20s)
- * ═══════════════════════════════════════════════════════════════
+ * If category is not provided, it will be auto-detected from the symbol name.
  */
 export async function fetchHistoricalData(
     symbol: string,
@@ -131,78 +55,31 @@ export async function fetchHistoricalData(
     category?: AssetCategory
 ): Promise<Candle[]> {
 
+    // Auto-detect category if not provided
     const resolvedCategory = category || detectCategory(symbol)
-    console.log(`[DataService] ═══ Fetching ${symbol} | TF: ${timeframe} | Range: ${range} | Category: ${resolvedCategory || 'UNKNOWN'} ═══`)
 
-    // ──────────────────────────────────────────────
-    // FOREX & METALS: Dukascopy → TradingView
-    // ──────────────────────────────────────────────
+    if (resolvedCategory) {
+        console.log(`[DataService] Routing ${symbol} → ${resolvedCategory} (${category ? 'explicit' : 'auto-detected'})`)
+    } else {
+        console.log(`[DataService] No category for ${symbol}, falling back to TradingView`)
+    }
+
+    // 1. DUKASCOPY (Forex & Metals)
     if (resolvedCategory === 'FOREX' || resolvedCategory === 'METALS') {
-        // Try 1: Dukascopy (primary, 20s timeout)
-        const dukasData = await trySource(
-            `Dukascopy:${symbol}`,
-            () => fetchDukascopyData(symbol, timeframe, range, endTime),
-            20000
-        )
-        if (dukasData) return dukasData
-
-        // Try 2: TradingView fallback (15s timeout)
-        console.log(`[DataService] 🔄 Falling back to TradingView for ${symbol}...`)
-        const tvSymbol = getTVSymbol(symbol, resolvedCategory)
-        const tvData = await trySource(
-            `TradingView:${tvSymbol}`,
-            () => fetchTradingViewData(tvSymbol, timeframe, range, endTime),
-            15000
-        )
-        if (tvData) return tvData
-
-        console.error(`[DataService] ❌ ALL sources failed for ${symbol}`)
-        return []
+        return await fetchDukascopyData(symbol, timeframe, range, endTime)
     }
 
-    // ──────────────────────────────────────────────
-    // CRYPTO: Binance → TradingView
-    // ──────────────────────────────────────────────
+    // 2. BINANCE (Crypto)
     if (resolvedCategory === 'CRYPTO') {
-        // Try 1: Binance (primary, 15s timeout)
-        const binanceData = await trySource(
-            `Binance:${symbol}`,
-            () => fetchBinanceData(symbol, timeframe, range, undefined, endTime),
-            15000
-        )
-        if (binanceData) return binanceData
-
-        // Try 2: TradingView fallback (15s timeout)
-        console.log(`[DataService] 🔄 Falling back to TradingView for ${symbol}...`)
-        const tvSymbol = getTVSymbol(symbol, resolvedCategory)
-        const tvData = await trySource(
-            `TradingView:${tvSymbol}`,
-            () => fetchTradingViewData(tvSymbol, timeframe, range, endTime),
-            15000
-        )
-        if (tvData) return tvData
-
-        console.error(`[DataService] ❌ ALL sources failed for ${symbol}`)
-        return []
+        return await fetchBinanceData(symbol, timeframe, range, undefined, endTime)
     }
 
-    // ──────────────────────────────────────────────
-    // INDICES, STOCKS & UNKNOWN: TradingView only
-    // ──────────────────────────────────────────────
-    const tvSymbol = getTVSymbol(symbol, resolvedCategory)
-    const tvData = await trySource(
-        `TradingView:${tvSymbol}`,
-        () => fetchTradingViewData(tvSymbol, timeframe, range, endTime),
-        20000
-    )
-    if (tvData) return tvData
-
-    console.error(`[DataService] ❌ TradingView failed for ${symbol}`)
-    return []
+    // 3. TRADINGVIEW (Indices, Stocks, & Fallback)
+    return await fetchTradingViewData(symbol, timeframe, range, endTime)
 }
 
 /**
- * TradingView Data Fetcher (Unofficial Wrapper) — with timeout-safe cleanup
+ * TradingView Data Fetcher (Unofficial Wrapper)
  */
 async function fetchTradingViewData(
     symbol: string,
@@ -211,18 +88,8 @@ async function fetchTradingViewData(
     endTime?: number
 ): Promise<Candle[]> {
     return new Promise((resolve, reject) => {
-        let resolved = false
         const client = new TradingView.Client()
         const chart = new client.Session.Chart()
-
-        // Safety: auto-cleanup if TradingView never responds
-        const safetyTimer = setTimeout(() => {
-            if (!resolved) {
-                resolved = true
-                try { client.end() } catch {}
-                reject(new Error('TradingView internal timeout'))
-            }
-        }, 18000) // 18s internal safety (outer timeout is 20s)
 
         chart.setMarket(symbol, {
             timeframe: timeframe,
@@ -231,11 +98,9 @@ async function fetchTradingViewData(
         } as any)
 
         chart.onUpdate(() => {
-            if (resolved) return
-            if (!chart.periods || chart.periods.length === 0) return
-
-            resolved = true
-            clearTimeout(safetyTimer)
+            if (!chart.periods || chart.periods.length === 0) {
+                return
+            }
 
             const candles: Candle[] = chart.periods.map((p: any) => ({
                 time: p.time,
@@ -247,15 +112,13 @@ async function fetchTradingViewData(
             }))
 
             candles.sort((a, b) => a.time - b.time)
-            try { client.end() } catch {}
+
+            client.end()
             resolve(candles)
         })
 
         chart.onError((err: any) => {
-            if (resolved) return
-            resolved = true
-            clearTimeout(safetyTimer)
-            try { client.end() } catch {}
+            client.end()
             reject(err)
         })
     })

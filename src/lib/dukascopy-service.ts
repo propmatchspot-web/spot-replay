@@ -114,7 +114,7 @@ export async function fetchDukascopyData(
             },
             timeframe: timeFrame,
             format: 'json',
-            useCache: false
+            useCache: true
         })
 
         console.log(`[Dukascopy] Fetched ${data.length} candles for ${instrument}`)

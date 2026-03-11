@@ -250,7 +250,7 @@ export function ChartReplayEngine({ initialSession, initialTrades = [] }: ChartR
             // enough candles to play forward through. Without this, currentIndex
             // starts near the end of the array and play auto-pauses immediately.
             const extendedEndTime = endTime
-                ? endTime + (7 * 24 * 60 * 60 * 1000) // Add 7 days beyond end_date (was 30)
+                ? endTime + (3 * 24 * 60 * 60 * 1000) // Add 3 days beyond end_date for forward room
                 : undefined
 
             // ═══════════════════════════════════════════════════════════════
@@ -288,28 +288,27 @@ export function ChartReplayEngine({ initialSession, initialTrades = [] }: ChartR
                 setIsLoading(true)
                 console.log(`[Backtest] 📡 Fetching 1m base data for ${pair}...`)
 
-                // Buffer: 200 candles of 15m = 3000 x 1m candles BEFORE session start
-                const bufferMs = 200 * 15 * 60 * 1000 // 50 hours before
+                // Buffer: 80 candles of 15m = 1200 x 1m candles BEFORE session start (reduced for speed)
+                const bufferMs = 80 * 15 * 60 * 1000 // ~20 hours before
                 const fetchStart = startTime ? startTime - bufferMs : undefined
 
-                // FIX: Calculate needed candles including FORWARD buffer
-                // Previously only counted session duration, leaving no room to play forward
-                let neededCandles = 20000
+                // Calculate needed candles — keep SMALL for fast initial load
+                // Progressive loading fills in more history in background
+                let neededCandles = 8000
                 if (startTime) {
-                    const preBufferMinutes = 200 * 15 // ~50 hours before start
-                    // Forward buffer: use endTime if available, otherwise add 7 days
-                    const effectiveEnd = endTime || (startTime + 7 * 24 * 60 * 1000)
+                    const preBufferMinutes = 80 * 15 // ~20 hours before start
+                    const effectiveEnd = endTime || (startTime + 3 * 24 * 60 * 1000)
                     const sessionMinutes = (effectiveEnd - startTime) / (60 * 1000)
-                    // Add 7 days of forward data (more loaded on demand via progressive loading)
-                    const forwardBufferMinutes = 7 * 24 * 60
-                    neededCandles = Math.ceil(preBufferMinutes + sessionMinutes + forwardBufferMinutes + 500)
+                    // Add 3 days of forward data (progressive loading adds more)
+                    const forwardBufferMinutes = 3 * 24 * 60
+                    neededCandles = Math.ceil(preBufferMinutes + sessionMinutes + forwardBufferMinutes + 300)
                     console.log(`  Session: ${(sessionMinutes / 60).toFixed(1)} hours`)
                     console.log(`  Pre-buffer: ${(preBufferMinutes / 60).toFixed(1)} hours`)
                     console.log(`  Forward buffer: ${(forwardBufferMinutes / 60).toFixed(1)} hours`)
                     console.log(`  Total 1m candles needed: ${neededCandles}`)
                 }
 
-                const limit = Math.min(neededCandles, 30000)
+                const limit = Math.min(neededCandles, 15000)
 
                 try {
                     const timeoutPromise = new Promise((_, reject) =>

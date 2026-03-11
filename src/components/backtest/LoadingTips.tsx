@@ -25,7 +25,7 @@ export default function LoadingTips() {
         const progressInterval = setInterval(() => {
             setProgress(prev => {
                 if (prev >= 95) return 95
-                const increment = Math.max(0.3, (95 - prev) / 40)
+                const increment = Math.max(0.25, (95 - prev) / 35)
                 return Math.min(95, prev + increment)
             })
         }, 500)
@@ -37,112 +37,149 @@ export default function LoadingTips() {
     }, [])
 
     return (
-        <div
-            style={{
-                position: 'fixed',
-                inset: 0,
-                width: '100vw',
-                height: '100vh',
-                backgroundColor: '#000000',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '40px',
-                zIndex: 9999,
-            }}
-        >
-            {/* Collaboration Logos — big and simple, no boxes */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="/Replaylogo.png"
-                    alt="Spot Replay"
-                    style={{ height: '80px', width: 'auto', objectFit: 'contain' }}
-                />
-
-                <span style={{
-                    color: 'rgba(251, 191, 36, 0.8)',
-                    fontSize: '28px',
-                    fontWeight: 700,
-                    userSelect: 'none',
-                    lineHeight: 1,
-                }}>
-                    ×
-                </span>
-
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                    src="/TJlogo.png"
-                    alt="Trading Journal"
-                    style={{ height: '80px', width: 'auto', objectFit: 'contain' }}
-                />
-            </div>
-
-            {/* Loading text + progress */}
+        <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: '#000000',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 99999,
+        }}>
+            {/* Center content container — 60% width */}
             <div style={{
+                width: '60%',
+                maxWidth: '800px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: '16px',
-                width: '100%',
-                maxWidth: '400px',
-                padding: '0 24px',
+                gap: '48px',
             }}>
-                <h3 style={{
-                    color: '#ffffff',
-                    fontSize: '22px',
-                    fontWeight: 700,
-                    margin: 0,
-                    letterSpacing: '-0.02em',
-                }}>
-                    Loading Historical Data...
-                </h3>
-
-                {/* Progress bar */}
-                <div style={{
-                    width: '100%',
-                    height: '4px',
-                    backgroundColor: '#1a1a1a',
-                    borderRadius: '4px',
-                    overflow: 'hidden',
-                }}>
-                    <div style={{
-                        height: '100%',
-                        width: `${progress}%`,
-                        background: 'linear-gradient(90deg, #f59e0b, #f97316)',
-                        borderRadius: '4px',
-                        transition: 'width 0.5s ease-out',
-                        boxShadow: '0 0 12px rgba(245, 158, 11, 0.4)',
-                    }} />
-                </div>
-
+                {/* Logos — large, simple, no boxes */}
                 <div style={{
                     display: 'flex',
-                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '32px',
                     width: '100%',
-                    fontSize: '12px',
-                    fontFamily: 'monospace',
-                    color: '#666',
                 }}>
-                    <span>Downloading candles...</span>
-                    <span>{Math.round(progress)}%</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src="/Replaylogo.png"
+                        alt="Spot Replay"
+                        style={{
+                            height: '110px',
+                            width: 'auto',
+                            objectFit: 'contain',
+                        }}
+                    />
+
+                    <span style={{
+                        color: 'rgba(251, 191, 36, 0.85)',
+                        fontSize: '36px',
+                        fontWeight: 800,
+                        userSelect: 'none',
+                        lineHeight: 1,
+                    }}>
+                        ×
+                    </span>
+
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src="/TJlogo.png"
+                        alt="Trading Journal"
+                        style={{
+                            height: '110px',
+                            width: 'auto',
+                            objectFit: 'contain',
+                        }}
+                    />
+                </div>
+
+                {/* Subtitle */}
+                <p style={{
+                    color: 'rgba(251, 191, 36, 0.6)',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    letterSpacing: '0.25em',
+                    textTransform: 'uppercase',
+                    margin: 0,
+                }}>
+                    Powered by Collaboration
+                </p>
+
+                {/* Loading section — full width of container */}
+                <div style={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '20px',
+                }}>
+                    <h3 style={{
+                        color: '#ffffff',
+                        fontSize: '24px',
+                        fontWeight: 700,
+                        margin: 0,
+                        letterSpacing: '-0.02em',
+                    }}>
+                        Loading Historical Data
+                    </h3>
+
+                    {/* Progress bar — full width */}
+                    <div style={{
+                        width: '100%',
+                        height: '5px',
+                        backgroundColor: '#111111',
+                        borderRadius: '6px',
+                        overflow: 'hidden',
+                    }}>
+                        <div style={{
+                            height: '100%',
+                            width: `${progress}%`,
+                            background: 'linear-gradient(90deg, #f59e0b, #ea580c)',
+                            borderRadius: '6px',
+                            transition: 'width 0.5s ease-out',
+                            boxShadow: '0 0 16px rgba(245, 158, 11, 0.5)',
+                        }} />
+                    </div>
+
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        width: '100%',
+                        fontSize: '13px',
+                        fontFamily: 'monospace',
+                        color: '#555',
+                    }}>
+                        <span>Downloading candles...</span>
+                        <span>{Math.round(progress)}%</span>
+                    </div>
+                </div>
+
+                {/* Tip — full width */}
+                <div style={{
+                    width: '100%',
+                    textAlign: 'center',
+                    padding: '16px 0',
+                    borderTop: '1px solid rgba(255,255,255,0.04)',
+                }}>
+                    <p style={{
+                        color: '#777',
+                        fontSize: '15px',
+                        fontWeight: 500,
+                        margin: 0,
+                        lineHeight: 1.6,
+                    }}>
+                        {TIPS[currentTip]}
+                    </p>
                 </div>
             </div>
-
-            {/* Tip */}
-            <p style={{
-                color: '#999',
-                fontSize: '14px',
-                fontWeight: 500,
-                margin: 0,
-                maxWidth: '500px',
-                textAlign: 'center',
-                padding: '0 24px',
-                transition: 'opacity 0.5s',
-            }}>
-                {TIPS[currentTip]}
-            </p>
         </div>
     )
 }

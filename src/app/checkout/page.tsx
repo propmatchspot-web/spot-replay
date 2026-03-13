@@ -4,7 +4,8 @@ import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { getCheckoutUrl, markOnboardingComplete, setOnboardingCookie, activateFreePlan } from '../actions/billing'
 import { createCryptoCheckout } from '../actions/crypto-billing'
-import { Loader2, Check, ShieldCheck, Zap, CreditCard, Lock, User, ArrowLeft, ArrowRight, Bitcoin, Crown, Sparkles } from 'lucide-react'
+import { createNowPaymentsCheckout } from '../actions/nowpayments-billing'
+import { Loader2, Check, ShieldCheck, Zap, CreditCard, Lock, User, ArrowLeft, ArrowRight, Bitcoin, Crown, Sparkles, Wallet } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -70,6 +71,7 @@ function CheckoutPageContent() {
 
     const [loading, setLoading] = useState(false)
     const [paymentMethod, setPaymentMethod] = useState<'card' | 'crypto'>('card')
+    const [cryptoMethod, setCryptoMethod] = useState<'wallet' | 'direct'>('wallet')
     const [user, setUser] = useState<any>(null)
     const PlanIcon = selectedPlan.icon
 
@@ -111,7 +113,14 @@ function CheckoutPageContent() {
         setLoading(true)
         try {
             if (paymentMethod === 'crypto') {
-                const result = await createCryptoCheckout(safePlanParam, 'monthly')
+                let result;
+                if (cryptoMethod === 'wallet') {
+                    // Coinbase Commerce (Wallet)
+                    result = await createCryptoCheckout(safePlanParam, 'monthly')
+                } else {
+                    // NOWPayments (Direct Crypto)
+                    result = await createNowPaymentsCheckout(safePlanParam, 'monthly')
+                }
                 if (result.url) window.location.href = result.url
                 else alert(result.error || 'Crypto checkout failed.')
             } else {
@@ -287,6 +296,46 @@ function CheckoutPageContent() {
                                                         <span className="text-[10px] font-black uppercase tracking-widest z-10">Crypto</span>
                                                     </button>
                                                 </div>
+
+                                                {/* ── Crypto Sub-Options ── */}
+                                                <AnimatePresence>
+                                                    {paymentMethod === 'crypto' && (
+                                                        <motion.div
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: 'auto', opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                                            className="overflow-hidden col-span-2"
+                                                        >
+                                                            <div className="pt-3 space-y-2">
+                                                                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-500 mb-2">Choose Crypto Method</div>
+                                                                <div className="grid grid-cols-2 gap-2">
+                                                                    {/* Wallet — Coinbase Commerce */}
+                                                                    <button
+                                                                        onClick={() => setCryptoMethod('wallet')}
+                                                                        className={`relative py-3.5 px-3 rounded-lg border flex flex-col items-center justify-center gap-1.5 transition-all overflow-hidden ${cryptoMethod === 'wallet' ? 'bg-blue-500/10 border-blue-500/40 text-blue-400 shadow-[0_0_15px_-5px_rgba(59,130,246,0.3)]' : 'bg-white/[0.03] border-white/[0.06] text-zinc-500 hover:border-white/10 hover:text-zinc-300'}`}
+                                                                    >
+                                                                        {cryptoMethod === 'wallet' && <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent pointer-events-none" />}
+                                                                        <Wallet className="w-5 h-5 z-10" />
+                                                                        <span className="text-[9px] font-black uppercase tracking-widest z-10">Wallet</span>
+                                                                        <span className="text-[8px] font-medium text-zinc-500 z-10">Coinbase</span>
+                                                                    </button>
+
+                                                                    {/* Direct Crypto — NOWPayments */}
+                                                                    <button
+                                                                        onClick={() => setCryptoMethod('direct')}
+                                                                        className={`relative py-3.5 px-3 rounded-lg border flex flex-col items-center justify-center gap-1.5 transition-all overflow-hidden ${cryptoMethod === 'direct' ? 'bg-green-500/10 border-green-500/40 text-green-400 shadow-[0_0_15px_-5px_rgba(34,197,94,0.3)]' : 'bg-white/[0.03] border-white/[0.06] text-zinc-500 hover:border-white/10 hover:text-zinc-300'}`}
+                                                                    >
+                                                                        {cryptoMethod === 'direct' && <div className="absolute inset-0 bg-gradient-to-b from-green-500/10 to-transparent pointer-events-none" />}
+                                                                        <Bitcoin className="w-5 h-5 z-10" />
+                                                                        <span className="text-[9px] font-black uppercase tracking-widest z-10">Direct Crypto</span>
+                                                                        <span className="text-[8px] font-medium text-zinc-500 z-10">300+ coins</span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
                                             </div>
                                         </>
                                     )}
@@ -299,7 +348,9 @@ function CheckoutPageContent() {
                                                 safePlanParam === 'spot_basic' 
                                                     ? 'bg-white hover:bg-zinc-200 text-black shadow-xl shadow-white/10' 
                                                     : paymentMethod === 'crypto'
-                                                        ? 'bg-gradient-to-r from-orange-500 to-amber-500 text-black shadow-xl shadow-orange-500/30 hover:shadow-orange-500/40'
+                                                        ? cryptoMethod === 'wallet'
+                                                            ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-xl shadow-blue-500/30 hover:shadow-blue-500/40'
+                                                            : 'bg-gradient-to-r from-green-500 to-emerald-500 text-black shadow-xl shadow-green-500/30 hover:shadow-green-500/40'
                                                         : 'bg-gradient-to-r from-amber-400 to-yellow-500 text-black shadow-xl shadow-amber-500/30 hover:shadow-amber-500/40'
                                             }`}
                                         >
@@ -309,7 +360,9 @@ function CheckoutPageContent() {
                                                         {safePlanParam === 'spot_basic' 
                                                             ? 'Start Practicing Free' 
                                                             : paymentMethod === 'crypto' 
-                                                                ? <><Bitcoin className="w-5 h-5" /> Pay with Crypto</> 
+                                                                ? cryptoMethod === 'wallet'
+                                                                    ? <><Wallet className="w-5 h-5" /> Pay via Wallet</>
+                                                                    : <><Bitcoin className="w-5 h-5" /> Pay Direct Crypto</>
                                                                 : 'Complete Checkout'}
                                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                                     </>

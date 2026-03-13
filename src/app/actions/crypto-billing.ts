@@ -5,9 +5,7 @@ import { createClient } from '@/utils/supabase/server'
 const COINBASE_API_URL = 'https://api.commerce.coinbase.com/charges'
 
 const PLAN_PRICES: Record<string, { monthly: number; yearly: number }> = {
-    starter: { monthly: 19, yearly: 185 },
-    growth: { monthly: 29, yearly: 280 },
-    enterprise: { monthly: 59, yearly: 570 },
+    spot_exclusive: { monthly: 39, yearly: 390 },
 }
 
 /**

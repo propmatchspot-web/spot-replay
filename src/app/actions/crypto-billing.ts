@@ -14,7 +14,8 @@ const PLAN_PRICES: Record<string, { monthly: number; yearly: number }> = {
  */
 export async function createCryptoCheckout(
     planName: string,
-    billingCycle: 'monthly' | 'yearly'
+    billingCycle: 'monthly' | 'yearly',
+    couponId?: string
 ) {
     // Read env var inside function body — NOT at module level.
     // Module-level reads can get cached/inlined at build time by Next.js,
@@ -33,7 +34,36 @@ export async function createCryptoCheckout(
         return { error: 'Invalid plan selected.' }
     }
 
-    const amount = billingCycle === 'monthly' ? plan.monthly : plan.yearly
+    let amount = billingCycle === 'monthly' ? plan.monthly : plan.yearly
+    let appliedCouponDisplay = ''
+    
+    // Secure Server-side Coupon Verification & Discount Application
+    if (couponId) {
+        const { data: coupon } = await supabase
+            .from('coupons')
+            .select('*')
+            .eq('id', couponId)
+            .single()
+            
+        if (coupon && coupon.is_active && (!coupon.expires_at || new Date(coupon.expires_at) > new Date()) && (coupon.max_uses === null || coupon.times_used < coupon.max_uses)) {
+            const discountAmount = amount * (coupon.discount_percentage / 100)
+            amount = Math.max(0, amount - discountAmount)
+            appliedCouponDisplay = ` (Code: ${coupon.code})`
+            
+            // Increment the usage counter
+            const serviceRoleClient = process.env.SUPABASE_SERVICE_ROLE_KEY 
+                ? require('@supabase/supabase-js').createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY)
+                : supabase;
+                
+            const { error: updateError } = await serviceRoleClient.rpc('increment_coupon_usage', { coupon_id: couponId }).catch(() => null)
+            
+            // Fallback if RPC doesn't exist yet
+            if (updateError || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+               await serviceRoleClient.from('coupons').update({ times_used: (coupon.times_used || 0) + 1 }).eq('id', couponId)
+            }
+        }
+    }
+
     const planLabel = planName.charAt(0).toUpperCase() + planName.slice(1)
 
     if (!COINBASE_API_KEY) {

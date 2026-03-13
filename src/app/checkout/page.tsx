@@ -5,8 +5,9 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { getCheckoutUrl, markOnboardingComplete, setOnboardingCookie, activateFreePlan } from '../actions/billing'
 import { createCryptoCheckout } from '../actions/crypto-billing'
 import { createNowPaymentsCheckout } from '../actions/nowpayments-billing'
-import { Loader2, Check, ShieldCheck, Zap, CreditCard, Lock, User, ArrowLeft, ArrowRight, Bitcoin, Crown, Sparkles, Wallet } from 'lucide-react'
+import { Loader2, Check, ShieldCheck, Zap, CreditCard, Lock, User, ArrowLeft, ArrowRight, Bitcoin, Crown, Sparkles, Wallet, Tag } from 'lucide-react'
 import { createClient } from '@/utils/supabase/client'
+import { validateCoupon } from '../actions/validate-coupon'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -75,6 +76,20 @@ function CheckoutPageContent() {
     const [user, setUser] = useState<any>(null)
     const PlanIcon = selectedPlan.icon
 
+    // Coupon State
+    const [couponCode, setCouponCode] = useState('')
+    const [appliedDiscountPerc, setAppliedDiscountPerc] = useState(0)
+    const [isValidating, setIsValidating] = useState(false)
+    const [couponError, setCouponError] = useState('')
+    const [appliedCouponString, setAppliedCouponString] = useState('')
+    const [couponId, setCouponId] = useState<string | undefined>(undefined)
+
+    // Calculate dynamic price
+    const originalPrice = selectedPlan.monthlyPrice
+    const finalPrice = appliedDiscountPerc > 0 
+        ? (originalPrice * (1 - appliedDiscountPerc / 100)).toFixed(2) 
+        : originalPrice
+
     useEffect(() => {
         const supabase = createClient()
         supabase.auth.getUser().then(({ data: { user } }) => {
@@ -87,6 +102,30 @@ function CheckoutPageContent() {
             }
         })
     }, [])
+
+    const handleApplyCoupon = async () => {
+        if (!couponCode) return
+        setIsValidating(true)
+        setCouponError('')
+        
+        try {
+            const result = await validateCoupon(couponCode)
+            if (result.success && result.discountPercentage) {
+                setAppliedDiscountPerc(result.discountPercentage)
+                setAppliedCouponString(couponCode.toUpperCase())
+                setCouponId(result.couponId)
+            } else {
+                setCouponError(result.error || 'Invalid coupon code')
+                setAppliedDiscountPerc(0)
+                setAppliedCouponString('')
+                setCouponId(undefined)
+            }
+        } catch (error) {
+            setCouponError('Failed to validate coupon')
+        } finally {
+            setIsValidating(false)
+        }
+    }
 
     const handleCheckout = async () => {
         if (!user) {
@@ -116,10 +155,10 @@ function CheckoutPageContent() {
                 let result;
                 if (cryptoMethod === 'wallet') {
                     // Coinbase Commerce (Wallet)
-                    result = await createCryptoCheckout(safePlanParam, 'monthly')
+                    result = await createCryptoCheckout(safePlanParam, 'monthly', couponId)
                 } else {
                     // NOWPayments (Direct Crypto)
-                    result = await createNowPaymentsCheckout(safePlanParam, 'monthly')
+                    result = await createNowPaymentsCheckout(safePlanParam, 'monthly', couponId)
                 }
                 if (result.url) window.location.href = result.url
                 else alert(result.error || 'Crypto checkout failed.')
@@ -264,8 +303,15 @@ function CheckoutPageContent() {
                                     <div className="flex items-end justify-between">
                                         <div className="space-y-1">
                                             <div className="text-sm text-zinc-400 font-bold uppercase tracking-wide">Total Due Today</div>
-                                            <div className="text-5xl font-black text-white tracking-tighter">
-                                                ${selectedPlan.monthlyPrice}<span className="text-xl text-zinc-500 uppercase tracking-wide font-bold ml-1">/mo</span>
+                                            <div className="flex items-end gap-3">
+                                                {appliedDiscountPerc > 0 && (
+                                                    <div className="text-3xl font-black text-white/30 tracking-tighter line-through decoration-red-500 decoration-2 mb-1">
+                                                        ${originalPrice}
+                                                    </div>
+                                                )}
+                                                <div className="text-5xl font-black text-white tracking-tighter">
+                                                    ${finalPrice}<span className="text-xl text-zinc-500 uppercase tracking-wide font-bold ml-1">/mo</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -332,6 +378,76 @@ function CheckoutPageContent() {
                                                                         <span className="text-[8px] font-medium text-zinc-500 z-10">300+ coins</span>
                                                                     </button>
                                                                 </div>
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
+                                                
+                                                {/* Promo Code Section */}
+                                                <AnimatePresence mode="wait">
+                                                    {paymentMethod === 'card' ? (
+                                                        <motion.div
+                                                            key="card-promo"
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: 'auto', opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            className="overflow-hidden !mt-6"
+                                                        >
+                                                            <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3.5 flex items-start gap-3">
+                                                                <Tag className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                                                                <p className="text-xs text-amber-500/90 font-medium leading-relaxed">
+                                                                    <strong className="text-amber-400 tracking-wide">HAVE A DISCOUNT CODE?</strong><br />
+                                                                    You can apply it securely on the next step at the LemonSqueezy checkout page! It will be tracked and applied instantly.
+                                                                </p>
+                                                            </div>
+                                                        </motion.div>
+                                                    ) : (
+                                                        <motion.div
+                                                            key="crypto-promo"
+                                                            initial={{ height: 0, opacity: 0 }}
+                                                            animate={{ height: 'auto', opacity: 1 }}
+                                                            exit={{ height: 0, opacity: 0 }}
+                                                            className="overflow-hidden !mt-6"
+                                                        >
+                                                            <div className="space-y-2">
+                                                                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-500 flex items-center gap-2">
+                                                                    <Tag className="w-3 h-3" /> Got a Promo Code?
+                                                                </label>
+                                                                
+                                                                <div className="flex gap-2">
+                                                                    <input 
+                                                                        type="text" 
+                                                                        value={couponCode}
+                                                                        onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                                                                        placeholder="Enter code"
+                                                                        disabled={isValidating || appliedDiscountPerc > 0}
+                                                                        className="flex-1 bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-orange-500 focus:outline-none uppercase font-mono text-sm disabled:opacity-50 transition-colors"
+                                                                    />
+                                                                    {appliedDiscountPerc > 0 ? (
+                                                                        <button 
+                                                                            onClick={() => {
+                                                                                setAppliedDiscountPerc(0)
+                                                                                setCouponCode('')
+                                                                                setAppliedCouponString('')
+                                                                                setCouponId(undefined)
+                                                                            }}
+                                                                            disabled={isValidating}
+                                                                            className="px-4 py-3 rounded-lg bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20 font-bold text-sm transition-colors"
+                                                                        >
+                                                                            Remove
+                                                                        </button>
+                                                                    ) : (
+                                                                        <button 
+                                                                            onClick={handleApplyCoupon}
+                                                                            disabled={!couponCode || isValidating}
+                                                                            className="px-6 py-3 rounded-lg bg-orange-500/20 text-orange-500 border border-orange-500/30 hover:bg-orange-500/30 font-bold text-sm disabled:opacity-50 transition-colors flex items-center justify-center min-w-[100px]"
+                                                                        >
+                                                                            {isValidating ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Apply'}
+                                                                        </button>
+                                                                    )}
+                                                                </div>
+                                                                {couponError && <p className="text-red-400 text-xs font-medium pl-1">{couponError}</p>}
+                                                                {appliedDiscountPerc > 0 && <p className="text-green-400 text-xs font-medium flex items-center gap-1 pl-1"><Check className="w-3 h-3" /> {appliedDiscountPerc}% discount applied successfully!</p>}
                                                             </div>
                                                         </motion.div>
                                                     )}

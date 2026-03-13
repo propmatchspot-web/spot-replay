@@ -42,8 +42,8 @@ export async function createNowPaymentsCheckout(
             .eq('id', couponId)
             .single()
             
-        if (coupon && coupon.is_active && (!coupon.expires_at || new Date(coupon.expires_at) > new Date()) && (coupon.max_uses === null || coupon.times_used < coupon.max_uses)) {
-            const discountAmount = amount * (coupon.discount_percentage / 100)
+        if (coupon && coupon.is_active && (!coupon.expires_at || new Date(coupon.expires_at) > new Date()) && (coupon.max_uses === null || coupon.used_count < coupon.max_uses)) {
+            const discountAmount = amount * (coupon.discount_value / 100)
             amount = Math.max(0, amount - discountAmount)
             appliedCouponDisplay = ` (Code: ${coupon.code})`
             
@@ -56,7 +56,7 @@ export async function createNowPaymentsCheckout(
             
             // Fallback if RPC doesn't exist yet
             if (updateError || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
-               await serviceRoleClient.from('coupons').update({ times_used: (coupon.times_used || 0) + 1 }).eq('id', couponId)
+               await serviceRoleClient.from('coupons').update({ used_count: (coupon.used_count || 0) + 1 }).eq('id', couponId)
             }
         }
     }

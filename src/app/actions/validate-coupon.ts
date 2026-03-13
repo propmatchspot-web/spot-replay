@@ -32,14 +32,14 @@ export async function validateCoupon(code: string) {
             return { success: false, error: 'This coupon has expired.' }
         }
 
-        if (coupon.max_uses !== null && coupon.times_used >= coupon.max_uses) {
+        if (coupon.max_uses !== null && coupon.used_count >= coupon.max_uses) {
             return { success: false, error: 'This coupon has reached its usage limit.' }
         }
 
         // Return the valid percentage
         return { 
             success: true, 
-            discountPercentage: coupon.discount_percentage,
+            discountPercentage: coupon.discount_value,
             couponId: coupon.id
         }
 
